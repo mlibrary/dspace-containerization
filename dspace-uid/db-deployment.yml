@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        service: db
+    spec:
+      containers:
+        - name: db
+          image: ghcr.io/mlibrary/dspace-containerization/dspace-db:uid
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              value: "dspace"
+            - name: POSTGRES_PASSWORD
+              value: "dspace"
+            - name: PGDATA
+              value: "/var/lib/postgresql/data/pgdata"
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: db
+  name: db
+spec:
+  ports:
+    - name: "db"
+      targetPort: 5432
+      port: 5432
+  selector:
+    service: db
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    service: db
+  name: db-data
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

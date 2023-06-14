@@ -1,0 +1,87 @@
+---
+services:
+
+  source:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: sleep infinity
+
+  frontend:
+    depends_on:
+      - backend
+    build:
+      dockerfile: frontend.dockerfile
+      context: .
+    environment:
+      DSPACE_UI_SSL: 'false'
+      DSPACE_UI_HOST: frontend
+      DSPACE_UI_PORT: '4000'
+      DSPACE_UI_NAMESPACE: /
+      DSPACE_REST_SSL: 'false'
+      DSPACE_REST_HOST: localhost
+      DSPACE_REST_PORT: 8080
+      DSPACE_REST_NAMESPACE: /server
+      NODE_OPTIONS: "--max-old-space-size=4096"
+    ports:
+      - published: 4000
+        target: 4000
+      - published: 9876
+        target: 9876
+    stdin_open: true
+    tty: true
+
+  backend:
+    depends_on:
+      - db
+      - solr
+    build:
+      dockerfile: backend.dockerfile
+      context: .
+    environment:
+      - dspace__P__dir=/dspace
+      - dspace__P__name=DSpace Demo
+      - db__P__url=jdbc:postgresql://db:5432/dspace
+      - solr__P__server=http://solr:8983/solr
+    ports:
+      - "8080:8080"
+      - "8009:8009"
+    volumes:
+      - dspace-assetstore:/dspace/assetstore
+#      - dspace-config:/dspace/config
+#    command:
+#      - "bash -c while (!</dev/tcp/db/5432) > /dev/null 2>&1; do sleep 1; done; /dspace/bin/dspace database migrate; catalina.sh run"
+
+  db:
+    image: "dspace/dspace-postgres-pgcrypto:dspace-7_x"
+    environment:
+      - POSTGRES_USER=dspace
+      - POSTGRES_PASSWORD=dspace
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  solr:
+    build:
+      dockerfile: solr.dockerfile
+      context: .
+    environment:
+      - SOLR_JAVA_MEM=-Xms1024m -Xmx1024m
+      - SOLR_HEAP=1024m
+    volumes:
+      - solr-data:/var/solr
+    ports:
+      - "8983:8983"
+    command:
+      - "/bin/bash"
+      - "-c"
+      - "init-var-solr; precreate-core authority /opt/solr/server/solr/configsets/authority; cp -r -u /opt/solr/server/solr/configsets/authority/* authority; precreate-core oai /opt/solr/server/solr/configsets/oai; cp -r -u /opt/solr/server/solr/configsets/oai/* oai; precreate-core search /opt/solr/server/solr/configsets/search; cp -r -u /opt/solr/server/solr/configsets/search/* search; precreate-core statistics /opt/solr/server/solr/configsets/statistics; cp -r -u /opt/solr/server/solr/configsets/statistics/* statistics; exec solr start -f -V -p 8983"
+
+volumes:
+
+  dspace-assetstore:
+  db-data:
+  solr-data:

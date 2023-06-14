@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        service: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/mlibrary/dspace-containerization/dspace-frontend:uid
+          imagePullPolicy: Always
+          env:
+            - name: DSPACE_UI_SSL
+              value: "false"
+            - name: DSPACE_UI_HOST
+              value: "frontend"
+            - name: DSPACE_UI_PORT
+              value: "4000"
+            - name: DSPACE_UI_NAMESPACE
+              value: "/"
+            - name: DSPACE_REST_SSL
+              value: "false"
+            - name: DSPACE_REST_HOST
+              value: "localhost"
+            - name: DSPACE_REST_PORT
+              value: "8080"
+            - name: DSPACE_REST_NAMESPACE
+              value: "/server"
+            - name: NODE_OPTIONS
+              value: "--max-old-space-size=4096"
+          ports:
+            - containerPort: 4000
+            - containerPort: 9876
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: frontend
+  name: frontend
+spec:
+  ports:
+    - name: "frontend"
+      targetPort: 4000
+      port: 4000
+    - name: "frontdoor"
+      targetPort: 9876
+      port: 9876
+  selector:
+    service: frontend

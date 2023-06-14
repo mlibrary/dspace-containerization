@@ -1,0 +1,74 @@
+---
+name: Build dspace images
+
+on:
+  workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
+    inputs:
+      source_version:
+        description: "Source Version"
+        required: true
+        default: "7.5"
+        type: choice
+        options:
+          - "7.5"
+          - "7.4"
+
+jobs:
+  build:
+    name: dspace-*:${{ github.event.inputs.source_version }}
+    runs-on: ubuntu-latest
+    # Ensure this job only executed for 'mlibrary/dspace-containerization'
+    if: github.repository == 'mlibrary/dspace-containerization'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push dspace-solr image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:${{ github.event.inputs.source_version }}'
+          file: dspace/solr.dockerfile
+          build-args: |
+            SOURCE_VERSION=${{ github.event.inputs.source_version }}
+
+      - name: Build and push dspace-db image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:${{ github.event.inputs.source_version }}'
+          file: dspace/db.dockerfile
+          build-args: |
+            SOURCE_VERSION=${{ github.event.inputs.source_version }}
+
+      - name: Build and push dspace-backend image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-backend:${{ github.event.inputs.source_version }}'
+          file: dspace/backend.dockerfile
+          build-args: |
+            SOURCE_VERSION=${{ github.event.inputs.source_version }}
+
+      - name: Build and push dspace-frontend image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${{ github.event.inputs.source_version }}'
+          file: dspace/frontend.dockerfile
+          build-args: |
+            SOURCE_VERSION=${{ github.event.inputs.source_version }}

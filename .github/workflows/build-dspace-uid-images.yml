@@ -1,0 +1,85 @@
+---
+name: Build dspace uid images
+
+on:
+  workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
+    inputs:
+      dspace_version:
+        description: "DSpace Version"
+        required: true
+        default: "7.5"
+        type: choice
+        options:
+          - "7.5"
+          - "7.4"
+      uid:
+        description: "OpenShift UID"
+        required: true
+        default: "1000950000"
+        type: choice
+        options:
+          - "1000950000"
+
+jobs:
+  build:
+    name: dspace-*:uid  DSpace Version ${{ github.event.inputs.dspace_version }} with UID ${{ github.event.inputs.uid }}
+    runs-on: ubuntu-latest
+    # Ensure this job only executed for 'mlibrary/dspace-containerization'
+    if: github.repository == 'mlibrary/dspace-containerization'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push dspace-solr:uid image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:uid'
+          file: dspace-uid/solr.dockerfile
+          build-args: |
+            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            UID=${{ github.event.inputs.uid }}
+
+      - name: Build and push dspace-db:uid image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:uid'
+          file: dspace-uid/db.dockerfile
+          build-args: |
+            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            UID=${{ github.event.inputs.uid }}
+
+      - name: Build and push dspace-backend:uid image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-backend:uid'
+          file: dspace-uid/backend.dockerfile
+          build-args: |
+            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            UID=${{ github.event.inputs.uid }}
+
+      - name: Build and push dspace-frontend:uid image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:uid'
+          file: dspace-uid/frontend.dockerfile
+          build-args: |
+            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            UID=${{ github.event.inputs.uid }}
