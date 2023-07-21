@@ -7,10 +7,28 @@ Essentially there are two, for lack of a better word, contexts: local and remote
 
 It is recommend that you first get an instance of DSpace running locally via `docker compose` prior to attempting to get an instance of DSpace running remotely in Kubernetes.
 ## Building and running locally
+### login
+```shell
+docker login
+```
+### build
 ```shell
 docker compose build
+```
+### run
+``` shell
 docker compose up -d
 ```
+### localhost
+| URL                                     | Container | Comments                                     |
+|-----------------------------------------|-----------|----------------------------------------------|
+| http://localhost:4000/home              | frontend  | Angular GUI                                  |
+| jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace) |
+| http://localhost:8009/                  | backend   | debugging???                                 |
+| http://localhost:8080/rest              | backend   | REST API (Deprecated)                        |
+| http://localhost:8080/server            | backend   | Server API                                   |
+| http://localhost:8983/solr              | solr      | Solr GUI                                     |
+| http://localhost:9876/                  | frontend  | debugging???                                 |
 ## Building and running remotely
 | Workflow                  | YAML                         | Packages                                                                                 |
 |---------------------------|------------------------------|------------------------------------------------------------------------------------------|
