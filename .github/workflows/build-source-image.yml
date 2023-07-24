@@ -1,5 +1,5 @@
 ---
-name: Build dspace source image
+name: 1. Build dspace source image
 
 on:
   workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
