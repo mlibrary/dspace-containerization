@@ -24,10 +24,24 @@ spec:
           args: ["-c", "while (!</dev/tcp/db/5432) > /dev/null 2>&1; do sleep 1; done; /dspace/bin/dspace database migrate; catalina.sh run"]
           imagePullPolicy: Always
           env:
+            - name: dspace__P__server__P__url
+              value: "https://server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
+            - name: dspace__P__ui__P__url
+              value: "https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
+            - name: dspace__P__ui
+              value: "http://frontend:4000"
+            - name: dspace__P__UI
+              value: "http://FRONTEND:4000"
+            - name: dspace__P__server
+              value: "https://server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
+            - name: dspace__P__hostname
+              value: "server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
+            - name: dspace__P__port
+              value: "443"
             - name: dspace__P__dir
               value: "/dspace"
             - name: dspace__P__name
-              value: "DSpace Demo"
+              value: "OpenShift Demo"
             - name: db__P__url
               value: "jdbc:postgresql://db:5432/dspace"
             - name: solr__P__server
