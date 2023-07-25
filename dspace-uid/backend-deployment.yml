@@ -24,45 +24,26 @@ spec:
           args: ["-c", "while (!</dev/tcp/db/5432) > /dev/null 2>&1; do sleep 1; done; /dspace/bin/dspace database migrate; catalina.sh run"]
           imagePullPolicy: Always
           env:
-            - name: dspace__P__server__P__url
-              value: "https://server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
-            - name: dspace__P__ui__P__url
-              value: "https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
-            - name: dspace__P__ui
-              value: "http://frontend:4000"
-            - name: dspace__P__UI
-              value: "http://FRONTEND:4000"
-            - name: dspace__P__server
-              value: "https://server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
-            - name: dspace__P__hostname
-              value: "server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
-            - name: dspace__P__port
-              value: "443"
-            - name: dspace__P__dir
-              value: "/dspace"
             - name: dspace__P__name
               value: "OpenShift Demo"
+            - name: dspace__P__ui__P__url
+              value: "https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
+            - name: dspace__P__server__P__url
+              value: "https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
             - name: db__P__url
               value: "jdbc:postgresql://db:5432/dspace"
             - name: solr__P__server
               value: "http://solr:8983/solr"
-          #            - name: proxies__P__trusted__P__ipranges
-          #              value: "172.30.0"
           ports:
             - containerPort: 8080
             - containerPort: 8009
           volumeMounts:
             - name: dspace-assetstore
               mountPath: /dspace/assetstore
-      #            - name: dspace-config
-      #              mountPath: /dspace/config
       volumes:
         - name: dspace-assetstore
           persistentVolumeClaim:
             claimName: dspace-assetstore
-#        - name: dspace-config
-#          persistentVolumeClaim:
-#            claimName: dspace-config
 ---
 apiVersion: v1
 kind: Service

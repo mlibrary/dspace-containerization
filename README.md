@@ -1,12 +1,15 @@
 # dspace-containerization
 University of Michigan Library containerization of DSpace
 ## Overview
+
 A source image is created by pulling source code from the library's forks of DSpace: https://github.com/mlibrary/dspace-angular and  https://github.com/mlibrary/DSpace. The source image is then used to create the frontend, backend, and solr images. These images, along with a database image, are then configured and deployed to create an instance of the DSpace application.  
 
 Essentially there are two, for lack of a better word, contexts: local and remote. Local will be used to refer to your local development environment, or more specifically, Docker Desktop. Remote will be used to refer a Kubernetes cluster. The primary differences between these two contexts being how images are built, where they are stored, and how they are deployed. Local images are built via the `docker compose build` command, stored locally in Docker Desktop, and deployed via `docker compose up -d` command. Remote images are built via GitHub Actions, stored remotely in GitHub Packages, and deployed to Kubernetes (OpenShift) typically using `kubectl` (`oc`) to apply the appropriate deployment yaml files.
 
 It is recommend that you first get an instance of DSpace running locally via `docker compose` prior to attempting to get an instance of DSpace running remotely in Kubernetes.
+
 ## Building and running locally
+
 ### login
 ```shell
 docker login
@@ -29,7 +32,9 @@ docker compose up -d
 | http://localhost:8080/server            | backend   | Server API                                   |
 | http://localhost:8983/solr              | solr      | Solr GUI                                     |
 | http://localhost:9876/                  | frontend  | debugging???                                 |
+
 ## Building and running remotely
+
 DSpace is hosted by the [MITS Container Service](https://its.umich.edu/computing/virtualization-cloud/container-service/).
 ### build
 Run the GitHub action workflows in the following order to build the images that will be deployed to the container service.
@@ -76,19 +81,40 @@ oc apply -f dspace-uid/solr-deployment.yml
 ```shell
 oc apply -f dspace-uid/backend-deployment.yml
 ```
+https://wiki.lyrasis.org/display/DSDOC7x/Configuration+Reference#ConfigurationReference-ConfigurationSchemeforReloadingandOverriding
 #### frontend
 ```shell
 oc apply -f dspace-uid/frontend-deployment.yml
 ```
+https://wiki.lyrasis.org/display/DSDOC7x/User+Interface+Configuration#UserInterfaceConfiguration-In7.2orabove
+
+NOTE: The frontend takes its time coming up so be patient and view the logs.
 ### routes
 From the Administrator OpenShift console ![networking-routes](images/networking-routes.png) under `Networking -> Routes` create the following routes by clicking the create route button.
 
 | Name     | Path    | Service  | Target port      | Secure Route       |
 |----------|---------|----------|------------------|--------------------|
 | frontend | /       | frontend | 4000->4000 (TCP) | true:Edge:Redirect |
-| home     | /home   | frontend | 4000->4000 (TCP) | true:Edge:Redirect |
 | db       | /       | db       | 5432->5432 (TCP) | true:Edge:Redirect |
 | backend  | /       | backend  | 8080->8080 (TCP) | true:Edge:Redirect |
-| rest     | /rest   | backend  | 8080->8080 (TCP) | true:Edge:Redirect |
-| server   | /server | backend  | 8080->8080 (TCP) | true:Edge:Redirect |
 | solr     | /solr   | solr     | 8983->8983 (TCP) | true:Edge:Redirect |
+
+### remotehost
+
+| URL                                                                                  | service  | comment               |
+|--------------------------------------------------------------------------------------|----------|-----------------------|
+| https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/      | frontend | Angular GUI           |
+| https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server | backend  | Server API            |
+| https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/rest   | backend  | REST API (deprecated) |
+| https://solr-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/solr      | solr     | Solr GUI              |
+| https://db-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/            | db       | PostgreSQL            |
+
+NOTE: Connecting to the database require GSSAPI configuration of your `psql` client (which is a mystery to me and you are on your own), otherwise just use port-forwarding:
+#### port-foward terminal
+```shell
+oc port-forward service/db 5432:5432
+```
+#### psql client terminal
+```shell
+psql -h localhost -d dspace -U dspace
+```
