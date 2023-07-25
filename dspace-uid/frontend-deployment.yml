@@ -35,7 +35,7 @@ spec:
             - name: DSPACE_REST_SSL
               value: "true"
             - name: DSPACE_REST_HOST
-              value: "backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
+              value: "server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
             - name: DSPACE_REST_PORT
               value: "443"
             - name: DSPACE_REST_NAMESPACE
