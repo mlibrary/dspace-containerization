@@ -10,6 +10,7 @@ RUN apk update && \
 
 RUN deluser node
 RUN groupadd -g $UID node
-RUN useradd -g $UID -m -l -o -u $UID node
+RUN useradd -g $UID -M -l -o -u $UID node
 
+RUN chown -R $UID:$UID /home/node
 RUN chown -R $UID:$UID /app
