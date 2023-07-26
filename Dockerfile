@@ -1,15 +1,12 @@
 FROM ubuntu:20.04
 
-ARG BACKEND_GITHUB_USER=DSpace
+ARG BACKEND_GITHUB_USER=mlibrary
 ARG BACKEND_GITHUB_REPO=dspace
-ARG BACKEND_GITHUB_TAG=7.5
+ARG BACKEND_GITHUB_BRANCH=umich
 
-ARG FRONTEND_GITHUB_USER=DSpace
+ARG FRONTEND_GITHUB_USER=mlibrary
 ARG FRONTEND_GITHUB_REPO=dspace-angular
-ARG FRONTEND_GITHUB_TAG=7.5
-
-ARG DSPACE_VERSION=7.5
-ENV DSPACE_VERSION=${DSPACE_VERSION}
+ARG FRONTEND_GITHUB_BRANCH=umich
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
@@ -20,16 +17,16 @@ RUN apt-get update && \
 
 ENV BACKEND_GITHUB_USER=${BACKEND_GITHUB_USER}
 ENV BACKEND_GITHUB_REPO=${BACKEND_GITHUB_REPO}
-ENV BACKEND_GITHUB_TAG=${BACKEND_GITHUB_TAG}
-RUN wget -q https://github.com/${BACKEND_GITHUB_USER}/${BACKEND_GITHUB_REPO}/archive/refs/tags/dspace-${BACKEND_GITHUB_TAG}.zip && \
-    unzip -q /dspace-$DSPACE_VERSION.zip -d / && \
-    rm -rf /dspace-$DSPACE_VERSION.zip && \
-    mv /DSpace-dspace-$DSPACE_VERSION /DSpace
+ENV BACKEND_GITHUB_BRANCH=${BACKEND_GITHUB_BRANCH}
+RUN wget -q https://github.com/${BACKEND_GITHUB_USER}/${BACKEND_GITHUB_REPO}/archive/refs/heads/${BACKEND_GITHUB_BRANCH}.zip && \
+    unzip -q /${BACKEND_GITHUB_BRANCH}.zip -d / && \
+    rm -rf /${BACKEND_GITHUB_BRANCH}.zip && \
+    mv /DSpace-${BACKEND_GITHUB_BRANCH} /DSpace
 
 ENV FRONTEND_GITHUB_USER=${FRONTEND_GITHUB_USER}
 ENV FRONTEND_GITHUB_REPO=${FRONTEND_GITHUB_REPO}
-ENV FRONTEND_GITHUB_TAG=${FRONTEND_GITHUB_TAG}
-RUN wget -q https://github.com/DSpace/dspace-angular/archive/refs/tags/dspace-$DSPACE_VERSION.zip && \
-    unzip -q /dspace-$DSPACE_VERSION.zip -d / && \
-    rm -rf /dspace-$DSPACE_VERSION.zip && \
-    mv /dspace-angular-dspace-$DSPACE_VERSION /dspace-angular
+ENV FRONTEND_GITHUB_BRANCH=${FRONTEND_GITHUB_BRANCH}
+RUN wget -q https://github.com/${FRONTEND_GITHUB_USER}/${FRONTEND_GITHUB_REPO}/archive/refs/heads/${FRONTEND_GITHUB_BRANCH}.zip && \
+    unzip -q /${FRONTEND_GITHUB_BRANCH}.zip -d / && \
+    rm -rf /${FRONTEND_GITHUB_BRANCH}.zip && \
+    mv /dspace-angular-${FRONTEND_GITHUB_BRANCH} /dspace-angular
