@@ -35,7 +35,7 @@ docker compose up -d
 
 ## Building and running remotely
 
-DSpace is hosted by the [MITS Container Service](https://its.umich.edu/computing/virtualization-cloud/container-service/).
+DSpace is hosted in the Michigan Information and Technology Services [Container Service](https://its.umich.edu/computing/virtualization-cloud/container-service/).
 ### build
 Run the GitHub action workflows in the following order to build the images that will be deployed to the container service.
 

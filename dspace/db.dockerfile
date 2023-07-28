@@ -1,2 +1,2 @@
-ARG SOURCE_VERSION=7.5
+ARG SOURCE_IMAGE_TAG=demo
 FROM dspace/dspace-postgres-pgcrypto:dspace-7_x

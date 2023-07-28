@@ -1,9 +1,9 @@
-ARG SOURCE_VERSION=7.5
+ARG SOURCE_IMAGE_TAG=demo
 # This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
 # To build with JDK17, use "--build-arg JDK_VERSION=17"
 ARG JDK_VERSION=11
 
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_VERSION} as source
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} as source
 
 # Step 1 - Run Maven Build
 FROM dspace/dspace-dependencies:dspace-7_x as mvn_build

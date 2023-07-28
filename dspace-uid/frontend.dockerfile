@@ -1,5 +1,5 @@
-ARG DSPACE_VERSION=7.5
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${DSPACE_VERSION}
+ARG SOURCE_IMAGE_TAG=demo
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${SOURCE_IMAGE_TAG}
 
 ARG UID=1000950000
 

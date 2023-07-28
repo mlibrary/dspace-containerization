@@ -4,14 +4,14 @@ name: 3. Build dspace uid images
 on:
   workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
     inputs:
-      dspace_version:
-        description: "DSpace Version"
+      source_image_tag:
+        description: Source Image Tag
         required: true
-        default: "7.5"
+        default: demo
         type: choice
         options:
-          - "7.5"
-          - "7.4"
+          - demo
+          
       uid:
         description: "OpenShift UID"
         required: true
@@ -22,7 +22,7 @@ on:
 
 jobs:
   build:
-    name: dspace-*:uid  DSpace Version ${{ github.event.inputs.dspace_version }} with UID ${{ github.event.inputs.uid }}
+    name: dspace-*:uid  DSpace Version ${{ github.event.inputs.source_image_tag }} with UID ${{ github.event.inputs.uid }}
     runs-on: ubuntu-latest
     # Ensure this job only executed for 'mlibrary/dspace-containerization'
     if: github.repository == 'mlibrary/dspace-containerization'
@@ -48,7 +48,7 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:uid'
           file: dspace-uid/solr.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
             UID=${{ github.event.inputs.uid }}
 
       - name: Build and push dspace-db:uid image
@@ -59,7 +59,7 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:uid'
           file: dspace-uid/db.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
             UID=${{ github.event.inputs.uid }}
 
       - name: Build and push dspace-backend:uid image
@@ -70,7 +70,7 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-backend:uid'
           file: dspace-uid/backend.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
             UID=${{ github.event.inputs.uid }}
 
       - name: Build and push dspace-frontend:uid image
@@ -81,5 +81,5 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:uid'
           file: dspace-uid/frontend.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
+            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
             UID=${{ github.event.inputs.uid }}
