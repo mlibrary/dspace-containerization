@@ -1,5 +1,5 @@
 # dspace-containerization
-University of Michigan Library containerization of DSpace
+University of Michigan Library containerization of [DSpace](https://dspace.lyrasis.org/)
 ## Overview
 
 A source image is created by pulling source code from the library's forks of DSpace: https://github.com/mlibrary/dspace-angular and  https://github.com/mlibrary/DSpace. The source image is then used to create the frontend, backend, and solr images. These images, along with a database image, are then configured and deployed to create an instance of the DSpace application.  
@@ -18,6 +18,8 @@ docker login
 ```shell
 docker compose build
 ```
+NOTE: Build uses `dspace-7_x` by default. To build with 7.6, use "--build-arg DSPACE_VERSION=7.6"
+
 ### run
 ``` shell
 docker compose up -d
@@ -118,3 +120,6 @@ oc port-forward service/db 5432:5432
 ```shell
 psql -h localhost -d dspace -U dspace
 ```
+## References
+* https://dspace.lyrasis.org/
+* https://wiki.lyrasis.org/display/DSPACE/

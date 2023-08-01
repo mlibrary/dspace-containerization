@@ -55,7 +55,11 @@ services:
 #      - "bash -c while (!</dev/tcp/db/5432) > /dev/null 2>&1; do sleep 1; done; /dspace/bin/dspace database migrate; catalina.sh run"
 
   db:
-    image: "dspace/dspace-postgres-pgcrypto:dspace-7_x"
+    depends_on:
+      - source
+    build:
+      dockerfile: db.dockerfile
+      context: .
     environment:
       - POSTGRES_USER=dspace
       - POSTGRES_PASSWORD=dspace

@@ -1,3 +1,7 @@
+# This Dockerfile uses 7_x by default
+# To build with 7.6, use "--build-arg DSPACE_VERSION=7.6"
+ARG DSPACE_VERSION=7_x
+
 # This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
 # To build with JDK17, use "--build-arg JDK_VERSION=17"
 ARG JDK_VERSION=11
@@ -5,7 +9,7 @@ ARG JDK_VERSION=11
 FROM dspace-containerization-source as source
 
 # Step 1 - Run Maven Build
-FROM dspace/dspace-dependencies:dspace-7_x as mvn_build
+FROM dspace/dspace-dependencies:dspace-${DSPACE_VERSION} as mvn_build
 ARG TARGET_DIR=dspace-installer
 
 WORKDIR /app
