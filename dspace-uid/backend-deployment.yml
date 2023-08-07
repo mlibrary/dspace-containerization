@@ -29,7 +29,7 @@ spec:
             - name: dspace__P__ui__P__url
               value: "https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com"
             - name: dspace__P__server__P__url
-              value: "https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
+              value: "https://server-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server"
             - name: db__P__url
               value: "jdbc:postgresql://db:5432/dspace"
             - name: solr__P__server
