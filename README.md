@@ -90,7 +90,9 @@ oc apply -f dspace-uid/frontend-deployment.yml
 ```
 https://wiki.lyrasis.org/display/DSDOC7x/User+Interface+Configuration#UserInterfaceConfiguration-In7.2orabove
 
-NOTE: The frontend takes its time coming up so be patient and view the logs.
+NOTE: 
+ * The frontend takes its time coming up so be patient and view the logs.
+ * The frontend using a lot of memory, if you need more bump up the "--max-old-space-size=8192".
 ### routes
 From the Administrator OpenShift console ![networking-routes](images/networking-routes.png) under `Networking -> Routes` create the following routes by clicking the create route button.
 

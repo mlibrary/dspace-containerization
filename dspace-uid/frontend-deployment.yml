@@ -20,8 +20,6 @@ spec:
       containers:
         - name: frontend
           image: ghcr.io/mlibrary/dspace-containerization/dspace-frontend:uid
-          command: ["/bin/sh"]
-          args: ["-c", "yarn serve --disable-host-check --host 0.0.0.0"]
           imagePullPolicy: Always
           env:
             - name: DSPACE_UI_SSL
@@ -41,7 +39,7 @@ spec:
             - name: DSPACE_REST_NAMESPACE
               value: "/server"
             - name: NODE_OPTIONS
-              value: "--max-old-space-size=4096"
+              value: "--max-old-space-size=8192"
           ports:
             - containerPort: 4000
             - containerPort: 9876
