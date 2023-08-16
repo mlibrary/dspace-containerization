@@ -7,7 +7,7 @@ on:
       dspace_version:
         description: DSpace Version
         required: true
-        default: 7_x
+        default: 7.6
         type: choice
         options:
           - 7_x
