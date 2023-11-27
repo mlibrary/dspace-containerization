@@ -7,11 +7,12 @@ on:
       source_image_tag:
         description: Source Image Tag
         required: true
-        default: demo
+        default: issue-working
         type: choice
         options:
-          - demo
-          
+          - issue-working
+          - umich
+
       uid:
         description: "OpenShift UID"
         required: true

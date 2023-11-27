@@ -7,10 +7,11 @@ on:
       source_image_tag:
         description: Source Image Tag
         required: true
-        default: demo
+        default: issue-working
         type: choice
         options:
-          - demo
+          - umich
+          - issue-working
       backend_github_user:
         description: Backend GitHub User
         required: true
@@ -29,7 +30,7 @@ on:
       backend_github_branch:
         description: Backend GitHub Branch
         required: true
-        default: umich
+        default: issue-working
         type: choice
         options:
           - dspace-7_x
@@ -53,7 +54,7 @@ on:
       frontend_github_branch:
         description: Frontend GitHub Branch
         required: true
-        default: umich
+        default: issue-working
         type: choice
         options:
           - dspace-7_x

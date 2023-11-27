@@ -15,10 +15,11 @@ on:
       source_image_tag:
         description: Source Image Tag
         required: true
-        default: demo
+        default: issue-working
         type: choice
         options:
-          - demo
+          - umich
+          - issue-working
 
 jobs:
   build:
