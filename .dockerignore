@@ -2,5 +2,6 @@
 *
 
 # Allow files and directories
+!/apache2
 
 # Ignore unnecessary files inside allowed directories

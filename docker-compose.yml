@@ -54,6 +54,16 @@ services:
 #    command:
 #      - "bash -c while (!</dev/tcp/db/5432) > /dev/null 2>&1; do sleep 1; done; /dspace/bin/dspace database migrate; catalina.sh run"
 
+  apache:
+    depends_on:
+      - source
+      - db
+    build:
+      dockerfile: apache.dockerfile
+      context: .
+    ports:
+      - "8888:80"
+
   db:
     depends_on:
       - source
@@ -93,3 +103,6 @@ volumes:
   dspace-assetstore:
   db-data:
   solr-data:
+
+networks:
+  default:

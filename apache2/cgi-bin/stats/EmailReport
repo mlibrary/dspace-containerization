@@ -1,0 +1,319 @@
+#!/usr/bin/perl
+#
+# Copyright 2000, The Regents of The University of Michigan, All Rights Reserved
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject
+# to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+BEGIN
+{
+    unshift( @INC, '/usr/local/apache2/cgi-bin/stats' );
+}
+
+BEGIN
+{
+  require "strict.pm";
+  strict::import();
+}
+
+END
+{
+    # Exit program
+    exit;
+}
+# ----------------------------------------------------------------------
+#               start of MAIN
+# ----------------------------------------------------------------------
+
+use CGI qw( :standard :html3 escape unescape escapeHTML );
+use DBI;
+use File::Path;
+use Getopt::Std;
+use StatsUtils;
+
+
+# set umask (for file uploads)
+umask 000;
+
+$::VERSION = 1.0000;
+
+my %opts;
+getopts('c:t:s:e:v:x:m:', \%opts);
+
+#Always assume metadata Prefix is oai_id
+my $collid                 = $opts{'c'};
+my $stattype               = $opts{'t'};
+my $startdt                = $opts{'s'};
+my $enddt                  = $opts{'e'};
+my $searchvalue            = $opts{'v'};
+my $searchtype             = $opts{'x'};
+my $email                  = $opts{'m'};
+
+my $dbhP = DBI->connect("dbi:Pg:dbname=dspace", "dspace", "dspace");
+
+my ($data, $data1);
+if  ( $stattype eq 'access' )
+  {
+     $data = &ProcessDownloadAccess( $collid, $startdt, $enddt, $searchtype, $searchvalue );
+     $data1 = &ProcessDownloadAccessFiles( $collid, $startdt, $enddt, $searchtype, $searchvalue );
+  }
+elsif  ( $stattype eq 'added' )
+  {
+     $data = &ProcessDownloadAdded( $collid, $startdt, $enddt, $searchtype, $searchvalue );
+  }
+
+
+if ( $data )
+  {
+    my $file = &PrepareZipFile ( 'data', $data );
+    &EmailZipFileData( $file, $email );
+  }
+
+if ( $data1 )
+  {
+    my $file = &PrepareZipFile ( 'data1', $data1 );
+    &EmailZipFileData( $file, $email, 'file specific data' );
+  }
+
+#disconnect from the database.
+$dbhP->disconnect;
+
+exit;
+
+# ----------------------------------------------------------------------
+
+sub EmailZipFileData
+{
+
+    my ( $file, $to, $subject ) = @_;
+
+    my $collname = &StatsUtils::GetCollname ( $dbhP, $collid );
+    my $dateRange;
+    if ( $startdt eq $enddt )
+      {
+	$dateRange = $startdt;
+      }
+    else
+      {
+	$dateRange = qq{$startdt-$enddt};
+      }
+
+
+    my $msg = qq{Stats for $collname for $dateRange attached.};
+    if ( $subject )
+      {
+	$msg = qq{Stats for $collname for $dateRange attached, with $subject.};
+	$subject = qq{Dspace stats download requested - $subject};
+      }
+    else
+      {
+	$subject = qq{Dspace stats download requested};
+      }
+
+
+    use Mail::Sender;
+    my $sender = new Mail::Sender
+      {smtp => 'localhost', from => 'deepblue@umich.edu'};
+    $sender->MailFile({to => $to,
+		       subject => $subject,
+		       msg => $msg,
+		       file => $file});
+    $sender->Close;
+
+}
+
+sub ProcessDownloadAdded
+  {
+    my ( $collid, $startdt, $enddt, $searchtype, $searchvalue ) = @_;
+
+    my $statement;
+    if ( $searchvalue )
+      {
+	$searchvalue = lc ( $searchvalue );
+	$searchvalue =~ s,\*,%,gs;
+	$statement = &StatsUtils::GetSQLAddedSearch ( $collid, $enddt, $startdt, $searchtype, $searchvalue ) ;
+      }
+    else
+      {
+	$statement = &StatsUtils::GetSQLAddedNonSearch ( $collid, $enddt, $startdt );
+      }
+
+    my $dateRange;
+    if ( $startdt eq $enddt )
+      {
+	$dateRange = $startdt;
+      }
+    else
+      {
+	$dateRange = qq{$startdt-$enddt};
+      }
+    my $data = &StatsUtils::GetDownloadDataAdded ( $dbhP, $dateRange, $statement );
+
+    return $data;
+
+  }
+
+
+sub ProcessDownloadAccess
+  {
+    my ( $collid, $startdt, $enddt, $searchtype, $searchvalue ) = @_;
+
+    my $statement;
+    if ( $searchvalue )
+      {
+	$searchvalue = lc ( $searchvalue );
+	$searchvalue =~ s,\*,%,gs;
+	$statement = &StatsUtils::GetSQLAccessSearch ( $collid, $enddt, $startdt, $searchtype, $searchvalue ) ;
+      }
+    else
+      {
+	$statement = &StatsUtils::GetSQLAccessNonSearch ( $collid, $enddt, $startdt );
+      }
+
+    my $dateRange;
+    if ( $startdt eq $enddt )
+      {
+	$dateRange = $startdt;
+      }
+    else
+      {
+	$dateRange = qq{$startdt-$enddt};
+      }
+    my ( $data, $RecCount, $Total ) = &StatsUtils::GetDownloadDataAccess ( $dbhP, $collid, $dateRange, $statement );
+
+    return $data;
+
+  }
+
+
+sub ProcessDownloadAccessFiles
+  {
+    my ( $collid, $startdt, $enddt, $searchtype, $searchvalue ) = @_;
+
+    #Now for part2 - the file specific data.
+    my $statement;
+    if ( $searchvalue )
+      {
+	$searchvalue = lc ( $searchvalue );
+	$searchvalue =~ s,\*,%,gs;
+	$statement = &StatsUtils::GetSQLAccessSearchFiles ( $collid, $enddt, $startdt, $searchtype, $searchvalue ) ;
+      }
+    else
+      {
+	$statement = &StatsUtils::GetSQLAccessNonSearchFiles ( $collid, $enddt, $startdt );
+      }
+
+      my $dateRange;
+      if ( $startdt eq $enddt )
+       {
+	 $dateRange = $startdt;
+       }
+       else
+       {
+	 $dateRange = qq{$startdt-$enddt};
+       }
+    my ( $data, $RecCount, $Total ) = &StatsUtils::GetDownloadDataAccessFiles ( $dbhP, $collid, $dateRange, $statement );
+
+    return $data;
+
+}
+
+sub WriteFile
+{
+
+    my ( $fileName, $buffer ) = @_;
+
+    #Now you want to append this to the file.
+    open ( OUTFILE, ">$fileName" ) || die();
+    print OUTFILE $buffer;
+    close OUTFILE;
+
+    return;
+
+}
+
+
+sub PrepareZipFile
+{
+
+    my ( $FileName, $buffer ) = @_;
+
+    my $count = &StatsUtils::GetCount( $dbhP );
+
+    my $baseDir = '/usr/local/apache2/cgi-bin/stats/email';
+    my $DirName = qq{output$count};
+    my $destination = qq{$baseDir/email/output$count};
+
+    if ( -d $destination )
+      {
+	`rm -r $destination`;
+      }
+    my @args = ("mkdir", "$destination");
+    system (@args) == 0 or &errorBail("Could not make destination directory.  Program has terminated");
+
+    #This was causing an aerror in permission and not allowing
+    #stats to be mailed out. Jan 13, 2017
+    #my @args = ("chmod", "777", "$destination");
+    #system (@args) == 0 or &errorBail("Could not grant permissions to destination dir.  Program has terminated");
+
+
+
+
+    my $dataFile = qq{$destination/$FileName.txt};
+    &WriteFile ( $dataFile, $buffer );
+
+    #Call Unix to Zip the files
+    `/bin/gzip  $destination/$FileName.txt`;
+    my $ZipFile = $destination . '/' . $FileName . '.txt.gz';
+
+    #This was the old way of doing it, but I could not get zip to
+    #exclue dir names from the zip fle.
+    #`/usr/bin/zip -r $destination  $destination`;
+    #`find $destination -name "data" -print | zip -D $destination -@` ;
+    #my @args = ("/usr/bin/zip", "-r", "$destination",  "$destination");
+    #my @args = ("/usr/bin/zip", "-r", "$DirName",  "$destination");
+    #system (@args) == 0 or &errorBail("Could not zip files.  Program has terminated");
+    #my $baseFile = $baseDir . '/' . $DirName . '.zip';
+    #my @args = ("mv", "$baseFile", "$destination");
+    #system (@args) == 0 or &errorBail("Could not move base file to destination.  Program has terminated");
+
+
+    return $ZipFile;
+
+}
+
+sub errorBail
+{
+    my( $error ) = @_;
+    my $s = '';
+
+    $s .= &CGI::start_html( -title => 'DSpace Error Page', -bgcolor => '#FFFFFF', );
+    $s .= $error;
+    $s .= &CGI::end_html;
+
+    &StatsUtils::OutputHtmlPage( \$s );
+
+    exit;
+}
+
+
+__END__;
+
+
+
