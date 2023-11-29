@@ -41,6 +41,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build and push dspace-apache:uid image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-apache:uid'
+          file: dspace-uid/apache.dockerfile
+          build-args: |
+            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
+            UID=${{ github.event.inputs.uid }}
+
       - name: Build and push dspace-solr:uid image
         uses: docker/build-push-action@v2
         with:
