@@ -56,13 +56,12 @@ services:
 
   apache:
     depends_on:
-      - source
       - db
     build:
       dockerfile: apache.dockerfile
       context: .
     ports:
-      - "8888:80"
+      - "8888:8888"
 
   db:
     depends_on:
