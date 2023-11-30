@@ -18,7 +18,12 @@ docker login
 ```shell
 docker compose build
 ```
-NOTE: Build uses `dspace-7_x` by default. To build with 7.6, use "--build-arg DSPACE_VERSION=7.6"
+NOTES:
+
+Build uses `dspace-7.6` by default. To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
+
+Build uses `JDK11` by default. To build with JDK17, use "--build-arg JDK_VERSION=17"
+
 
 ### run
 ``` shell
@@ -32,6 +37,7 @@ docker compose up -d
 | http://localhost:8009/                  | backend   | debugging???                                 |
 | http://localhost:8080/rest              | backend   | REST API (Deprecated)                        |
 | http://localhost:8080/server            | backend   | Server API                                   |
+| http://localhost:8888/                  | apache    | Apache Web Server                            |
 | http://localhost:8983/solr              | solr      | Solr GUI                                     |
 | http://localhost:9876/                  | frontend  | debugging???                                 |
 

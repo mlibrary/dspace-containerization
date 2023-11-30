@@ -54,6 +54,20 @@ ENV DSPACE_INSTALL=/dspace
 ENV TOMCAT_INSTALL=/usr/local/tomcat
 # Copy the /dspace directory from 'ant_build' containger to /dspace in this container
 COPY --from=ant_build /dspace $DSPACE_INSTALL
+
+# Install additional libraries needed for backend scripts
+RUN apt update; \
+    apt install -y --no-install-recommends \
+        libcgi-pm-perl \
+        libdbi-perl \
+        libio-all-lwp-perl \
+        dnsutils \
+        emacs \
+        vim
+
+# Install additional backend scripts
+COPY ./backend/bin/ $DSPACE_INSTALL/bin/
+
 # Enable the AJP connector in Tomcat's server.xml
 # NOTE: secretRequired="false" should only be used when AJP is NOT accessible from an external network. But, secretRequired="true" isn't supported by mod_proxy_ajp until Apache 2.5
 RUN sed -i '/Service name="Catalina".*/a \\n    <Connector protocol="AJP/1.3" port="8009" address="0.0.0.0" redirectPort="8443" URIEncoding="UTF-8" secretRequired="false" />' $TOMCAT_INSTALL/conf/server.xml

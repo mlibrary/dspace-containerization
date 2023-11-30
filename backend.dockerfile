@@ -1,6 +1,6 @@
-# This Dockerfile uses 7_x by default
-# To build with 7.6, use "--build-arg DSPACE_VERSION=7.6"
-ARG DSPACE_VERSION=7_x
+# This Dockerfile uses 7.6 by default
+# To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
+ARG DSPACE_VERSION=7.6
 
 # This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
 # To build with JDK17, use "--build-arg JDK_VERSION=17"
@@ -56,6 +56,23 @@ ENV DSPACE_INSTALL=/dspace
 ENV TOMCAT_INSTALL=/usr/local/tomcat
 # Copy the /dspace directory from 'ant_build' containger to /dspace in this container
 COPY --from=ant_build /dspace $DSPACE_INSTALL
+
+# Install additional libraries needed for backend scripts
+RUN apt update; \
+    apt install -y --no-install-recommends \
+        libcgi-pm-perl \
+        libdbi-perl \
+        libio-all-lwp-perl \
+        liberror-perl \
+        libdbd-pg-perl \
+        dnsutils \
+        emacs \
+        vim
+
+# Install additional backend scripts
+COPY ./backend/bin/ $DSPACE_INSTALL/bin/
+COPY ./backend/logs/ $DSPACE_INSTALL/logs/
+
 # Enable the AJP connector in Tomcat's server.xml
 # NOTE: secretRequired="false" should only be used when AJP is NOT accessible from an external network. But, secretRequired="true" isn't supported by mod_proxy_ajp until Apache 2.5
 RUN sed -i '/Service name="Catalina".*/a \\n    <Connector protocol="AJP/1.3" port="8009" address="0.0.0.0" redirectPort="8443" URIEncoding="UTF-8" secretRequired="false" />' $TOMCAT_INSTALL/conf/server.xml
