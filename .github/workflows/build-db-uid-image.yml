@@ -10,8 +10,8 @@ on:
         default: 7.6
         type: choice
         options:
-          - 7_x
           - 7.6
+          - 7_x
 
       uid:
         description: "OpenShift UID"

@@ -40,5 +40,5 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-apache:uid'
           file: dspace-uid/apache.dockerfile
           build-args: |
-            SOURCE_IMAGE_TAG=${{ github.ref_name }}
+            REF_NAME=${{ github.ref_name }}
             UID=${{ github.event.inputs.uid }}

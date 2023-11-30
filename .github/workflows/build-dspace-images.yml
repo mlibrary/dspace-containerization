@@ -1,5 +1,5 @@
 ---
-name: 2. Build dspace images
+name: 2. Build dspace-* images
 
 on:
   workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
@@ -10,12 +10,13 @@ on:
         default: 7.6
         type: choice
         options:
-          - 7_x
           - 7.6
+          - 7_x
+
       source_image_tag:
         description: Source Image Tag
         required: true
-        default: issue-working
+        default: umich
         type: choice
         options:
           - umich
@@ -41,17 +42,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push dspace-apache image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-apache:${{ github.event.inputs.source_image_tag }}'
-          file: dspace/apache.dockerfile
-          build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
-            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
-
       - name: Build and push dspace-solr image
         uses: docker/build-push-action@v2
         with:
@@ -60,18 +50,6 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:${{ github.event.inputs.source_image_tag }}'
           file: dspace/solr.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
-            SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
-
-      - name: Build and push dspace-db image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:${{ github.event.inputs.source_image_tag }}'
-          file: dspace/db.dockerfile
-          build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
             SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
 
       - name: Build and push dspace-backend image
@@ -93,5 +71,4 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${{ github.event.inputs.source_image_tag }}'
           file: dspace/frontend.dockerfile
           build-args: |
-            DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
             SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}

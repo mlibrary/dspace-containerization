@@ -1,5 +1,5 @@
-ARG SOURCE_IMAGE_TAG=umich
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-apache:${SOURCE_IMAGE_TAG}
+ARG REF_NAME=main
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-apache:${REF_NAME}
 
 ARG UID=1000950000
 

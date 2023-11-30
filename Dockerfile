@@ -2,11 +2,11 @@ FROM ubuntu:20.04
 
 ARG BACKEND_GITHUB_USER=mlibrary
 ARG BACKEND_GITHUB_REPO=dspace
-ARG BACKEND_GITHUB_BRANCH=cgi
+ARG BACKEND_GITHUB_BRANCH=umich
 
 ARG FRONTEND_GITHUB_USER=mlibrary
 ARG FRONTEND_GITHUB_REPO=dspace-angular
-ARG FRONTEND_GITHUB_BRANCH=cgi
+ARG FRONTEND_GITHUB_BRANCH=umich
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \

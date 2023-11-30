@@ -1,5 +1,4 @@
-ARG DSPACE_VERSION=7_x
-ARG SOURCE_IMAGE_TAG=demo
+ARG SOURCE_IMAGE_TAG=umich
 FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} as source
 
 FROM node:18-alpine

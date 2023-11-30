@@ -1,5 +1,5 @@
 ---
-name: 1. Build dspace source image
+name: 1. Build dspace-source image
 
 on:
   workflow_dispatch:  # This allows to kick-off the action manually from GitHub Actions
@@ -7,57 +7,9 @@ on:
       source_image_tag:
         description: Source Image Tag
         required: true
-        default: issue-working
+        default: umich
         type: choice
         options:
-          - umich
-          - issue-working
-      backend_github_user:
-        description: Backend GitHub User
-        required: true
-        default: mlibrary
-        type: choice
-        options:
-          - dspace
-          - mlibrary
-      backend_github_repo:
-        description: Backend GitHub Repo
-        required: true
-        default: DSpace
-        type: choice
-        options:
-          - DSpace
-      backend_github_branch:
-        description: Backend GitHub Branch
-        required: true
-        default: issue-working
-        type: choice
-        options:
-          - dspace-7_x
-          - umich
-          - issue-working
-      frontend_github_user:
-        description: Frontend GitHub User
-        required: true
-        default: mlibrary
-        type: choice
-        options:
-          - dspace
-          - mlibrary
-      frontend_github_repo:
-        description: Frontend GitHub Repo
-        required: true
-        default: dspace-angular
-        type: choice
-        options:
-          - dspace-angular
-      frontend_github_branch:
-        description: Frontend GitHub Branch
-        required: true
-        default: issue-working
-        type: choice
-        options:
-          - dspace-7_x
           - umich
           - issue-working
 
@@ -89,9 +41,9 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-source:${{ github.event.inputs.source_image_tag }}'
           file: Dockerfile
           build-args: |
-            BACKEND_GITHUB_USER=${{ github.event.inputs.backend_github_user }}
-            BACKEND_GITHUB_REPO=${{ github.event.inputs.backend_github_repo }}
-            BACKEND_GITHUB_BRANCH=${{ github.event.inputs.backend_github_branch }}
-            FRONTEND_GITHUB_USER=${{ github.event.inputs.frontend_github_user }}
-            FRONTEND_GITHUB_REPO=${{ github.event.inputs.frontend_github_repo }}
-            FRONTEND_GITHUB_BRANCH=${{ github.event.inputs.frontend_github_branch }}
+            BACKEND_GITHUB_USER=mlibrary
+            BACKEND_GITHUB_REPO=DSpace
+            BACKEND_GITHUB_BRANCH=${{ github.event.inputs.source_image_tag }}
+            FRONTEND_GITHUB_USER=mlibrary
+            FRONTEND_GITHUB_REPO=dspace-angular
+            FRONTEND_GITHUB_BRANCH=${{ github.event.inputs.source_image_tag }}
