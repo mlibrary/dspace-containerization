@@ -1,4 +1,4 @@
-ARG DSPACE_VERSION=7_x
+ARG DSPACE_VERSION=7.6
 FROM ghcr.io/mlibrary/dspace-containerization/dspace-db:${DSPACE_VERSION}
 
 ARG UID=1000950000

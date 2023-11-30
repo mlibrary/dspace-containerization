@@ -1,2 +1,2 @@
-ARG DSPACE_VERSION=7_x
+ARG DSPACE_VERSION=7.6
 FROM dspace/dspace-postgres-pgcrypto:dspace-${DSPACE_VERSION}
