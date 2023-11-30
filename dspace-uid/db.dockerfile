@@ -1,5 +1,5 @@
-ARG SOURCE_IMAGE_TAG=demo
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-db:${SOURCE_IMAGE_TAG}
+ARG DSPACE_VERSION=7_x
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-db:${DSPACE_VERSION}
 
 ARG UID=1000950000
 
