@@ -61,12 +61,15 @@ RUN apt update; \
         libcgi-pm-perl \
         libdbi-perl \
         libio-all-lwp-perl \
+        liberror-perl \
+        libdbd-pg-perl \
         dnsutils \
         emacs \
         vim
 
 # Install additional backend scripts
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
+COPY ./backend/logs/ $DSPACE_INSTALL/logs/
 
 # Enable the AJP connector in Tomcat's server.xml
 # NOTE: secretRequired="false" should only be used when AJP is NOT accessible from an external network. But, secretRequired="true" isn't supported by mod_proxy_ajp until Apache 2.5

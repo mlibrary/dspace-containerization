@@ -1,0 +1,1000 @@
+2023-11-01 23:59:46,000 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:46,000 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:46,001 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:46,001 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:46,001 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:46,018 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=5.255.231.190&req_dat=Mozilla%2F5.0+%28compatible%3B+YandexBot%2F3.0%3B+%2Bhttp%3A%2F%2Fyandex.com%2Fbots%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F151123&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A46Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F151123&rft_dat=Investigation
+2023-11-01 23:59:46,060 INFO  org.dspace.app.xmlui.aspect.artifactbrowser.ItemViewer @ anonymous:session_id=6A98A0AED90F21DEB0D09078F54AD879:ip_addr=3.236.120.73:referer=null:view_item_details:collection=OUTSIDE Dissertations and Theses (Ph.D. and Master's) (Research Collections), Environment and Sustainability, School for (SEAS/SNRE) (Research Collections),  handle=2027.42/88163
+2023-11-01 23:59:46,106 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:46,106 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:46,106 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:46,106 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:46,108 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:46,533 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=2f5409fe-d5fc-4684-a8ad-54d1fffcdf37) policies.
+2023-11-01 23:59:46,579 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=489e7340-5288-40d4-bdd5-b3e86fac2f13) policies.
+2023-11-01 23:59:46,618 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=50a9bff7-b39c-414f-818d-5ce14a6cf916) policies.
+2023-11-01 23:59:46,655 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=5570338d-1f87-44cf-ba80-9ac673fbc998) policies.
+2023-11-01 23:59:46,692 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=f97c87aa-0b6a-4927-827f-e724e548e23a) policies.
+2023-11-01 23:59:46,727 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=74ffdc04-413b-40a3-8bf9-960cb7807223) policies.
+2023-11-01 23:59:46,764 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=1f89d209-6eae-434b-8c4a-f9173ebae2bb) policies.
+2023-11-01 23:59:46,772 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=5.255.231.190&req_dat=Mozilla%2F5.0+%28compatible%3B+YandexBot%2F3.0%3B+%2Bhttp%3A%2F%2Fyandex.com%2Fbots%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F151123&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A46Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F151123&rft_dat=Investigation on Wed Nov 01 23:59:46 EDT 2023
+2023-11-01 23:59:46,772 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=F5C9DE487F4F0D99AE62291B85C446A7:ip_addr=5.255.231.190:referer=null:view_item:handle=2027.42/151123
+2023-11-01 23:59:46,777 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Withdrawn Reason selector processing
+2023-11-01 23:59:46,777 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Finding item
+2023-11-01 23:59:46,777 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Item found
+2023-11-01 23:59:46,779 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Done looking for metadata
+2023-11-01 23:59:46,800 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=6a6ba301-8da6-4d13-8b2a-914cc829e1bf) policies.
+2023-11-01 23:59:46,830 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=e2d9738f-e542-468d-bd54-9ca08592f54f) policies.
+2023-11-01 23:59:46,862 INFO  org.dspace.rest.BitstreamResource @ Reading bitstream(id=38e05ad5-2f84-4e6b-9eb2-70bd5af464b0) policies.
+2023-11-01 23:59:47,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:47,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:47,174 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:47,175 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,175 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,176 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,176 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,176 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:47,185 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:47,185 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:47,211 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=4DEFF947BE3B99BE0A6D6EF9F19203EF:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=f7116a20-fa70-437a-b7f9-6b89a9019ca4
+2023-11-01 23:59:47,211 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=4DEFF947BE3B99BE0A6D6EF9F19203EF:ip_addr=52.233.106.29:referer=null:handle=2027.42/64039:view_bitstream_details:filename=88702.pdf
+2023-11-01 23:59:47,212 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  88702.pdf//l1/dspace/repository/prod/upload_temp/88702.pdf
+2023-11-01 23:59:47,212 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=4DEFF947BE3B99BE0A6D6EF9F19203EF:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=f7116a20-fa70-437a-b7f9-6b89a9019ca4
+2023-11-01 23:59:47,231 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:47,231 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 174.164.8.95
+2023-11-01 23:59:47,231 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 174.164.8.95
+2023-11-01 23:59:47,231 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,232 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,232 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,232 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,232 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:47,608 INFO  org.dspace.app.xmlui.aspect.discovery.AbstractSearch @ anonymous:session_id=C283F12EF8EE71694CA4D582DF17C32B:ip_addr=174.164.8.95:referer=https://deepblue.lib.umich.edu/handle/2027.42/39366:search:collection_id=c5a42028-499d-4e85-9fdc-dc71e2baca26,query="loveless",results=(0,0,0)
+2023-11-01 23:59:47,646 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,646 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,646 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,647 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,650 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,654 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,656 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,656 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,656 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,656 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,656 INFO  org.dspace.app.xmlui.aspect.artifactbrowser.ItemViewer @ anonymous:session_id=F5C9DE487F4F0D99AE62291B85C446A7:ip_addr=5.255.231.190:referer=null:view_item_details:collection=OUTSIDE Carl M. Levin papers (Archival Collections -- Bentley Library),  handle=2027.42/151123
+2023-11-01 23:59:47,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,678 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,678 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,678 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,680 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,681 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,687 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,687 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,687 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,689 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,690 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,690 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,690 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,691 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,692 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,693 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,693 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,693 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,694 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,695 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,721 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,721 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,721 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,721 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,733 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,733 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,733 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,738 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,738 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,738 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,744 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,744 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,744 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,748 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,748 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,750 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,754 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,754 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,754 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,758 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,758 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,760 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,760 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,760 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,762 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,762 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:47,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:47,774 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 40.77.167.7
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 40.77.167.7
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,827 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:47,828 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,828 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:47,832 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:47,832 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:47,850 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=78A801FD2F7A4D171DC1CB36BC0B3E56:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=c77933c2-ad9c-4d2d-8792-a8250be4b9ce
+2023-11-01 23:59:47,850 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=78A801FD2F7A4D171DC1CB36BC0B3E56:ip_addr=52.233.106.29:referer=null:handle=2027.42/100339:view_bitstream_details:filename=mmi12378.pdf
+2023-11-01 23:59:47,851 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  mmi12378.pdf/null
+2023-11-01 23:59:47,851 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=78A801FD2F7A4D171DC1CB36BC0B3E56:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=c77933c2-ad9c-4d2d-8792-a8250be4b9ce
+2023-11-01 23:59:47,924 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:47,924 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 3.236.120.73
+2023-11-01 23:59:47,924 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 3.236.120.73
+2023-11-01 23:59:47,924 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,925 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,925 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:47,925 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:47,925 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:47,931 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:47,931 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:47,974 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=21CFFE673DD905FA13CF35F9CBA89049:ip_addr=3.236.120.73:referer=null:view_bitstream:bitstream_id=d75e6d07-fd90-4815-9209-fa2bccff3441
+2023-11-01 23:59:47,974 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=21CFFE673DD905FA13CF35F9CBA89049:ip_addr=3.236.120.73:referer=null:handle=2027.42/88163:view_bitstream_details:filename=Final Thesis_Stephanie NT Aselage.pdf
+2023-11-01 23:59:47,981 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=3.236.120.73&req_dat=Unpaywall+%28http%3A%2F%2Funpaywall.org%2F%3B+mailto%3Ateam%40impactstory.org%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F88163&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A47Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F88163%2FFinal%2520Thesis_Stephanie%2520NT%2520Aselage.pdf%3Fsequence%3D1&rft_dat=Request
+2023-11-01 23:59:48,511 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:48,511 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:48,511 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:48,512 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:48,513 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:48,513 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:48,513 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:48,513 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:48,524 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:48,524 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:48,562 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=BD67DE1328F0CF72F1F8797CDDC5B487:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=1ba1af1a-5ba8-4ad6-8a6a-26b29ebbc93a
+2023-11-01 23:59:48,562 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=BD67DE1328F0CF72F1F8797CDDC5B487:ip_addr=52.233.106.29:referer=null:handle=2027.42/136424:view_bitstream_details:filename=jgrf20654_am.pdf
+2023-11-01 23:59:48,563 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  jgrf20654_am.pdf/null
+2023-11-01 23:59:48,563 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=BD67DE1328F0CF72F1F8797CDDC5B487:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=1ba1af1a-5ba8-4ad6-8a6a-26b29ebbc93a
+2023-11-01 23:59:48,625 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=3.236.120.73&req_dat=Unpaywall+%28http%3A%2F%2Funpaywall.org%2F%3B+mailto%3Ateam%40impactstory.org%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F88163&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A47Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F88163%2FFinal%2520Thesis_Stephanie%2520NT%2520Aselage.pdf%3Fsequence%3D1&rft_dat=Request on Wed Nov 01 23:59:48 EDT 2023
+2023-11-01 23:59:48,625 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=21CFFE673DD905FA13CF35F9CBA89049:ip_addr=3.236.120.73:referer=null:view_bitstream:bitstream_id=d75e6d07-fd90-4815-9209-fa2bccff3441
+2023-11-01 23:59:50,005 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:50,005 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:50,005 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:50,006 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:50,006 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:50,007 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:50,007 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:50,007 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:50,017 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:50,017 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:50,028 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=81107413658CEEB472AA023E8FDE4098:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=ab28f81c-f1ed-4ff4-b471-4ce9498cb15c
+2023-11-01 23:59:50,028 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=81107413658CEEB472AA023E8FDE4098:ip_addr=52.233.106.29:referer=null:handle=2027.42/7500:view_bitstream_details:filename=bad1971.0001.001.pdf
+2023-11-01 23:59:50,029 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  bad1971.0001.001.pdf/null
+2023-11-01 23:59:50,029 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=81107413658CEEB472AA023E8FDE4098:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=ab28f81c-f1ed-4ff4-b471-4ce9498cb15c
+2023-11-01 23:59:50,446 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:50,447 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:50,447 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:50,447 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:50,448 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:50,448 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:50,448 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:50,448 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:50,495 INFO  org.dspace.browse.BrowseEngine @ anonymous:session_id=BF51C18C1C054C73421CAB015794EADC:ip_addr=52.233.106.29:referer=null:browse_by_item:
+2023-11-01 23:59:50,548 INFO  org.dspace.app.xmlui.aspect.artifactbrowser.ConfigurableBrowse @ anonymous:session_id=BF51C18C1C054C73421CAB015794EADC:ip_addr=52.233.106.29:referer=null:browse:org.dspace.app.xmlui.utils.DSpaceValidity@43acb546
+2023-11-01 23:59:50,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:50,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:50,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:50,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:50,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:51,253 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:51,253 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 66.249.69.227
+2023-11-01 23:59:51,253 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 66.249.69.227
+2023-11-01 23:59:51,253 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:51,254 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:51,254 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:51,254 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:51,254 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:51,258 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:51,258 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:51,348 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=16C45E376E28182E569EC6D8D84A6C90:ip_addr=66.249.69.227:referer=null:view_bitstream:bitstream_id=75af3ba6-79f1-4281-be11-d0daba4080a3
+2023-11-01 23:59:51,348 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=16C45E376E28182E569EC6D8D84A6C90:ip_addr=66.249.69.227:referer=null:handle=2027.42/168381:view_bitstream_details:filename=jdd12353.pdf
+2023-11-01 23:59:51,348 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.117 Mobile Safari/537.36 (compatible; GoogleOther)) accessed  jdd12353.pdf/null
+2023-11-01 23:59:51,349 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=16C45E376E28182E569EC6D8D84A6C90:ip_addr=66.249.69.227:referer=null:view_bitstream:bitstream_id=75af3ba6-79f1-4281-be11-d0daba4080a3
+2023-11-01 23:59:51,764 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:51,764 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:51,764 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:51,765 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:51,765 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:51,766 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:51,766 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:51,766 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:51,778 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:51,778 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:51,795 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=24C0626398CD6AD97368F5EB6ABA8012:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=b061d3ca-b900-429a-944e-655877a62b34
+2023-11-01 23:59:51,795 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=24C0626398CD6AD97368F5EB6ABA8012:ip_addr=52.233.106.29:referer=null:handle=2027.42/5435:view_bitstream_details:filename=bac4221.0001.001.pdf
+2023-11-01 23:59:51,796 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  bac4221.0001.001.pdf/null
+2023-11-01 23:59:51,796 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=24C0626398CD6AD97368F5EB6ABA8012:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=b061d3ca-b900-429a-944e-655877a62b34
+2023-11-01 23:59:52,663 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:52,663 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.167.144.201
+2023-11-01 23:59:52,663 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.167.144.201
+2023-11-01 23:59:52,664 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,664 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,664 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,664 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,664 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:52,671 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:52,671 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:52,684 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=21A3785E0CF3AAFED385BC2E5576F3CD:ip_addr=52.167.144.201:referer=null:view_bitstream:bitstream_id=2abc7a1a-5cff-4fb6-84be-541f65ef4958
+2023-11-01 23:59:52,684 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=21A3785E0CF3AAFED385BC2E5576F3CD:ip_addr=52.167.144.201:referer=null:handle=2027.42/164446:view_bitstream_details:filename=Mitigation_and_Prevention_of_Lunar_Dust_on_NASA_Artemis_xEMU_Spacesuits.pdf
+2023-11-01 23:59:52,685 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/103.0.5060.134 Safari/537.36) accessed  Mitigation_and_Prevention_of_Lunar_Dust_on_NASA_Artemis_xEMU_Spacesuits.pdf/null
+2023-11-01 23:59:52,685 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=21A3785E0CF3AAFED385BC2E5576F3CD:ip_addr=52.167.144.201:referer=null:view_bitstream:bitstream_id=2abc7a1a-5cff-4fb6-84be-541f65ef4958
+2023-11-01 23:59:52,825 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:52,825 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:52,825 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:52,825 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,825 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,826 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,826 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,826 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:52,832 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:52,832 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:52,880 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=60284F2BF8D7C4B91873B038B05CF39C:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=916ee2a3-705b-41f7-9df4-b7207ac12a9d
+2023-11-01 23:59:52,880 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=60284F2BF8D7C4B91873B038B05CF39C:ip_addr=52.233.106.29:referer=null:handle=2027.42/86992:view_bitstream_details:filename=21113_ftp.pdf
+2023-11-01 23:59:52,880 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  21113_ftp.pdf/null
+2023-11-01 23:59:52,881 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=60284F2BF8D7C4B91873B038B05CF39C:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=916ee2a3-705b-41f7-9df4-b7207ac12a9d
+2023-11-01 23:59:52,957 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:52,958 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 66.249.69.226
+2023-11-01 23:59:52,958 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 66.249.69.226
+2023-11-01 23:59:52,958 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,958 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,958 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:52,959 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:52,959 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:53,012 INFO  org.dspace.browse.BrowseEngine @ anonymous:session_id=232D41F4EC6C20F4A08478F98D8AAD3D:ip_addr=66.249.69.226:referer=null:browse_by_item:
+2023-11-01 23:59:53,025 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:53,025 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 213.180.203.61
+2023-11-01 23:59:53,025 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 213.180.203.61
+2023-11-01 23:59:53,026 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,026 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,026 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,026 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,026 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:53,133 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:53,133 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 107.178.200.200
+2023-11-01 23:59:53,133 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 107.178.200.200
+2023-11-01 23:59:53,133 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,133 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,134 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,134 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,134 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:53,139 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:53,139 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:53,149 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=356B6FC58F668D678DB861C29AD7091A:ip_addr=107.178.200.200:referer=:view_bitstream:bitstream_id=21a4a3cb-41f0-40de-aba4-2cc5761a2fc2
+2023-11-01 23:59:53,149 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=356B6FC58F668D678DB861C29AD7091A:ip_addr=107.178.200.200:referer=:handle=2027.42/77829:view_bitstream_details:filename=krispell_2.pdf
+2023-11-01 23:59:53,156 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=107.178.200.200&req_dat=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F108.0.0.0+Safari%2F537.36+Edg%2F108.0.1418.42%27&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F77829&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A53Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F77829%2Fkrispell_2.pdf%3Fsequence%3D1&rft_dat=Request
+2023-11-01 23:59:53,173 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:53,173 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 174.164.8.95
+2023-11-01 23:59:53,173 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 174.164.8.95
+2023-11-01 23:59:53,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,174 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:53,487 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:53,487 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:53,487 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:53,488 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,489 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,489 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:53,489 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:53,489 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:53,498 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:53,498 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:53,536 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=348ABD1FF52032B66A465077DC0BF0B0:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=1b88deb2-7840-45a9-8ffa-c22871f99f59
+2023-11-01 23:59:53,536 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=348ABD1FF52032B66A465077DC0BF0B0:ip_addr=52.233.106.29:referer=null:handle=2027.42/78850:view_bitstream_details:filename=ikejiri_1.pdf
+2023-11-01 23:59:53,537 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  ikejiri_1.pdf/null
+2023-11-01 23:59:53,538 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=348ABD1FF52032B66A465077DC0BF0B0:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=1b88deb2-7840-45a9-8ffa-c22871f99f59
+2023-11-01 23:59:53,646 INFO  org.dspace.app.xmlui.aspect.discovery.AbstractSearch @ anonymous:session_id=C283F12EF8EE71694CA4D582DF17C32B:ip_addr=174.164.8.95:referer=https://deepblue.lib.umich.edu/handle/2027.42/39366/discover:search:collection_id=c5a42028-499d-4e85-9fdc-dc71e2baca26,query="khan",results=(0,0,0)
+2023-11-01 23:59:53,699 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,699 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,699 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,705 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,707 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,707 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,707 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,711 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,713 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,713 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,713 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,716 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,718 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,718 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,718 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,718 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,722 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,722 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,722 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,722 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,731 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,737 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,746 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,748 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,748 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:53,748 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:53,752 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,752 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:53,798 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=107.178.200.200&req_dat=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F108.0.0.0+Safari%2F537.36+Edg%2F108.0.1418.42%27&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F77829&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A53Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F77829%2Fkrispell_2.pdf%3Fsequence%3D1&rft_dat=Request on Wed Nov 01 23:59:53 EDT 2023
+2023-11-01 23:59:53,798 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=356B6FC58F668D678DB861C29AD7091A:ip_addr=107.178.200.200:referer=:view_bitstream:bitstream_id=21a4a3cb-41f0-40de-aba4-2cc5761a2fc2
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,062 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:54,067 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:54,067 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:54,096 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=ED5803AA7A2603A20608D496D88C3320:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=8c7f1a1e-7867-451e-b7cd-388c1dd18b34
+2023-11-01 23:59:54,096 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=ED5803AA7A2603A20608D496D88C3320:ip_addr=52.233.106.29:referer=null:handle=2027.42/76818:view_bitstream_details:filename=AIAA-2004-1815-582.pdf
+2023-11-01 23:59:54,097 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  AIAA-2004-1815-582.pdf/null
+2023-11-01 23:59:54,097 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=ED5803AA7A2603A20608D496D88C3320:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=8c7f1a1e-7867-451e-b7cd-388c1dd18b34
+2023-11-01 23:59:54,539 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:54,539 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:54,539 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:54,539 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,540 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,540 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,540 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,540 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:54,994 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:54,994 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:54,994 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:54,995 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,995 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,995 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:54,995 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:54,995 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:55,323 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,324 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:55,326 INFO  org.dspace.app.xmlui.aspect.artifactbrowser.ConfigurableBrowse @ anonymous:session_id=232D41F4EC6C20F4A08478F98D8AAD3D:ip_addr=66.249.69.226:referer=null:browse:org.dspace.app.xmlui.utils.DSpaceValidity@6ce8ce00
+2023-11-01 23:59:55,327 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:55,327 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:55,353 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=F7E4BB7BB619260D859A438E08FE9319:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=6f8bb2b8-4c98-4db6-853b-580f9ede5979
+2023-11-01 23:59:55,353 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=F7E4BB7BB619260D859A438E08FE9319:ip_addr=52.233.106.29:referer=null:handle=2027.42/147208:view_bitstream_details:filename=pmrjs168c.pdf
+2023-11-01 23:59:55,353 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  pmrjs168c.pdf/null
+2023-11-01 23:59:55,353 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=F7E4BB7BB619260D859A438E08FE9319:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=6f8bb2b8-4c98-4db6-853b-580f9ede5979
+2023-11-01 23:59:55,371 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,371 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,371 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,397 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,397 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,456 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,456 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,456 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,482 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,482 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,499 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,499 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,499 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,499 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,525 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,538 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,538 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,538 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,538 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,538 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,556 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,584 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,584 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,584 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 52.233.106.29
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 52.233.106.29
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,598 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:55,604 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:55,604 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:55,614 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,614 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,642 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=9A70F2412F020DD20A0AE8C2E9A9580D:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=bcfd1384-be1d-4c37-986b-25da37781e9b
+2023-11-01 23:59:55,642 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=9A70F2412F020DD20A0AE8C2E9A9580D:ip_addr=52.233.106.29:referer=null:handle=2027.42/155924:view_bitstream_details:filename=asi24298_am.pdf
+2023-11-01 23:59:55,643 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)) accessed  asi24298_am.pdf/null
+2023-11-01 23:59:55,643 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=9A70F2412F020DD20A0AE8C2E9A9580D:ip_addr=52.233.106.29:referer=null:view_bitstream:bitstream_id=bcfd1384-be1d-4c37-986b-25da37781e9b
+2023-11-01 23:59:55,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,684 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,703 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,703 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,703 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,728 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,728 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,825 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,825 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,825 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,855 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,855 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,871 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,871 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,871 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,889 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,889 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,909 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,909 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,909 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,909 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,926 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,946 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,946 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,946 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,973 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,973 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,991 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,991 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:55,991 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:55,991 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:55,998 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:55,998 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 95.108.213.246
+2023-11-01 23:59:55,998 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 95.108.213.246
+2023-11-01 23:59:55,999 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,999 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,999 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:55,999 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:55,999 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:56,012 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=95.108.213.246&req_dat=Mozilla%2F5.0+%28compatible%3B+YandexBot%2F3.0%3B+%2Bhttp%3A%2F%2Fyandex.com%2Fbots%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F151123&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A56Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F151123&rft_dat=Investigation
+2023-11-01 23:59:56,023 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,042 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,042 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,042 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,043 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,059 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,078 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,078 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,078 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,078 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,106 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,130 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,130 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,131 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,147 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,147 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,163 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,163 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,163 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,190 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,190 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,207 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,207 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,207 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,207 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,234 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,250 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,250 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,250 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,250 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,309 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,328 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,328 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,328 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,345 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,345 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,364 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,364 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,364 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,364 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,390 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,408 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,408 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,408 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,436 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,436 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,453 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,453 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,453 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,453 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,471 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,493 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,511 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,511 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,511 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,530 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,530 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,550 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,550 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,550 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,550 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,566 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,585 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,585 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,585 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,612 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,612 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,649 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,649 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,666 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,666 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,666 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,666 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,666 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,711 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,711 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,711 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,743 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,743 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,762 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,762 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,762 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,762 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=95.108.213.246&req_dat=Mozilla%2F5.0+%28compatible%3B+YandexBot%2F3.0%3B+%2Bhttp%3A%2F%2Fyandex.com%2Fbots%29&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F151123&rfr_dat=&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A56Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F151123&rft_dat=Investigation on Wed Nov 01 23:59:56 EDT 2023
+2023-11-01 23:59:56,762 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=536A2F63C401DAB5391D3FD55767BE6B:ip_addr=95.108.213.246:referer=null:view_item:handle=2027.42/151123
+2023-11-01 23:59:56,765 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Withdrawn Reason selector processing
+2023-11-01 23:59:56,765 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Finding item
+2023-11-01 23:59:56,765 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Item found
+2023-11-01 23:59:56,766 INFO  org.dspace.app.xmlui.aspect.general.WithdrawnSelector @ WITHDRAW: Done looking for metadata
+2023-11-01 23:59:56,788 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,813 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,826 INFO  org.dspace.rest.CollectionsResource @ Reading collection(id=c5a42028-499d-4e85-9fdc-dc71e2baca26) items.
+2023-11-01 23:59:56,828 INFO  org.dspace.usage.LoggerUsageEventListener @ deepblue-elements@umich.edu::view_collection:collection_id=c5a42028-499d-4e85-9fdc-dc71e2baca26
+2023-11-01 23:59:56,831 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,831 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,831 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,860 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,860 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,875 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,875 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,875 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,900 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,900 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,927 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,927 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,927 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,947 INFO  org.dspace.app.xmlui.aspect.artifactbrowser.ItemViewer @ anonymous:session_id=536A2F63C401DAB5391D3FD55767BE6B:ip_addr=95.108.213.246:referer=null:view_item_details:collection=OUTSIDE Carl M. Levin papers (Archival Collections -- Bentley Library),  handle=2027.42/151123
+2023-11-01 23:59:56,952 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,952 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,964 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,964 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,964 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,970 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,970 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:56,970 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,972 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:56,973 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,988 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:56,988 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,015 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,015 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,015 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,015 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,030 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,046 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,046 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,046 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,046 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,061 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,076 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,093 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,093 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,093 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,117 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,117 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,159 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,159 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,174 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,174 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,174 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,200 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,200 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,216 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,216 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,216 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,216 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,232 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,247 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,263 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,263 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,263 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,289 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,289 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,322 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,322 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,322 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,322 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,349 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,357 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,358 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,358 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,382 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,382 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,404 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,410 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,410 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,410 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,425 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,429 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:57,429 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 1.145.155.59
+2023-11-01 23:59:57,429 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 1.145.155.59
+2023-11-01 23:59:57,430 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:57,430 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:57,430 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:57,430 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:57,430 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:57,431 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,431 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,431 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,435 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:57,435 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:57,455 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,456 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,459 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=5177492214206519F84B84F7C9188263:ip_addr=1.145.155.59:referer=https://www.google.com.au/:view_bitstream:bitstream_id=cbbd45f6-51d8-43aa-9fd7-019eacbb737e
+2023-11-01 23:59:57,459 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=5177492214206519F84B84F7C9188263:ip_addr=1.145.155.59:referer=https://www.google.com.au/:handle=2027.42/83914:view_bitstream_details:filename=multiple_partners_are_associated_with_higher_testosterine_in_North_American_men_and_women.pdf
+2023-11-01 23:59:57,462 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,462 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,462 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,462 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,465 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=1.145.155.59&req_dat=Mozilla%2F5.0+%28iPhone%3B+CPU+iPhone+OS+16_3_1+like+Mac+OS+X%29+AppleWebKit%2F605.1.15+%28KHTML%2C+like+Gecko%29+Version%2F16.3+Mobile%2F15E148+Safari%2F604.1&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F83914&rfr_dat=https%3A%2F%2Fwww.google.com.au%2F&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A57Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F83914%2Fmultiple_partners_are_associated_with_higher_testosterine_in_North_American_men_and_women.pdf%3Fsequence%3D1&rft_dat=Request
+2023-11-01 23:59:57,477 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,484 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,492 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,492 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,492 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,522 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,522 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,530 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,530 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,530 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,559 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,559 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,568 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,568 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,568 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,598 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,598 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,606 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,606 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,606 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,626 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,626 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,632 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,664 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,664 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,664 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,664 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,689 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,696 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,696 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,696 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,720 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,720 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,727 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,749 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,764 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,770 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,795 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,795 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,802 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,802 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,802 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,833 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,833 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,833 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,858 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,858 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,865 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,865 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,865 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,890 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,890 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,896 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,896 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,896 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,921 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,921 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,928 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,928 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,928 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,928 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,943 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,950 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,950 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,950 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,975 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,975 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,977 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,977 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,977 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,978 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,979 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,980 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,980 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,980 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,981 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,981 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,981 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,981 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,981 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,982 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,983 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:57,983 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:57,983 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,984 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:57,985 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,007 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,021 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,021 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,021 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,021 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,038 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,044 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,044 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,044 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,060 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,060 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,066 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,066 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,066 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,081 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,081 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,087 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,087 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,087 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,087 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,102 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,108 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,108 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,108 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,124 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,124 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,133 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,158 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,158 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,164 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,164 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,164 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,189 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,189 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,195 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,195 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,195 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,211 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=1.145.155.59&req_dat=Mozilla%2F5.0+%28iPhone%3B+CPU+iPhone+OS+16_3_1+like+Mac+OS+X%29+AppleWebKit%2F605.1.15+%28KHTML%2C+like+Gecko%29+Version%2F16.3+Mobile%2F15E148+Safari%2F604.1&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F83914&rfr_dat=https%3A%2F%2Fwww.google.com.au%2F&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A57Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fbitstream%2Fhandle%2F2027.42%2F83914%2Fmultiple_partners_are_associated_with_higher_testosterine_in_North_American_men_and_women.pdf%3Fsequence%3D1&rft_dat=Request on Wed Nov 01 23:59:58 EDT 2023
+2023-11-01 23:59:58,211 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=5177492214206519F84B84F7C9188263:ip_addr=1.145.155.59:referer=https://www.google.com.au/:view_bitstream:bitstream_id=cbbd45f6-51d8-43aa-9fd7-019eacbb737e
+2023-11-01 23:59:58,229 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,229 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,235 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,235 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,236 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,260 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,260 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,267 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,267 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,267 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,282 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,282 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,288 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,288 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,288 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,303 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,303 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,309 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,309 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,309 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,309 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,325 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,331 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,331 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,331 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,356 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,356 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,389 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,405 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,420 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,427 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,427 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,427 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,442 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,442 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,448 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,448 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,448 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,448 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,473 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,479 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,489 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,489 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,489 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,505 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,505 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,512 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,512 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,512 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,536 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,536 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,543 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,543 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,543 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,567 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,568 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,574 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,574 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,574 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,598 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,598 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,605 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,605 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,605 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,605 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,629 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,636 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,636 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,636 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,636 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,651 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,657 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,682 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,688 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,710 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,710 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,710 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,710 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,736 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,742 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,768 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,768 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,774 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,774 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,774 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,774 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,799 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,806 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,806 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,806 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,821 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,821 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,827 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,852 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,859 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,859 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,859 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,859 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,874 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,880 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,880 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,880 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,905 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,905 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,911 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,911 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,911 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,912 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,927 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,933 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,933 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:58,933 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss: in ORIGINAL checking for primary
+2023-11-01 23:59:58,933 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  is it a primary bit
+2023-11-01 23:59:58,948 INFO  org.dspace.app.xmlui.objectmanager.ItemAdapter @ METS diss:  checking for primary bit
+2023-11-01 23:59:59,147 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:59,147 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 66.249.69.226
+2023-11-01 23:59:59,147 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 66.249.69.226
+2023-11-01 23:59:59,148 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:59,148 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:59,148 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:59,148 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:59,148 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:59,153 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  checking if bitstream should get header/citation
+2023-11-01 23:59:59,153 INFO  org.dspace.disseminate.CitationDocumentServiceImpl @ cc:  bitstream does not get header
+2023-11-01 23:59:59,157 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: start getSpecialGroups
+2023-11-01 23:59:59,157 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: checking the addr = 174.164.8.95
+2023-11-01 23:59:59,157 INFO  org.dspace.authenticate.PasswordAuthentication @ UPGRD The addr is (IP) value 174.164.8.95
+2023-11-01 23:59:59,158 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: NotBio 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:59,158 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: In: RequestCopy Users d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:59,158 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning 185b90c6-b6cf-43fe-b7db-59a51cd673fb
+2023-11-01 23:59:59,158 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Group Found and returning d944393a-e378-46ac-93fb-51f6b37b7a55
+2023-11-01 23:59:59,158 INFO  org.dspace.authenticate.PasswordAuthentication @ GROUPS: Returning all the special groups
+2023-11-01 23:59:59,172 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=DA90B69E7B00CFB1128AF6023B12C631:ip_addr=66.249.69.226:referer=null:view_bitstream:bitstream_id=fae4d94d-b38b-451a-b549-b10903f6d7ad
+2023-11-01 23:59:59,172 INFO  org.dspace.app.xmlui.cocoon.BitstreamReader @ anonymous:session_id=DA90B69E7B00CFB1128AF6023B12C631:ip_addr=66.249.69.226:referer=null:handle=2027.42/147394:view_bitstream_details:filename=jsofo.pdf
+2023-11-01 23:59:59,172 INFO  com.atmire.statistics.export.ExportUsageEventListener @ Robot (Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.117 Mobile Safari/537.36 (compatible; GoogleOther)) accessed  jsofo.pdf/null
+2023-11-01 23:59:59,172 INFO  org.dspace.usage.LoggerUsageEventListener @ anonymous:session_id=DA90B69E7B00CFB1128AF6023B12C631:ip_addr=66.249.69.226:referer=null:view_bitstream:bitstream_id=fae4d94d-b38b-451a-b549-b10903f6d7ad
+2023-11-01 23:59:59,182 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=174.164.8.95&req_dat=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F118.0.0.0+Safari%2F537.36&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F177686&rfr_dat=https%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F39366%2Fdiscover%3Fquery%3Dkhan%26submit%3D&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A59Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F177686&rft_dat=Investigation
+2023-11-01 23:59:59,823 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Successfully posted https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=174.164.8.95&req_dat=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F118.0.0.0+Safari%2F537.36&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F177686&rfr_dat=https%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F39366%2Fdiscover%3Fquery%3Dkhan%26submit%3D&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A59Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F177686&rft_dat=Investigation on Wed Nov 01 23:59:59 EDT 2023
+2023-11-01 23:59:59,842 DEBUG com.atmire.statistics.export.ExportUsageEventListener @ Prepared to send url to tracker URL: https://irus.jisc.ac.uk/counter/us?url_ver=Z39.88-2004&req_id=174.164.8.95&req_dat=Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_15_7%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F118.0.0.0+Safari%2F537.36&rft.artnum=oai%3Adeepblue.lib.umich.edu%3A2027.42%2F177686&rfr_dat=https%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F39366%2Fdiscover%3Fquery%3Dkhan%26submit%3D&rfr_id=deepblue.lib.umich.edu&url_tim=2023-11-02T03%3A59%3A59Z&svc_dat=http%3A%2F%2Fdeepblue.lib.umich.edu%2Fhandle%2F2027.42%2F177686&rft_dat=Investigation
