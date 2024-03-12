@@ -20,6 +20,8 @@ docker compose build
 ```
 NOTES:
 
+Build uses `umich` by default. To build with `issue-working`, use "--build-arg GITHUB_BRANCH=issue-working"
+
 Build uses `dspace-7.6` by default. To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
 
 Build uses `JDK11` by default. To build with JDK17, use "--build-arg JDK_VERSION=17"

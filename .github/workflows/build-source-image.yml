@@ -41,9 +41,4 @@ jobs:
           tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-source:${{ github.event.inputs.source_image_tag }}'
           file: Dockerfile
           build-args: |
-            BACKEND_GITHUB_USER=mlibrary
-            BACKEND_GITHUB_REPO=DSpace
-            BACKEND_GITHUB_BRANCH=${{ github.event.inputs.source_image_tag }}
-            FRONTEND_GITHUB_USER=mlibrary
-            FRONTEND_GITHUB_REPO=dspace-angular
-            FRONTEND_GITHUB_BRANCH=${{ github.event.inputs.source_image_tag }}
+            GITHUB_BRANCH=${{ github.event.inputs.source_image_tag }}
