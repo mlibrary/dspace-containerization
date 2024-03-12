@@ -85,6 +85,10 @@ oc apply -f dspace-uid/db-deployment.yml
 ```shell
 oc apply -f dspace-uid/solr-deployment.yml
 ```
+#### apache
+```shell
+oc apply -f dspace-uid/apache-deployment.yml
+```
 #### backend
 ```shell
 oc apply -f dspace-uid/backend-deployment.yml
@@ -102,12 +106,14 @@ NOTE:
 ### routes
 From the Administrator OpenShift console ![networking-routes](images/networking-routes.png) under `Networking -> Routes` create the following routes by clicking the create route button.
 
-| Name     | Path    | Service  | Target port      | Secure Route       |
-|----------|---------|----------|------------------|--------------------|
-| frontend | /       | frontend | 4000->4000 (TCP) | true:Edge:Redirect |
-| db       | /       | db       | 5432->5432 (TCP) | true:Edge:Redirect |
-| backend  | /       | backend  | 8080->8080 (TCP) | true:Edge:Redirect |
-| solr     | /solr   | solr     | 8983->8983 (TCP) | true:Edge:Redirect |
+| Name     | Path  | Service  | Target port      | Secure Route       |
+|----------|-------|----------|------------------|--------------------|
+| frontend | /     | frontend | 4000->4000 (TCP) | true:Edge:Redirect |
+| db       | /     | db       | 5432->5432 (TCP) | true:Edge:Redirect |
+| backend  | /     | backend  | 8080->8080 (TCP) | true:Edge:Redirect |
+| apache   | /     | apache   | 8888->8888 (TCP) | true:Edge:Redirect |
+| solr     | /solr | solr     | 8983->8983 (TCP) | true:Edge:Redirect |
+
 
 ### remotehost
 
@@ -116,6 +122,7 @@ From the Administrator OpenShift console ![networking-routes](images/networking-
 | https://frontend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/      | frontend | Angular GUI           |
 | https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/server | backend  | Server API            |
 | https://backend-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/rest   | backend  | REST API (deprecated) |
+| https://apache-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/        | apache   | Perl CGI              |
 | https://solr-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/solr      | solr     | Solr GUI              |
 | https://db-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/            | db       | PostgreSQL            |
 
