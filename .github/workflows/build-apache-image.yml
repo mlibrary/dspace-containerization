@@ -29,5 +29,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-apache:${{ github.ref_name }}'
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-apache:${{ github.sha }}, ghcr.io/mlibrary/dspace-containerization/dspace-apache:${{ github.ref_name }}'
           file: dspace/apache.dockerfile

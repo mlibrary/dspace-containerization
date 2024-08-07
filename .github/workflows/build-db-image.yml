@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:${{ github.event.inputs.dspace_version }}'
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-db:${{ github.sha }}, ghcr.io/mlibrary/dspace-containerization/dspace-db:${{ github.event.inputs.dspace_version }}'
           file: dspace/db.dockerfile
           build-args: |
             DSPACE_VERSION=${{ github.event.inputs.dspace_version }}

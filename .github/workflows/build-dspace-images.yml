@@ -47,7 +47,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:${{ github.event.inputs.source_image_tag }}'
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-solr:${{ github.sha }}, ghcr.io/mlibrary/dspace-containerization/dspace-solr:${{ github.event.inputs.source_image_tag }}'
           file: dspace/solr.dockerfile
           build-args: |
             SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
@@ -57,7 +57,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-backend:${{ github.event.inputs.source_image_tag }}'
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-backend:${{ github.sha }}, ghcr.io/mlibrary/dspace-containerization/dspace-backend:${{ github.event.inputs.source_image_tag }}'
           file: dspace/backend.dockerfile
           build-args: |
             DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
@@ -68,7 +68,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${{ github.event.inputs.source_image_tag }}'
+          tags: 'ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${{ github.sha }}, ghcr.io/mlibrary/dspace-containerization/dspace-frontend:${{ github.event.inputs.source_image_tag }}'
           file: dspace/frontend.dockerfile
           build-args: |
             SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
