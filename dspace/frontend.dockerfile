@@ -14,6 +14,8 @@ RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
 # See, for example https://github.com/yarnpkg/yarn/issues/5540
 RUN yarn install --network-timeout 300000
 
+RUN  yarn build:prod
+
 # On startup, run in DEVELOPMENT mode (this defaults to live reloading enabled, etc).
 # Listen / accept connections from all IP addresses.
 # NOTE: At this time it is only possible to run Docker container in Production mode
