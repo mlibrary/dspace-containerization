@@ -58,6 +58,7 @@ COPY --from=ant_build /dspace $DSPACE_INSTALL
 # Install additional libraries needed for backend scripts
 RUN apt update; \
     apt install -y --no-install-recommends \
+        ccrypt \
         libcgi-pm-perl \
         libdbi-perl \
         libio-all-lwp-perl \
@@ -69,6 +70,7 @@ RUN apt update; \
 
 # Install additional backend scripts
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
+COPY ./backend/config/ $DSPACE_INSTALL/config/
 COPY ./backend/logs/ $DSPACE_INSTALL/logs/
 
 # Enable the AJP connector in Tomcat's server.xml
