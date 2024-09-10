@@ -39,11 +39,13 @@ use LWP::Simple;
 use LWP::UserAgent;
 use Getopt::Std;
 
-my $gDbName     = $ENV{'DB_NAME'};
-my $gDbUser     = $ENV{'DB_USER'};
+my $gDbName         = $ENV{'DB_NAME'};
+my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 #all items older than 75 years old need to be set free.
 #So, for example, in Jan 2014 all items from 1939 should be set free.

@@ -36,8 +36,10 @@ use File::Path;
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
     my $statement = qq{select distinct result from checksum_history where result not in ('BITSTREAM_MARKED_DELETED', 'BITSTREAM_NOT_FOUND', 'CHECKSUM_MATCH')};
  
