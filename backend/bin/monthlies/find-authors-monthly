@@ -49,8 +49,10 @@ use Getopt::Std;
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 my $stmt = qq{delete from orcid_info};
 ProcessSQL ( $stmt );

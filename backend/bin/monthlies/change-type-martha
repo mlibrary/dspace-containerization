@@ -36,10 +36,13 @@ use File::Path;
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
+
 my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
 my $gBaseBinDir     = $ENV{'BASE_BIN_DIR'};
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 my $coll_id = 1234;  #In prod it's 14
 

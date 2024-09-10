@@ -122,6 +122,9 @@ use Encode;
 
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
+
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
 
@@ -130,7 +133,7 @@ my $gWileyFtpUser     = $ENV{'WILEY_FTP_USER'};
 my $gWileyFtpPassword = $ENV{'WILEY_FTP_PASSWORD'};
 
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 my %opts;
 getopts('a:', \%opts);
