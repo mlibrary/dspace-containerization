@@ -35,7 +35,8 @@ use DBI;
 use File::Path;
 use Getopt::Std;
 
-my $gTempLogFile = qq{/dspace/log/temp_log_file};
+my $gBaseLogDir    = $ENV{'BASE_LOG_DIR'};
+my $gTempLogFile = qq{$gBaseLogDir/temp_log_file};
 
 my %opts;
 getopts('d:l:', \%opts);
@@ -43,8 +44,8 @@ getopts('d:l:', \%opts);
 my $IPDate     = $opts{'d'};
 my $logDir     = $opts{'l'};
 
-#my $IPDate = '2013/05';
-#my $logDir = qq{/l1/dspace/repository/prod/log/May_13};
+#my $IPDate = '2024/01';
+#my $logDir = qq{/dir/log/Jan_2024_test};
 
 print "IPDate = " . $IPDate . "\n";
 print "logDir = " . $logDir . "\n";
@@ -62,15 +63,13 @@ print "logDir = " . $logDir . "\n";
 #  }
 
 
-my $gDbName     = $ENV{'DB_NAME'};
-my $gDbUser     = $ENV{'DB_USER'};
+my $gDbName         = $ENV{'DB_NAME'};
+my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
 
-
 my @CrawlerIPs = &GetCrawlerIPs;
-
 
 &CleanIPData ();
 
@@ -99,11 +98,11 @@ sub GetCrawlerIPs
   {
 
     my @ips;
-    my $statement = qq{select count(*), ip from crawlerip group by ip having count(*) >= 1000};
+    my $statement = qq{select count(*), ip from crawlerip where view_type='view_bitstream_details' group by ip having count(*) >= 300};
 
     my $sth = $dbhP->prepare($statement)
       or die "Couldn't prepare statement: " . $dbhP->errstr;
-
+    
     # Read the matching records and print them out
     $sth->execute()             # Execute the query
       or die "Couldn't execute statement: " . $sth->errstr;
@@ -115,14 +114,14 @@ sub GetCrawlerIPs
       #print $msg;
 
     }
-    $sth->finish;
+    $sth->finish;     
 
     #Second part is get suspicious sites.
     my $statement = qq{select distinct ip from crawlerip where site like '%crawl%' or site like '%msnbot%' or site like '%spider%' or site like '%googleusercontent%'};
 
     my $sth = $dbhP->prepare($statement)
       or die "Couldn't prepare statement: " . $dbhP->errstr;
-
+    
     # Read the matching records and print them out
     $sth->execute()             # Execute the query
       or die "Couldn't execute statement: " . $sth->errstr;
@@ -141,7 +140,7 @@ sub GetCrawlerIPs
 
     my $sth = $dbhP->prepare($statement)
       or die "Couldn't prepare statement: " . $dbhP->errstr;
-
+    
     # Read the matching records and print them out
     $sth->execute()             # Execute the query
       or die "Couldn't execute statement: " . $sth->errstr;
@@ -153,10 +152,10 @@ sub GetCrawlerIPs
       #print $msg;
 
     }
-    $sth->finish;
+    $sth->finish;     
 
-    &SortUniquifyList ( \@ips ) ;
-
+    &SortUniquifyList ( \@ips ) ;   
+    
     return @ips;
 
   }
@@ -170,19 +169,19 @@ sub ReadFile
     open FH, "<$fileName";
     binmode FH;
     my ($bytesRead, $buffer, $chunk);
-    while ( $bytesRead = read(FH, $chunk, 1024) )
+    while ( $bytesRead = read(FH, $chunk, 1024) ) 
     {
         $buffer .= $chunk;
     }
     close FH;
-
+    
     return $buffer;
 }
 
 
-sub GetFileList
+sub GetFileList 
   {
-
+     
     my $source = $logDir;
 
     opendir FH, $source;
@@ -195,14 +194,14 @@ sub GetFileList
     {
       #if ( $itemname =~ m,.*dspace\.log\.10[0-9][0-9], )
       if ( $itemname =~ m,.*dspace\.log\..*, )
-	{
-	  my $item = qq{$source/$itemname};
-	  push (@logfiles, $item);
-	}
+	    {
+	      my $item = qq{$source/$itemname};
+	      push (@logfiles, $item);
+	    }
     }
 
     return @logfiles;
-
+    
   }
 
 
@@ -219,16 +218,16 @@ sub CleanIPData
         my $tempLogFile = $gTempLogFile;
         `touch $tempLogFile`;
         #Clear the file
-	&WriteFile ( $tempLogFile, '' );
+	      &WriteFile ( $tempLogFile, '' );
 
-	my $first_time = 1;
+	      my $first_time = 1;		      
 
-	my $buffer = &ReadFile ( $file );
+	      my $buffer = &ReadFile ( $file );
 
-	my @lines = split (/\n/, $buffer );
+	      my @lines = split (/\n/, $buffer );
 
-	my $msg = qq{ Doing File $file \n};
-	print $msg;
+	      my $msg = qq{ Doing File $file \n};
+	      print $msg;
 
 	my $new_buffer;
 	foreach my $line ( @lines )
@@ -245,7 +244,7 @@ sub CleanIPData
 	      }
 	    elsif ( ( $ip =~ m,.*ip_addr=(([0-9]|\.)+)\:.*, )  && ( $ip =~ m,.*view\_.*, ) )
                {
-
+  
 	          $ip =~ s,.*ip_addr=(.*?)\:.*,$1,s;
 
 	          $line =~ s,\',,gs;
@@ -265,7 +264,7 @@ sub CleanIPData
 		      if ( $first_time )
 		      {
 			$line = qq{$line\n};
-		        #print $line;
+		        #print $line;	
                         &WriteFile ( $tempLogFile, $line );
 
 			$first_time = 0;
@@ -276,11 +275,11 @@ sub CleanIPData
                         #print $line;
 			&ContWriteFile ( $tempLogFile, $line );
 		      }
-
+      
 		    }
 
 
-		    #Now we want to keep track of view_item_details, adn view_btstream_details counts for the entire ssytem
+		    #Now we want to keep track of view_item_details, adn view_btstream_details counts for the entire ssytem 
 		    if ( $line =~ m,.*view_item_details.*, )
 		      {
 			$total_item_view = $total_item_view + 1;
@@ -301,28 +300,28 @@ sub CleanIPData
 	#Not needed any longer.  Check done before storing it.
 	#foreach my $ip ( @CrawlerIPs )
 	#  {
-	#
+	#    
 	#    my $statement = qq{delete from statsfile where ip = '$ip'};
 	#    &ProcessSQL ( $statement );
-        #
-	#  }
+        #	
+	#  } 
 
 
 	#Now creat the file
 	#my $statement = qq{select line from statsfile};
-
+	
 	#my $sth = $dbhP->prepare($statement)
 	#  or die "Couldn't prepare statement: " . $dbhP->errstr;
-
+	
 	# Read the matching records and print them out
 	#$sth->execute()             # Execute the query
 	#  or die "Couldn't execute statement: " . $sth->errstr;
-
+		
 	#my $first_time = 1;
 	#my (  $line, @data  );
 	#while (@data = $sth->fetchrow_array()) {
 	#  $line = $data[0];
-	#
+	#  
 	#  if ( $first_time )
 	#    {
 	#      $line = qq{$line\n};
@@ -336,7 +335,7 @@ sub CleanIPData
 	#    }
         #
 	#}
-	#$sth->finish;
+	#$sth->finish;     
 
 	#Clean the table
 	#my $statement = qq{delete from statsfile};
@@ -368,19 +367,18 @@ sub ProcessSQL
 
 
     $dbhP->do($statement)
-     or die "Couldn't prepare statement: " . $dbhP->errstr;
+     or print "Couldn't prepare statement: " . $dbhP->errstr;
 
     my $msg = qq{$statement\n};
     #print $msg;
 
     #my $sth = $dbhP->prepare($statement)
     #  or die "Couldn't prepare statement: " . $dbhP->errstr;
-
+    
     # Read the matching records and print them out
     #$sth->execute()             # Execute the query
     #  or print "Couldn't execute statement: " . $sth->errstr;
-    #$sth->finish;
-
+    #$sth->finish;          
 
   }
 

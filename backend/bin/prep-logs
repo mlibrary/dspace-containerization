@@ -38,8 +38,8 @@ use File::Path;
 use LWP::Simple;
 use LWP::UserAgent;
 
-my $gLogDir = qq{/dspace/log};
-my $gScriptDir = qq{/dspace/bin};
+my $gBaseLogDir    = $ENV{'BASE_LOG_DIR'};
+my $gBaseBinDir    = $ENV{'BASE_BIN_DIR'};
 
 &CheckDspaceLog ();
 
@@ -137,15 +137,13 @@ sub LogFileBelongsToDate
 
 }
 
-
-
 sub CheckDspaceLog
 {
 
   my ( $year, $month, $MonthNumeric ) = &GetMonthYear();
 
   #If the dir does not exists, create it.
-  my $dirToCheck = qq{$gLogDir/$month\_$year};
+  my $dirToCheck = qq{$gBaseLogDir/$month\_$year};
   if ( &DoesDirExists( $dirToCheck ) )
     {
     }
@@ -154,7 +152,7 @@ sub CheckDspaceLog
       `mkdir $dirToCheck`;
     }
 
-    my $basedir = qq{$gLogDir/};
+    my $basedir = qq{$gBaseLogDir/};
     my $source = $basedir;
 
     opendir FH, $source;
@@ -178,17 +176,16 @@ sub CheckDspaceLog
     foreach my $itemname (@allitems)
     {
         open  (FH, "<$itemname");
-	if ( not -d FH )
+	      if ( not -d FH )
         {
-	    if  ($itemname =~ /(.*?)dspace\.log\.$year-$MonthNumeric.*/ )
-	    {
-                push ( @listOfLogFiles, $itemname );
-		$count = $count + 1;
-	    }
+	        if  ($itemname =~ /(.*?)dspace\.log\.$year-$MonthNumeric.*/ )
+	        {
+            push ( @listOfLogFiles, $itemname );
+		        $count = $count + 1;
+	        }
         }
         else  #it must be a directory
         {
-
         }
         close(FH);
     }
@@ -210,35 +207,35 @@ sub CheckDspaceLog
 
   my $msg = qq{Starting find_crawlers.\n};
   print $msg;
-  my $out = `$gScriptDir/find_crawlers -d $date -l $dirToCheck 2>&1`;
+  my $out = `$gBaseBinDir/find_crawlers -d $date -l $dirToCheck 2>&1`;
   print $out;
   my $msg = qq{End find_crawlers.\n};
   print $msg;
 
   my $msg = qq{Starting remov_ips.\n};
   print $msg;
-  my $out = `$gScriptDir/remove_ips -d $date -l $dirToCheck 2>&1`;
+  my $out = `$gBaseBinDir/remove_ips -d $date -l $dirToCheck 2>&1`;
   print $out;
   my $msg = qq{End remove_ips.\n};
   print $msg;
 
   my $msg = qq{Starting additional_stats_data.\n};
   print $msg;
-  my $out = `$gScriptDir/additonal_stats_data 2>&1`;
+  my $out = `$gBaseBinDir/additonal_stats_data 2>&1`;
   print $out;
   my $msg = qq{End additional_stats_data.\n};
   print $msg;
 
   my $msg = qq{Start collectect ip data gathering.\n};
   print $msg;
-  my $out = `$gScriptDir/ip_stats_data -d $date -l $dirToCheck 2>&1`;
+  my $out = `$gBaseBinDir/ip_stats_data -d $date -l $dirToCheck 2>&1`;
   print $out;
   my $msg = qq{End find_crawler.\n};
   print $msg;
 
   my $msg = qq{Starting consolidate_ips.\n};
   print $msg;
-  my $out = `$gScriptDir/consolidate_ips -d $date 2>&1`;
+  my $out = `$gBaseBinDir/consolidate_ips -d $date 2>&1`;
   print $out;
   my $msg = qq{End consolidate_ips.\n};
   print $msg;

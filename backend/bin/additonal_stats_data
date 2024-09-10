@@ -34,8 +34,8 @@ use utf8;
 use DBI;
 use File::Path;
 
-my $gDbName     = $ENV{'DB_NAME'};
-my $gDbUser     = $ENV{'DB_USER'};
+my $gDbName         = $ENV{'DB_NAME'};
+my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
@@ -45,7 +45,6 @@ my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
 $dbhP->disconnect;
 
 exit;
-
 
 sub GetAdditionalData
   {
@@ -69,29 +68,24 @@ sub GetAdditionalData
       $item_id = $data[1];
 
       if ( &ItemActive ( $item_id ) )
-	   {
-	     my $authors   = &GetValues ( $item_id, 1 );
-	     my $titles   = &GetValues ( $item_id, 64 );
-	     my $DateAdded = &GetValues ( $item_id, 11 );
-	     my $publisher = &GetValues ( $item_id, 39 );
-	     my $BitCount  = &GetBitCount ( $item_id );
-	     my $collid  = &GetCollid ( $item_id );
+	    {
+	      my $authors   = &GetValues ( $item_id, 1 );
+	      my $titles   = &GetValues ( $item_id, 64 );
+	      my $DateAdded = &GetValues ( $item_id, 11 );
+	      my $publisher = &GetValues ( $item_id, 39 );
+	      my $BitCount  = &GetBitCount ( $item_id );
+	      my $collid  = &GetCollid ( $item_id );
 
-	     my $a;
-	     &UpdateStatsDataTable ( $item_id, $handle, $authors, $titles, $DateAdded, $BitCount, $publisher, $collid );
-	   }
-
-
+	      my $a;
+	      &UpdateStatsDataTable ( $item_id, $handle, $authors, $titles, $DateAdded, $BitCount, $publisher, $collid );
+	    }
     }
     $sth->finish; 
-    
-
   }
 
 sub ProcessSQL
   {
     my ( $statement ) = @_;
-
 
     $dbhP->do($statement)
      or die "Couldn't prepare statement: " . $dbhP->errstr;
@@ -105,8 +99,6 @@ sub ProcessSQL
     #  or die "Couldn't execute statement: " . $sth->errstr;
     #$sth->finish;
   }
-
-
 
 sub UpdateStatsDataTable 
   {
@@ -122,7 +114,6 @@ sub UpdateStatsDataTable
 
     my $statement = qq{insert into statsdata values ( 0, '$handle', E'$lc_authors', E'$lc_title', '$DateAdded', $BitCount, E'$authors', E'$title', E'$publisher', 0, '$collid', '$item_id' )};
     
-
     $dbhP->do($statement)
      or die "Couldn't prepare statement: " . $dbhP->errstr;
 
@@ -143,11 +134,10 @@ sub ItemActive
     my ( $item_id ) = @_;
 
     if ( ! $item_id )
-      {
-	return 0;
-      }
+    {
+	    return 0;
+    }
       
-
     my $statement = qq{select in_archive from Item where uuid='$item_id' AND Item.uuid::"varchar" not in ( select item_uuid from statsdata )};
       
     my $sth = $dbhP->prepare($statement)
@@ -164,11 +154,10 @@ sub ItemActive
     $sth->finish;
       
     if ( $in_archive )
-      {
-	return 1;
-      }
+    {
+	    return 1;
+    }
    
-  
     #Things that were being tombstoned were not being displayed.
     #so always return 1,
     return 1;
@@ -204,7 +193,6 @@ sub GetValues
   {
     my ( $item_id, $id ) = @_;
 
-   
     my $statement = qq{select text_value, place  from metadatavalue where dspace_object_id='$item_id' and metadata_field_id=$id  order by place};
       
     my $sth = $dbhP->prepare($statement)
@@ -220,7 +208,6 @@ sub GetValues
     }
     $sth->finish;
       
-    
     $value =~ s,(.*)\; ,$1,;
     return $value;
     
@@ -258,11 +245,6 @@ sub GetBitCount
     
 }
 
-
-
-
-
-
 sub GetMonthYear
   {
     my $newtime = scalar localtime(time());
@@ -290,19 +272,14 @@ sub GetMonthYear
 
 
 sub WriteBufferToFile 
-  {
-
-    my ( $report, $fileName ) = @_;
+{
+  my ( $report, $fileName ) = @_;
     
-    #Now you want to create the file
-    open ( OUTFILE, ">$fileName" ) || die();
-    print OUTFILE $report;
-    close OUTFILE;
-  }
-
-
-
-
+  #Now you want to create the file
+  open ( OUTFILE, ">$fileName" ) || die();
+  print OUTFILE $report;
+  close OUTFILE;
+}
 
 __END__;
 

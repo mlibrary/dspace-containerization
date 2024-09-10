@@ -41,7 +41,7 @@ my $IPDate     = $opts{'d'};
 my $logDir     = $opts{'l'};
 
 #my $IPDate = '2020/07';
-#my $logDir = qq{/l1/dspace/repository/prod/log/Jul_2020};
+#my $logDir = qq{/dir/log/Jul_2020};
 
 print "IPDate = " . $IPDate . "\n";
 print "logDir = " . $logDir . "\n";
@@ -96,8 +96,8 @@ push ( @umIPs, 	    '207.75.183.');
 push ( @umIPs, 	    '141.215.');
 push ( @umIPs, 	    '141.216.');
 
-my $gDbName     = $ENV{'DB_NAME'};
-my $gDbUser     = $ENV{'DB_USER'};
+my $gDbName         = $ENV{'DB_NAME'};
+my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
@@ -126,8 +126,6 @@ my $statement = qq{create index bitip_idx on bitstreamipstatsdata (date, collid,
 &ProcessSQL ( $statement );
 my $statement = qq{create index itemip_idx on itemipstatsdata ( date, collid, handle, isumip, insideindicator)};
 &ProcessSQL ( $statement );
-
-
 
 
 $dbhP->disconnect;
@@ -173,9 +171,9 @@ sub GetReferer
       {
 	$referer =~ s,.*referer=(.*?)\:handle=.*,$1,;
       }
-    elsif ( $referer =~ m,.*referer=(.*?)\:view_.*, )
+    elsif ( $referer =~ m,.*referer=(.*?)\:collection=.*, )
       {
-	$referer =~ s,.*referer=(.*?)\:view\_.*,$1,;
+	$referer =~ s,.*referer=(.*?)\:collection.*,$1,;
       }
     else
       {

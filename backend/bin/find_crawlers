@@ -44,8 +44,8 @@ my $IPDate     = $opts{'d'};
 my $logDir     = $opts{'l'};
 
 
-#my $IPDate = '2022/10';
-#my $logDir = qq{/l1/dspace/repository/prod/log/Oct_2022};
+#my $IPDate = '2024/01';
+#my $logDir = qq{/dir/log/Jan_2024_test};
 
 
 print "IPDate = " . $IPDate . "\n";
@@ -63,8 +63,9 @@ print "logDir = " . $logDir . "\n";
 #    exit;
 #  }
 
-my $gDbName     = $ENV{'DB_NAME'};
-my $gDbUser     = $ENV{'DB_USER'};
+
+my $gDbName         = $ENV{'DB_NAME'};
+my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
@@ -111,56 +112,64 @@ sub GetFileList
     foreach my $itemname (@testtems)
     {
       if ( $itemname =~ m,.*dspace\.log.*, )
-	{
-	  my $item = qq{$source/$itemname};
-	  push (@logfiles, $item);
-	}
+	    {
+	      my $item = qq{$source/$itemname};
+	      push (@logfiles, $item);
+	    }
     }
 
     return @logfiles;
     
   }
 
-
-
-
-
 sub FindIPData
   {
     my @files = &GetFileList ( );
 
     foreach my $file ( @files )
-      {
+    {
+	    my $statement = qq{$file \n};
+	    print $statement;
 
-	my $statement = qq{$file \n};
-	print $statement;
+	    my $buffer = &ReadFile ( $file );
+	    my @lines = split (/\n/, $buffer );
 
-
-	my $buffer = &ReadFile ( $file );
-
-	my @lines = split (/\n/, $buffer );
-
-	my $new_buffer;
-	foreach my $line ( @lines )
-	  {
-	    #2006-10-27 22:31:17,403 INFO  org.dspace.app.webui.servlet.DSpaceServlet @ anonymous:session_id=7759D272BD53DC87342BBA1E61EAFE73:ip_addr=66.249.72.111:view_item_details:collection=OUTSIDE Transportation Research Institute (UMTRI) (All Collections),  handle=2027.42/583
+	    my $new_buffer;
+	    foreach my $line ( @lines )
+	    {
+	      #2006-10-27 22:31:17,403 INFO  org.dspace.app.webui.servlet.DSpaceServlet @ anonymous:session_id=7759D272BD53DC87342BBA1E61EAFE73:ip_addr=66.249.72.111:view_item_details:collection=OUTSIDE Transportation Research Institute (UMTRI) (All Collections),  handle=2027.42/583
 	    
-	    if ( $line =~ m,.*view_.*, )
+	      if ( $line =~ m,.*view_.*, )
 	      {
-                #print $line . "\n";
-		my $ip = &GetIPAddress ( $line );
-		if ( $ip eq '' )
-		  {
-		  }
-		else
-		  {
-		    &StoreIP ( $ip, '', 1 );
-		  }
-	      }
-	  }
-      }
+		      my $view_type = $line;
+		      if ( $view_type =~ m,.*view_bitstream_details.*, )
+		      {
+		        $view_type = qq{view_bitstream_details};
+		      }
+		      elsif ( $view_type =~ m,.*view_item_details.*, )
+		      {
+		        $view_type = qq{view_item_details};
+		      }
+		      else 
+		      {
+		        $view_type = qq{CANT_DETERMINE};
+		      }
+
+          #print $line . "\n";
+		      my $ip = &GetIPAddress ( $line );
+		      if ( $ip eq '' )
+		      {
+		      }
+		      else
+		      {
+		        &StoreIP ( $ip, '', 1, $view_type );
+		      }
+	     }
+	   }
+    }
   }
 
+#This method does not seem to be used. 
 sub FindCount
   {
     my ( $ip ) = @_;
@@ -184,7 +193,8 @@ sub FindCount
 
   }
 
-
+#This method is not in use presently.
+#I guess at some time it was used.
 sub UpdateIP
   {
     my ( $ip, $count ) = @_;
@@ -197,24 +207,23 @@ sub UpdateIP
 
 sub StoreIP 
   {
-    my ( $ip, $site, $count ) = @_;
+    my ( $ip, $site, $count, $view_type ) = @_;
 
     $site =~ s,\',\\',gs;
     $site =~ s,\n, ',gs;
     $site =~ s,\r, ',gs;
 
-    my $stmt = qq{insert into crawlerip values ( '$IPDate', '$ip', E'$site', $count )};
+    my $stmt = qq{insert into crawlerip values ( '$IPDate', '$ip', E'$site', $count,  '$view_type')};
 
     &ProcessSQL ( $stmt );
 
-     
   }
 
 sub ReportSites
 {
   my $statement = qq{select distinct ip from crawlerip};
- 
-  my $statement = qq{select count(*), ip from crawlerip group by ip having count(*) >= 1};
+
+  my $statement = qq{select count(*), ip from crawlerip where view_type='view_bitstream_details' group by ip having count(*) >= 1};
 
   my $sth = $dbhP->prepare($statement)
       or die "Couldn't prepare statement: " . $dbhP->errstr;
@@ -228,48 +237,44 @@ sub ReportSites
     while (@data = $sth->fetchrow_array()) {
       $count = $data[0];
       $ip = $data[1];
-      if ( $count < 1000 )
-	{
-	  #This is not working, I think we between what we have from
-	  #DSpace and filtering out counts greater than 1000 we ar OK.
+      if ( $count < 300 )
+	    {
+	      #This is not working, I think we between what we have from
+	      #DSpace and filtering out counts greater than 1000 we ar OK.
 
-          #Just changed the way hostname is computed.
+        #Just changed the way hostname is computed.
 
-	  my $hostname;
-	  my $crawler = &IsCrawler ( $ip );
-	  if ( $crawler )
-	  {
-            $hostname = "spider";
-	    #print $hostname . "\n";
-	  }	
-	  else
-	  {
-	    $hostname = &FindHostnameFromDB ( $ip );
-            if ( $hostname eq 'NOTFOUND' )
+	      my $hostname;
+	      my $crawler = &IsCrawler ( $ip );
+	      if ( $crawler )
 	      {
-		$hostname = &FindHostnameUsingUnix ( $ip);
+          $hostname = "spider";
+	        #print $hostname . "\n";
+	      }	
+	      else
+	      {
+	        $hostname = &FindHostnameFromDB ( $ip );
+          if ( $hostname eq 'NOTFOUND' )
+	        {
+		        $hostname = &FindHostnameUsingUnix ( $ip);
   	        my $stmt = qq{insert into all_ips (ip, hostname, stat_date) values('$ip', E'$hostname', '$IPDate' )};
-		&ProcessSQL ( $stmt );		
-
-	      }
-	  }	
-	  #my $hostname = '';
+		        &ProcessSQL ( $stmt );		
+	        }
+	      }	
+	      #my $hostname = '';
       
-	  &UpdateHostName ( $ip, $hostname );
+	      &UpdateHostName ( $ip, $hostname );
 
-	}
+	  }
 
-    }
-    $sth->finish; 
-
-
-
+  }
+  
+  $sth->finish; 
 }
 
 sub IsCrawler
 {
-   my ( $ip ) = @_;
-
+    my ( $ip ) = @_;
 
     my $statement = qq{select ip  from crawlers_dspace where ip = '$ip'};
 
@@ -318,7 +323,7 @@ sub OldFindHostnameUsingUnix
       }
     else
       {
-	$hostname = "";
+	      $hostname = "";
       }
     #$msg = qq{$ip has hostname $hostname\n};
     #print $msg;
@@ -333,18 +338,17 @@ sub FindHostnameUsingUnix
     my ( $ip ) = @_;
 
 
-$SIG{ALRM} = sub {
-    my $sig_name = shift;
-    die "Timeout by signal [$sig_name]\n";
-};
+   $SIG{ALRM} = sub {
+     my $sig_name = shift;
+     die "Timeout by signal [$sig_name]\n";
+   };
 
-my $command = "/usr/bin/nslookup -timeout=5  $ip";
-my $hostname = backtick( 
+   my $command = "/usr/bin/nslookup -timeout=5  $ip";
+   my $hostname = backtick( 
                  command => $command, 
                  timeout => 5, 
                  verbose => 0 
              );
-
 
     if ( $hostname =~ m,.*name =(.*?)\n.*, )
       {
@@ -352,10 +356,8 @@ my $hostname = backtick(
       }
     else
       {
-	$hostname = "";
+    	  $hostname = "";
       }
-
-
 
     return $hostname;
     
@@ -418,9 +420,6 @@ sub backtick {
 
     wantarray ? @output : join( "\n", @output );
 }
-
-
-
 
 
 sub FindHostnameFromDB

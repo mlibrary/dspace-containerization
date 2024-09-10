@@ -171,9 +171,9 @@ sub GetPublisher
     $sth->finish;    
     
     if ( $publisher =~ m,.*\; , )
-      {
-	$publisher =~ s,(.*)\; ,$1,
-      }
+    {
+	    $publisher =~ s,(.*)\; ,$1,
+    }
 
     return $publisher;
 }
@@ -222,9 +222,9 @@ sub ConsolidateIPData
       $collid           = &GetCollid ( $item_id );
       if ( $collid eq '0' )
       {
-	  my $msg = qq{This handle=$handle item_id=$item_id had a collid that was not found. Not counting it.\n};
-	  print $msg;
-	  next;
+	      my $msg = qq{This handle=$handle item_id=$item_id had a collid that was not found. Not counting it.\n};
+	      print $msg;
+	      next;
       }	
       $collname         = &GetCollname ( $collid );
       $publisher        = &GetPublisher( $item_id );
@@ -247,16 +247,16 @@ sub ConsolidateIPData
       my $ItemOutsideReferer = &GetItemReferer ( $collDt, $collid, $handle, 0 );
 
       if (($BitTotal == 0) && ($InsideTotal == 0) && ($OutsideTotal == 0) )
-	{
-	}
+	    {
+	    }
       else
-	{
-	  &UpdateBitIPData ( $collid, $collname, $handle, $title, $publisher, $BitUM, $BitNONUM, $ItemUMInside, $ItemNONUMInside, $ItemUMOutside, $ItemNONUMOutside, $BitTotal, $InsideTotal, $OutsideTotal, $BitReferer, $ItemOutsideReferer );
+	    {
+	      &UpdateBitIPData ( $collid, $collname, $handle, $title, $publisher, $BitUM, $BitNONUM, $ItemUMInside, $ItemNONUMInside, $ItemUMOutside, $ItemNONUMOutside, $BitTotal, $InsideTotal, $OutsideTotal, $BitReferer, $ItemOutsideReferer );
 	  
-	  my $msg = qq{print $collDt $handle Processed $count\n};
-	  #print $msg;
-	  $count = $count + 1;
-	}
+	      my $msg = qq{print $collDt $handle Processed $count\n};
+	      #print $msg;
+	      $count = $count + 1;
+	    }
 
     }
     $sth->finish;    
@@ -329,27 +329,21 @@ sub ProcessBitSpecificData
 
       if ( $file )
       {
+	      $file =~ s,\',\\',gs;
+	      $file =~ s,\?,\&\#63\;,gs;
+	      $referer =~ s,\',\\',gs;
+	      $referer =~ s,\?,\&\#63\;,gs;
 
-	$file =~ s,\',\\',gs;
-	$file =~ s,\?,\&\#63\;,gs;
-	$referer =~ s,\',\\',gs;
-	$referer =~ s,\?,\&\#63\;,gs;
-
-	my $statement = qq{insert into BitSpecificData values ( 0, '$colldt', '$handle', E'$file', $isumcount, $isnonumcount, $total, E'$referer', '$collid' )};
-	#print $statement . "\n";
-	&ProcessSQL ( $statement );
-
+	      my $statement = qq{insert into BitSpecificData values ( 0, '$colldt', '$handle', E'$file', $isumcount, $isnonumcount, $total, E'$referer', '$collid' )};
+	      #print $statement . "\n";
+	      &ProcessSQL ( $statement );
       }
-
     }
-
-
   }
 
 sub GetReferer
 {
   my ( $colldt, $handle, $file ) = @_;
-
 
   $file =~ s,\',\\',gs;
   $file =~ s,\?,\&\#63\;,gs;
@@ -435,7 +429,6 @@ sub UpdateBitIPData
     my $statement = qq{insert into consolidatedstatstable values ( '$collDt', 0, E'$collname', '$handle', E'$title', E'$publisher', $InsideTotal, $OutsideTotal, $BitTotal, $BitUM, $BitNONUM, $ItemUMInside, $ItemNONUMInside, $ItemUMOutside, $ItemNONUMOutside, E'$BitReferer', E'$ItemOutsideReferer', '$collid' )};
 
     #print $statement . "\n";
-
 
     &ProcessSQL ( $statement );
 

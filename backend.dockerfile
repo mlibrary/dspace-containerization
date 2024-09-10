@@ -60,14 +60,27 @@ COPY --from=ant_build /dspace $DSPACE_INSTALL
 # Install additional libraries needed for backend scripts
 RUN apt update; \
     apt install -y --no-install-recommends \
+        ccrypt \
         libcgi-pm-perl \
         libdbi-perl \
         libio-all-lwp-perl \
         liberror-perl \
         libdbd-pg-perl \
+        libjson-xs-perl \ 
+        libemail-sender-perl \
+        libnet-sftp-foreign-perl \
+        libmailtools-perl \
+        unzip \
+        xsltproc \
         dnsutils \
         emacs \
-        vim
+        vim \
+        build-essential  \
+        ruby-dev \
+        pipx 
+
+RUN gem install uri pry net-http json
+RUN pipx install awscli
 
 # Install additional backend scripts
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
