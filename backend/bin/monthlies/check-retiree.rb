@@ -69,7 +69,7 @@ def make_request ( unique_id )
 #binding.pry
 #print "response=" + affiliation + "\n";
 
-user_file = BASE_DATA_DIR + "user.txt"
+user_file = BASE_DATA_DIR + "/users.txt"
 File.open(user_file, "r") do |f|
   f.each_line do |line|
     puts "testing : " + line

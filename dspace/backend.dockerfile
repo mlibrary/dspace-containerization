@@ -66,6 +66,8 @@ RUN apt update; \
         libdbd-pg-perl \
         libjson-xs-perl \ 
         libemail-sender-perl \
+        libemail-mime-perl \
+        libemail-stuffer-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
         unzip \

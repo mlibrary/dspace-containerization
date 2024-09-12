@@ -66,8 +66,10 @@ RUN apt update; \
         libio-all-lwp-perl \
         liberror-perl \
         libdbd-pg-perl \
-        libjson-xs-perl \ 
+        libjson-xs-perl \
         libemail-sender-perl \
+        libemail-mime-perl \
+        libemail-stuffer-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
         unzip \

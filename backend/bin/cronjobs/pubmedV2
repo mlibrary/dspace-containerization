@@ -488,7 +488,7 @@ sub GetReportFileV2
 {
   my ( $count, $pmid, $handle ) = @_;
 
-  my $url = qq{$Ncbi_Api$pmid};
+  my $url = qq{$gNcbiApi$pmid};
 
   my $out = &GetResponse ( $url );
   
