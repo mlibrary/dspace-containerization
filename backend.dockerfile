@@ -70,6 +70,7 @@ RUN apt update; \
         libemail-sender-perl \
         libemail-mime-perl \
         libemail-stuffer-perl \
+        libmime-lite-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
         unzip \
@@ -79,7 +80,8 @@ RUN apt update; \
         vim \
         build-essential  \
         ruby-dev \
-        pipx 
+        pipx \
+        iputils-ping
 
 RUN gem install uri pry net-http json
 RUN pipx install awscli

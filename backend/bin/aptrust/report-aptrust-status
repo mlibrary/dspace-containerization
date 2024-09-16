@@ -163,6 +163,29 @@ sub CheckStatusOfBags
       }
       $sth->finish;
 
+      #And Check any objects whos status is not Success.
+      my $statement = qq{select handle from aptrust_object_status where status !='Success'};
+
+      my $sth = $dbhP->prepare($statement)
+        or die "Couldn't prepare statement: " . $dbhP->errstr;
+    
+      # Read the matching records and print them out
+      $sth->execute()             # Execute the query
+        or die "Couldn't execute statement: " . $sth->errstr;
+
+      my ( @data );
+      while (@data = $sth->fetchrow_array()) {
+        my $handle = $data[0];
+  
+        my $object_identifier = $handle;
+        $object_identifier =~ s,$gHandlePrefix\/,,;
+        $object_identifier = qq{umich.edu/deepbluedocs.$object_identifier};
+       
+        &RecordStatusOfBag ( $handle, $object_identifier );
+
+      }
+      $sth->finish;
+
     }
 
 
