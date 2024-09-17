@@ -307,8 +307,9 @@ sub EmailReportNoStats
   my $subject = qq{$gMonth $gYear download report from Deep Blue};    
 
   use Mail::Mailer;
-  #my $mailer = new Mail::Mailer 'sendmail', Server => '';
-  my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+
+  $mailer = Mail::Mailer->new('smtp', Server => 'relay.mail.umich.edu')
+  #my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
   $mailer->open(
 		{
 		 'To'       => $to,

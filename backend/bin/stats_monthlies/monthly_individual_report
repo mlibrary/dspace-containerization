@@ -472,18 +472,49 @@ sub EmailZipFileData
     {
 
       my $actualto = $to;
-      #$to = qq{blancoj\@umich\.edu};
-
       my $subject = qq{$gMonth $gYear download report from Deep Blue};
       $report .= qq{/nStats are also in the attached file.};
-      #use Mail::Sender;
-      my $sender = new Mail::Sender
-        {smtp => 'localhost', from => 'deepblue@umich.edu'};
-      $sender->MailFile({to => $to,
-	         	 subject => $subject,
-		         msg => $report,
-		         file => $file});
-      $sender->Close;
+
+
+use MIME::Lite;
+$cc = '';
+$from = 'deepblue@umich.edu';
+
+
+$msg = MIME::Lite ->new(
+   From => $from,
+   To => $to,
+   Cc => $cc,
+   Subject => $subject,
+   Type => 'multipart/mixed'
+);
+# Add your text message.
+$msg->attach(
+   Type => 'TEXT',
+   Data => $report
+);
+# Specify your file as attachement.
+$msg->attach(Type => 'text/plain',
+   Path => '$file',
+   Filename => 'data.txt',
+   Disposition => 'attachment'
+);       
+$msg->send('smtp','relay.mail.umich.edu');
+print "Email Sent Successfully\n";
+
+
+
+      # #use Mail::Sender;
+      # my $sender = new Mail::Sender
+      #   {smtp => 'localhost', from => 'deepblue@umich.edu'};
+      # $sender->MailFile({to => $to,
+	    #      	 subject => $subject,
+		  #        msg => $report,
+		  #        file => $file});
+      # $sender->Close;
+
+
+
      }
 
 }

@@ -332,49 +332,39 @@ sub EmailZipFileData
     my $subject = qq{Monthly Stats for all Bentley Collections.};
     #my $msg = qq{Stats for $collname for $gMonth $gYear attached.};
     my $msg = qq{Stats for ALL Bentley for $gMonth $gYear attached.};
-    use Mail::Sender;
-    my $sender = new Mail::Sender
-      {smtp => 'localhost', from => 'deepblue@umich.edu'};
-    $sender->MailFile({to => $to,
-		       subject => $subject,
-		       msg => $msg,
-		       file => $file});
-    $sender->Close;
-
-}
-
-
-sub EmailZipFileDataCorrection
-{
-
-    my ( $collid, $file, $to ) = @_;
     
-    my $actualto = $to;
-    #$to = qq{blancoj\@umich\.edu};
+    # use Mail::Sender;
+    # my $sender = new Mail::Sender
+    #   {smtp => 'localhost', from => 'deepblue@umich.edu'};
+    # $sender->MailFile({to => $to,
+		#        subject => $subject,
+		#        msg => $msg,
+		#        file => $file});
+    # $sender->Close;
 
-    my $collname = &StatsUtils::GetCollname ( $dbhP, $collid );
-
-    my $subject = qq{CORRECTION on 2009/09 stats for Deep Blue collection:  $collname.};
-    my $msg = qq{We have discovered an error that took place during the processing of usage statistics for the $gMonth $gYear, so attached you will find the corrected information for that period.
-
-We apologize for the error, and any inconvenience it may have caused.
-
-Jim Ottaviani
-Deep Blue};
-    use Mail::Sender;
-    my $sender = new Mail::Sender
-      {smtp => 'localhost', from => 'deepblue@umich.edu'};
-    $sender->MailFile({to => $to,
-		       subject => $subject,
-		       msg => $msg,
-		       file => $file});
-    $sender->Close;
-
-
+$msg = MIME::Lite ->new(
+   From => $from,
+   To => $to,
+   Cc => $cc,
+   Subject => $subject,
+   Type => 'multipart/mixed'
+);
+# Add your text message.
+$msg->attach(
+   Type => 'TEXT',
+   Data => $msg
+);
+# Specify your file as attachement.
+$msg->attach(Type => 'application/gzip',
+   Path => '$file',
+   Filename => 'data.txt.gz',
+   Disposition => 'attachment'
+);       
+$msg->send('smtp','relay.mail.umich.edu');
+print "Email Sent Successfully\n";
 
 
 }
-
 
 sub PrepareZipFile
 {
@@ -492,31 +482,6 @@ sub GetLastMonthDate
   return ( $probability_date, $display_month, $year );
   
 }
-
-
-sub EmailReport 
-{
-  my ( $to, $report ) = @_;
-
-  my $subject = qq{$to - report};    
-  $to = qq{blancoj\@umich.edu};
-
-  use Mail::Mailer;
-  #my $mailer = new Mail::Mailer 'sendmail', Server => '';
-  my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
-
-  $mailer->open(
-		{
-		 'To'       => $to,
-		 'From'     => 'deepblue@umich.edu',
-		 'Subject'  => $subject,
- 		  }
- 		 );
-    print $mailer( $report );
-    $mailer->close;
-
-}
-
 
 
 sub GetAdmins

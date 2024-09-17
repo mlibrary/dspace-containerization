@@ -318,22 +318,48 @@ sub EmailZipFileData
 
     my ( $collid, $file, $to ) = @_;
     
-    #my $actualto = $to;
-    #$to = qq{blancoj\@umich\.edu};
-
     my $collname = &StatsUtils::GetCollname ( $dbhP, $collid );
-
     my $subject = qq{Monthly Stats for $collname.};
-    #my $msg = qq{Stats for $collname for $gMonth $gYear attached.};
     my $msg = qq{Stats for $collname for $gMonth $gYear attached.};
-    use Mail::Sender;
-    my $sender = new Mail::Sender
-      {smtp => 'localhost', from => 'deepblue@umich.edu'};
-    $sender->MailFile({to => $to,
-		       subject => $subject,
-		       msg => $msg,
-		       file => $file});
-    $sender->Close;
+
+
+use MIME::Lite;
+$cc = '';
+$from = 'deepblue@umich.edu';
+
+$msg = MIME::Lite ->new(
+   From => $from,
+   To => $to,
+   Cc => $cc,
+   Subject => $subject,
+   Type => 'multipart/mixed'
+);
+# Add your text message.
+$msg->attach(
+   Type => 'TEXT',
+   Data => $msg
+);
+# Specify your file as attachement.
+$msg->attach(Type => 'application/gzip',
+   Path => '$file',
+   Filename => 'data.txt.gz',
+   Disposition => 'attachment'
+);       
+$msg->send('smtp','relay.mail.umich.edu');
+print "Email Sent Successfully\n";
+
+
+
+
+
+    # use Mail::Sender;
+    # my $sender = new Mail::Sender
+    #   {smtp => 'localhost', from => 'deepblue@umich.edu'};
+    # $sender->MailFile({to => $to,
+		#        subject => $subject,
+		#        msg => $msg,
+		#        file => $file});
+    # $sender->Close;
 
 }
 
