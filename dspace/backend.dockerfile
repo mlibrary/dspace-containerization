@@ -84,7 +84,9 @@ RUN apt update; \
 RUN gem install uri pry net-http json
 RUN pipx install awscli
 
+#RUN mkdir /root/.emacs.d
 # Install additional backend scripts
+COPY ./backend/init.el /root/.emacs.d/init.el
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
 COPY ./backend/config/ $DSPACE_INSTALL/config/
 COPY ./backend/logs/ $DSPACE_INSTALL/logs/
