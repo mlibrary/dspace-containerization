@@ -81,7 +81,8 @@ RUN apt update; \
         build-essential  \
         ruby-dev \
         pipx \
-        iputils-ping
+        iputils-ping \
+        mailutils
 
 RUN gem install uri pry net-http json
 RUN pipx install awscli
