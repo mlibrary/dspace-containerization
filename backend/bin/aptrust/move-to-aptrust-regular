@@ -160,15 +160,22 @@ sub GetItemIdsToUpdateOrAdd
       my $mod_date = $data[1];
 
       my $item_id = &GetItemId ( $handle );
-      my $curr_mod_date = &GetModDate ( $item_id );
+      if ( $item_id ne '' )
+      {
+        my $curr_mod_date = &GetModDate ( $item_id );
 
-      if ( $mod_date ne $curr_mod_date )
-	    {
+        if ( $mod_date ne $curr_mod_date )
+        {
          if ( &EligibleToSend ( $handle ) == 1 )
-	       {
-	         push ( @handles, $handle );	     
-	       }
-	    }
+           {
+             push ( @handles, $handle );
+           }
+        }
+      }
+      {
+        my $msg = qq{Could not find item_id for $handle\n};
+        print $handle;
+      }
     }
     $sth->finish;
 
