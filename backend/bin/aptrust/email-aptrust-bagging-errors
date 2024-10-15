@@ -110,7 +110,8 @@ sub EmailErrorMsg
 
 
     use Mail::Mailer;
-    my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+    my $server = qq{relay.mail.umich.edu};
+    my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,
@@ -134,7 +135,8 @@ sub EmailErrorMsgTwo
 
 
     use Mail::Mailer;
-    my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+    my $server = qq{relay.mail.umich.edu};
+    my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,

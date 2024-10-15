@@ -284,8 +284,8 @@ sub EmailReport
     my $subject = qq{$gMonth $gYear download report from Deep Blue};    
 
     use Mail::Mailer;
-    #my $mailer = new Mail::Mailer 'sendmail', Server => '';
-    my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+    my $server = qq{relay.mail.umich.edu};
+    my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
 		  {
 		   'To'       => $to,
@@ -308,8 +308,8 @@ sub EmailReportNoStats
 
   use Mail::Mailer;
 
-  $mailer = Mail::Mailer->new('smtp', Server => 'relay.mail.umich.edu')
-  #my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+  my $server = qq{relay.mail.umich.edu};
+  my $mailer = new Mail::Mailer->new('smtp', Server => $server);
   $mailer->open(
 		{
 		 'To'       => $to,
@@ -345,8 +345,8 @@ sub EmailReportCorrection
   my $subject = qq{CORRECTION on 2009/09 download report from Deep Blue};    
 
   use Mail::Mailer;
-  #my $mailer = new Mail::Mailer 'sendmail', Server => '';
-  my $mailer = new Mail::Mailer 'sendmail', qw(-f deepblue@umich.edu);
+  my $server = qq{relay.mail.umich.edu};
+  my $mailer = new Mail::Mailer->new('smtp', Server => $server);
   $mailer->open(
 		{
 		 'To'       => $to,

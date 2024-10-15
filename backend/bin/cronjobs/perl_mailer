@@ -81,7 +81,8 @@ sub SendEmail
 
     #my $to = qq{blancoj\@umich.edu};
     use Mail::Mailer;
-    my $mailer = new Mail::Mailer 'sendmail';
+    my $server = qq{relay.mail.umich.edu};
+    my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,
