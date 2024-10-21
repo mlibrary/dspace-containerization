@@ -43,7 +43,6 @@ my $gDbPort         = $ENV{'DB_PORT'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
-
 &FindBaggingErrors();
 
 $dbhP->disconnect;

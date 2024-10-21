@@ -39,7 +39,7 @@ use POSIX;
 #use S3::AWSAuthConnection;
 #use S3::QueryStringAuthGenerator;
 
-use Paws;
+#use Paws;
 #use Getopt::Long 'GetOptions';
 use LWP::Simple;
 use LWP::UserAgent;

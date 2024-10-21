@@ -77,8 +77,12 @@ print "load/status = " . $UploadOrStatus . "\n";
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
+my $gDbService      = $ENV{'DB_SERVICE'};
+my $gDbPort         = $ENV{'DB_PORT'};
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
+my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
+
+
 
 my $gRepositoryDir        = $ENV{'BASE_REPOSITORY_DIR'};
 my $gBaseDataDir          = $ENV{'BASE_DATA_DIR'};
@@ -535,7 +539,7 @@ sub CreateBagFromScratch
       $id =~ s,.*\-(.*)\.zip$,$1,;
 
       my $bag= qq{deepbluedocs.$id};
-      `xsltproc -o $itemDir/aptrust-info.txt $gToolsDir/metadata2aptrust-info.xsl $itemDir/data/metadata.xml`;
+      `/usr/bin/xsltproc -o $itemDir/aptrust-info.txt $gToolsDir/metadata2aptrust-info.xsl $itemDir/data/metadata.xml`;
       
       #Payload-Oxum: 2938678.12
       my $bag_info_file = qq{$itemDir/bag-info.txt};
@@ -574,7 +578,7 @@ sub CreateBagFromScratch
       # This is moving the ITEM directory
       `mv $itemDir $gBagDir/$bag`;
 
-      `/bin/tar -cvf $gBagDir/$bag.tar -C $gBagDir $bag `;
+      `/usr/bin/tar -cvf $gBagDir/$bag.tar -C $gBagDir $bag `;
 
       `rm -rf $gBagDir/$bag`;
       `rm $gZipDir/$item`;
@@ -663,7 +667,7 @@ sub DepositBagToAPTrust
     foreach my $bag (@allbags)
     {
       #This is where you send one bag at a time and record that in the db.
-      my $out = `/usr/local/bin/aws s3 cp $gBagDir/$bag s3://$gBucketname/$bag 2>&1`;
+      my $out = `/root/.local/bin/aws s3 cp $gBagDir/$bag s3://$gBucketname/$bag 2>&1`;
       my $msg = qq{Sending $bag to APTurst via aws.\n};
       print $msg;
 

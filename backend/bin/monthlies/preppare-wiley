@@ -184,7 +184,6 @@ else
     exit;
   }
 
-my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName", "$gDbUser", "$gDbPassword");
 
 #This was to check if items to be loaded is in Production on Dec 2013 when a whole bunch of 
 #items came in.  It may be useful in other cases.
