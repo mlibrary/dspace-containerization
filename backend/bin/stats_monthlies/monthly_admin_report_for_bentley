@@ -331,8 +331,8 @@ sub EmailZipFileData
 
     my $subject = qq{Monthly Stats for all Bentley Collections.};
     #my $msg = qq{Stats for $collname for $gMonth $gYear attached.};
-    my $msg = qq{Stats for ALL Bentley for $gMonth $gYear attached.};
-    
+    my $msg = qq{While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may be reflect both human and crawler activity.\n\nStats for ALL Bentley for $gMonth $gYear attached.};
+ 
     # use Mail::Sender;
     # my $sender = new Mail::Sender
     #   {smtp => 'localhost', from => 'deepblue@umich.edu'};

@@ -293,7 +293,9 @@ sub EmailReport
 		   'Subject'  => $subject,
  		  }
  		 );
-  
+
+    $report = qq{This is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\n$report}; 
+
     print $mailer( $report );
     $mailer->close;
   }

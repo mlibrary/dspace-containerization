@@ -320,8 +320,7 @@ sub EmailZipFileData
     
     my $collname = &StatsUtils::GetCollname ( $dbhP, $collid );
     my $subject = qq{Monthly Stats for $collname.};
-    my $msg = qq{Stats for $collname for $gMonth $gYear attached.};
-
+    my $msg = qq{\nThis is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\nStats for $collname for $gMonth $gYear attached.};
 
 use MIME::Lite;
 $cc = '';

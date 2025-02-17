@@ -473,8 +473,7 @@ sub EmailZipFileData
 
       my $actualto = $to;
       my $subject = qq{$gMonth $gYear download report from Deep Blue};
-      $report .= qq{/nStats are also in the attached file.};
-
+      $report = qq{\nThis is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\nThe same information is also available in the attached file.\n\n$report};
 
 use MIME::Lite;
 $cc = '';
