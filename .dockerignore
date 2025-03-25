@@ -4,5 +4,6 @@
 # Allow files and directories
 !/apache2
 !/backend
+!/express
 
 # Ignore unnecessary files inside allowed directories
