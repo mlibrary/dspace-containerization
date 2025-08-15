@@ -178,7 +178,7 @@ sub CheckDspaceLog
         open  (FH, "<$itemname");
 	      if ( not -d FH )
         {
-	        if  ($itemname =~ /(.*?)dspace\.log\.$year-$MonthNumeric.*/ )
+	        if  ($itemname =~ /(.*?)dspace\.log\-$year-$MonthNumeric.*/ )
 	        {
             push ( @listOfLogFiles, $itemname );
 		        $count = $count + 1;
