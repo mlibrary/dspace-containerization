@@ -196,7 +196,7 @@ sub GetFileList
     foreach my $itemname (@testtems)
     {
       #if ( $itemname =~ m,.*dspace\.log\.10[0-9][0-9], )
-      if ( $itemname =~ m,.*dspace\.log\..*, )
+      if ( $itemname =~ m,.*dspace\.log\-.*, )
 	    {
 	      my $item = qq{$source/$itemname};
 	      push (@logfiles, $item);
@@ -357,11 +357,11 @@ sub CleanIPData
     print $msg;
 
     #Store this information in a table.
-    my $statement = qq{delete from rawstats where colldt='$IPDate'};
-    &ProcessSQL ( $statement );
+    #my $statement = qq{delete from rawstats where colldt='$IPDate'};
+    #&ProcessSQL ( $statement );
 
-    my $statement = qq{insert into rawstats values ( '$IPDate', $total_item_view, $total_bit_view)};
-    &ProcessSQL ( $statement );
+    #my $statement = qq{insert into rawstats values ( '$IPDate', $total_item_view, $total_bit_view)};
+    #&ProcessSQL ( $statement );
   }
 
 sub ProcessSQL

@@ -164,17 +164,13 @@ sub GetIPAddress
     return $ip;
   }
 
-sub GetReferer
+sub GetRefererForItem
   {
     my ( $line ) = @_;
 
     my $referer = $line;
     
-    if ( $referer =~ m,.*referer=(.*?)\:handle=.*, )
-      {
-	$referer =~ s,.*referer=(.*?)\:handle=.*,$1,;
-      }
-    elsif ( $referer =~ m,.*referer=(.*?)\:collection=.*, )
+    if ( $referer =~ m,.*referer=(.*?)\:collection=.*, )
       {
 	$referer =~ s,.*referer=(.*?)\:collection.*,$1,;
       }
@@ -186,15 +182,34 @@ sub GetReferer
     return $referer;
   }
 
+sub GetRefererForBit
+  {
+    my ( $line ) = @_;
+
+    my $referer = $line;
+    
+    if ( $referer =~ m,.*referer=(.*?)\:handle.*, )
+      {
+        $referer =~ s,.*referer=(.*?)\:handle=.*,$1,;
+      }
+    else        
+      {
+        $referer = '';
+      }
+
+    return $referer;
+  }
+
+
 sub GetInsideIndicator
   {
     my ( $line ) = @_;
 
-    if ( $line =~ m,.*=INSIDE .*, )
+    if ( $line =~ m,.*=INSIDE.*, )
       {
 	return 1;
       }
-    elsif ( $line =~ m,.*=OUTSIDE .*, )
+    elsif ( $line =~ m,.*=OUTSIDE.*, )
       {
 	return 0;
       }
@@ -342,7 +357,7 @@ sub GetIPData
 	    if ( $line =~ m,.*view_item_details.*, )
 	      {
 		my $ip = &GetIPAddress ( $line );
-		my $referer = &GetReferer ( $line );
+		my $referer = &GetRefererForItem ( $line );
 		my $ipIsUM =  &IsIPUM ( $ip );
 		my $InsideIndicator = &GetInsideIndicator ( $line );
 		my $handle = &GetHandle ( $line );
@@ -373,7 +388,7 @@ sub GetIPData
 	    elsif ( $line =~ m,.*view_bitstream_details.*, )
 	      {
 		my $ip = &GetIPAddress ( $line );
-		my $referer = &GetReferer ( $line );
+		my $referer = &GetRefererForBit ( $line );
 		my $ipIsUM =  &IsIPUM ( $ip );
 		my $handle = &GetHandleForBit ( $line );
 		my $filename = &GetFilename ( $line );

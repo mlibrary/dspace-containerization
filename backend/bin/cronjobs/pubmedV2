@@ -259,7 +259,7 @@ sub CreateReport
 	  }
 	elsif ( $NumIssn == 2 )
 	  {
-	    $query .= qq{($issns[0]\[ta\]+OR+$issns[2]\[ta\])};
+	    $query .= qq{($issns[0]\[ta\]+OR+$issns[1]\[ta\])};
 	    $term_found = 1;
 	  }
 	elsif ( $NumIssn > 2 )
