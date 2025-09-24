@@ -39,6 +39,9 @@ my $gDbPassword     = $ENV{'DB_PASSWORD'};
 my $gDbService      = $ENV{'DB_SERVICE'};
 my $gDbPort         = $ENV{'DB_PORT'};
 
+my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
+my $gReportFile     = qq{$gBaseDataDir/rackham/dissertation.txt};
+
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
@@ -91,7 +94,7 @@ foreach my $item_id ( @item_ids )
 
   }
 
-&WriteReportToFile  ('/deepblue-prep/bin/misc/dissertation.txt', $report);
+&WriteReportToFile  ($gReportFile, $report);
 
 $dbhP->disconnect;
 
