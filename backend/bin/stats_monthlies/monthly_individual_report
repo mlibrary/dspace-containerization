@@ -494,7 +494,7 @@ $msg->attach(
 );
 # Specify your file as attachement.
 $msg->attach(Type => 'text/plain',
-   Path => '$file',
+   Path => $file,
    Filename => 'data.txt',
    Disposition => 'attachment'
 );       

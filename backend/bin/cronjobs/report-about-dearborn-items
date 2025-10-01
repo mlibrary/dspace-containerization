@@ -88,9 +88,9 @@ my $file = qq{$gBaseDataDir/$filename};
 my $subject = qq{Dearborn Items Metadta for $date_str};
 my $msg = qq{Attached is a text delimimted file containing metadta of all the Dearborn papers in DeepBlue Docs for $date_str};
 
-&WriteReportToFile  ($filename, $report);
+&WriteReportToFile  ($file, $report);
     
-my $email = qq{ml-tech-systems@umich.edu};
+my $email = qq{ml-tech-systems\@umich.edu};
 &EmailZipFileData ( $email, $subject, $msg, $filename, $file );
     
 my $msg = qq{DONE\n};
@@ -215,15 +215,15 @@ sub GetBentCollids
 
 sub EmailZipFileData
 {
-  my ( $to,  $subject, $msg, $filename, $file ) = @_;
+  my ( $to,  $subject, $body_text, $filename, $file ) = @_;
 
   my $actualto = $to;
 
   use MIME::Lite;
-  $cc = '';
-  $from = 'deepblue@umich.edu';
+  my $cc = '';
+  my $from = 'deepblue@umich.edu';
 
-  $msg = MIME::Lite ->new(
+  my $msg = MIME::Lite ->new(
     From => $from,
     To => $to,
     Cc => $cc,
@@ -234,13 +234,13 @@ sub EmailZipFileData
   # Add your text message.
   $msg->attach(
     Type => 'TEXT',
-    Data => $msg
+    Data => $body_text
   );
 
   # Specify your file as attachement.
   $msg->attach(Type => 'text/plain',
-    Path => '$file',
-    Filename => '$filename',
+    Path => $file,
+    Filename => $filename,
     Disposition => 'attachment'
   );       
 
