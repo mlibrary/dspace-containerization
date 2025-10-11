@@ -47,7 +47,7 @@ my $gDbPort         = $ENV{'DB_PORT'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
-#all items older than 75 years old need to be set free.
+#all items older than 95 years old need to be set free.
 #So, for example, in Jan 2014 all items from 1939 should be set free.
 #This script outputs the handles of the items to set free.
 &SetItemsFree();
@@ -63,7 +63,7 @@ sub SetItemsFree
 
     #Find the year.
     my $year = &GetYear;
-    $year = $year - 75;
+    $year = $year - 95;
 
     my $statement = qq{select handle from handle where resource_type_id=2 and resource_id in (select dspace_object_id from metadatavalue where text_value like '$year%' and metadata_field_id =15 and dspace_object_id in ( select uuid from item where owning_collection in ('4f95c60f-ea7d-4372-bcbf-0f0c3e03e48e', 'c5a42028-499d-4e85-9fdc-dc71e2baca26')))};
 
@@ -74,7 +74,7 @@ sub SetItemsFree
     $sth->execute()             # Execute the query
       or die "Couldn't execute statement: " . $sth->errstr;
 
-    my $out = qq{Theese Dissertation items are 75 years old, please set them FREE!\n\nUse this script to double check your work /dir/misc/check-permissions\n\n};
+    my $out = qq{Theese Dissertation items are 95 years old, please set them FREE!\n\nUse this script to double check your work /dir/misc/check-permissions\n\n};
     my ( @data );
     while (@data = $sth->fetchrow_array()) {
 
