@@ -99,7 +99,7 @@ RUN sed -i '/Service name="Catalina".*/a \\n    <Connector protocol="AJP/1.3" po
 # Expose Tomcat port and AJP port
 EXPOSE 8080 8009
 # Give java extra memory (2GB)
-ENV JAVA_OPTS=-Xmx2000m
+ENV JAVA_OPTS=-Xmx10g
 # Set up debugging
 ENV CATALINA_OPTS=-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000
 
