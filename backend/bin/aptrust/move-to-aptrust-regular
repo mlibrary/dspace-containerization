@@ -90,7 +90,7 @@ my $gBaseDataDir          = $ENV{'BASE_DATA_DIR'};
 my $gBaseBinDir = $ENV{'BASE_BIN_DIR'};
 
 my $gBagDir = qq{$gBaseDataDir/bags};
-my $gZipDir = qq{$gBaseDataDir/repstore/aip-store};
+my $gZipDir = qq{$gRepositoryDir/repstore/aip-store};
 
 my $gReplicatorWorkingArea = qq{$gRepositoryDir/replicate/aip-store};
 my $gMetabagXsl = qq{metadata2bag-info.xsl};
