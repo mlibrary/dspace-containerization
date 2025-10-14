@@ -107,7 +107,7 @@ if ($doTest eq 'test')
   my $gDbService      = $ENV{'DB_SERVICE'};
   my $gDbPort         = $ENV{'DB_PORT'};
 
-  my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
+  $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
   #For Deposit
   $gHandlePrefix = qq{2027.42};

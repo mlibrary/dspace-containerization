@@ -439,11 +439,11 @@ sub DoReplication
     my $statement = qq{$gBaseBinDir/dspace curate -t transmitaip -i  $handle -r - -e blancoj\@umich.edu 2>&1};
 
     my $out = `$statement`;
-    $out =~ s,log4j:ERROR Unable to delete log file,,gs;
+    #$out =~ s,log4j:ERROR Unable to delete log file,,gs;
     $out =~ s,\n,,gs;
 
     print $out;
-    if ( $out ne '' )
+    if (!($out =~ /Curation task: transmitaip performed on:\s*([^ ]+).*?'Created AIP:\s*'([^']+)'/))
     {
 	    #There has been an error.
 	   $gAllIsFine = 0;
