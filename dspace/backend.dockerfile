@@ -65,6 +65,7 @@ RUN apt update; \
         liberror-perl \
         libdbd-pg-perl \
         libjson-xs-perl \
+        libjson-perl \
         libemail-sender-perl \
         libemail-mime-perl \
         libemail-stuffer-perl \
