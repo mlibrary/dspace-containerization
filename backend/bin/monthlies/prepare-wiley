@@ -219,7 +219,7 @@ my $id;
 
 
 my $gCollDir;
-my $gLogDir = qq{$gBaseDataDir/wiley/PeriodicUpdateScripts};
+my $gLogDir = qq{$gBaseDataDir/wiley};
 
 #Create a log file to keep track of errors.
 &CreateLogFile();

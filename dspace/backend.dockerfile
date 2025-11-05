@@ -27,7 +27,9 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
   mvn clean
 
 # Step 2 - Run Ant Deploy
-FROM openjdk:${JDK_VERSION}-slim as ant_build
+FROM openjdk:${JDK_VERSION}-jdk-slim as ant_build
+#Was not able to build with the one below.
+#FROM openjdk:${JDK_VERSION}-slim as ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src
@@ -72,6 +74,7 @@ RUN apt update; \
         libmime-lite-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
+        libio-pty-perl \ 
         unzip \
         xsltproc \
         dnsutils \
