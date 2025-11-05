@@ -2,7 +2,7 @@ ARG DSPACE_VERSION=7.6
 ARG SOURCE_IMAGE_TAG=umich
 # This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
 # To build with JDK17, use "--build-arg JDK_VERSION=17"
-ARG JDK_VERSION=11
+ARG JDK_VERSION=17
 
 FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} as source
 
@@ -27,11 +27,7 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
   mvn clean
 
 # Step 2 - Run Ant Deploy
-FROM eclipse-temurin:11 as ant_build
-#FROM openjdk:${JDK_VERSION} as ant_build
-#FROM openjdk:${JDK_VERSION}-jdk-slim as ant_build
-#Was not able to build with the one below.
-#FROM openjdk:${JDK_VERSION}-slim as ant_build
+FROM openjdk:${JDK_VERSION}-slim as ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src
