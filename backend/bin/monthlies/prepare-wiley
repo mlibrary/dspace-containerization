@@ -298,8 +298,10 @@ sub GetFtpFilesNew
   use Net::SFTP::Foreign;
   print "retrieving file from seal\n";
   my $ftpobj = Net::SFTP::Foreign->new($gWileyFtpSite,
-               user=> $gWileyFtpUser,
-               password=> $gWileyFtpPassword);
+    user => $gWileyFtpUser,
+    password => $gWileyFtpPassword,
+    more => ['-o', 'StrictHostKeyChecking=no']
+  );
 
   my @files = @{ $ftpobj->ls };
   foreach my $file (@files)

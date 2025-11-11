@@ -356,16 +356,16 @@ sub CreateReport
 	my $out = &GetResponse ( $url );
         my $id = &GetId ( $handle, $out );
 
-	my $valueSize = length $id;
+	      my $valueSize = length $id;
         if ( ( $id ) and ( $valueSize < 50 ) )
         {
            $count = $count + 1;
            $finalcount = $finalcount + 1;
            $ReportOut .= &GetReportFileV2 ( $finalcount, $id, $handle );
-	   #&PostItemToPubMedTable ( $item_id, $handle, $id );
+	         &PostItemToPubMedTable ( $item_id, $handle, $id );
            $report .= qq{$finalcount\t$handle\t$id\t$fullquery\t$authorfound\n};
-      my $msg = qq{final count $finalcount $handle $id\n};
-      print $msg;
+           my $msg = qq{final count $finalcount $handle $id\n};
+           print $msg;
         }
 
         if ( $count == 1000 )
