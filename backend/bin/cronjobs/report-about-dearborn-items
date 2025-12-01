@@ -87,7 +87,7 @@ my $date_str = strftime("%b%Y", localtime);  # e.g., "Sep2025"
 my $filename = qq{dissertation-report-$date_str.txt};
 my $file = qq{$gBaseDataDir/$filename};
 my $subject = qq{Dearborn Items Metadta for $date_str};
-my $msg = qq{Attached is a text delimimted file containing metadta of all the Dearborn papers in DeepBlue Docs for $date_str};
+my $msg = qq{Attached is a text delimimted file containing metadata of all the Dearborn papers in DeepBlue Docs for $date_str};
 
 &WriteReportToFile  ($file, $report);
     

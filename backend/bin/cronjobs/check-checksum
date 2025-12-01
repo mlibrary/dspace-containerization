@@ -41,29 +41,26 @@ my $gDbPort         = $ENV{'DB_PORT'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
-
-    my $statement = qq{select distinct result from checksum_history where result not in ('BITSTREAM_MARKED_DELETED', 'BITSTREAM_NOT_FOUND', 'CHECKSUM_MATCH')};
+my $statement = qq{select distinct result from checksum_history where result not in ('BITSTREAM_MARKED_DELETED', 'BITSTREAM_NOT_FOUND', 'CHECKSUM_MATCH')};
  
-    my $sth = $dbhP->prepare($statement)
-      or die "Couldn't prepare statement: " . $dbhP->errstr;
+my $sth = $dbhP->prepare($statement)
+    or die "Couldn't prepare statement: " . $dbhP->errstr;
     
-    # Read the matching records and print them out
-    $sth->execute()             # Execute the query
-      or die "Couldn't execute statement: " . $sth->errstr;
+# Read the matching records and print them out
+$sth->execute()             # Execute the query
+    or die "Couldn't execute statement: " . $sth->errstr;
 
-    my $result = qq{If any resuts other than  'BITSTREAM_MARKED_DELETED', 'BITSTREAM_NOT_FOUND', or 'CHECKSUM_MATCH' are found in the checksum_history table are : \n};
-    my ( @data );
-    while (@data = $sth->fetchrow_array()) {
-      my $result .= qq{$data[0]; };
-    }
+my $result = qq{If any resuts other than  'BITSTREAM_MARKED_DELETED', 'BITSTREAM_NOT_FOUND', or 'CHECKSUM_MATCH' are found in the checksum_history table are : \n};
+my ( @data );
+  while (@data = $sth->fetchrow_array()) {
+  my $result .= qq{$data[0]; };
+}
 
 $dbhP->disconnect;
 
 print $result;
 
 exit;
-
-
 
 __END__;
 
