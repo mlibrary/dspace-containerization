@@ -32,12 +32,15 @@ BEGIN
 
 use DBI;
 use File::Path;
+use Encode qw(encode);
 
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
 my $gDbPassword     = $ENV{'DB_PASSWORD'};
 my $gDbService      = $ENV{'DB_SERVICE'};
 my $gDbPort         = $ENV{'DB_PORT'};
+
+my $gMailServer     = $ENV{'mail__P__server'};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
@@ -63,11 +66,7 @@ sub ProcessReports
     #$date = '2015/07';
     my ( $report, $count ) = &GetReport ( $date, @handles );
     
-    #$email = qq{blancoj\@umich.edu};
-    #if ( $email =~ m,david.*, )
-    #  {
-	&EmailReport ( $email, $count, $report );
-    #  }
+	  &EmailReport ( $email, $count, $report );
   }
 
 }
@@ -284,8 +283,8 @@ sub EmailReport
     my $subject = qq{$gMonth $gYear download report from Deep Blue};    
 
     use Mail::Mailer;
-    my $server = qq{relay.mail.umich.edu};
-    my $mailer = new Mail::Mailer->new('smtp', Server => $server);
+    my $mailer = Mail::Mailer->new('smtp', Server => $gMailServer);
+
     $mailer->open(
 		  {
 		   'To'       => $to,
@@ -296,7 +295,7 @@ sub EmailReport
 
     $report = qq{This is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\n$report}; 
 
-    print $mailer( $report );
+    print $mailer encode("utf8", $report);
     $mailer->close;
   }
 
@@ -310,7 +309,7 @@ sub EmailReportNoStats
 
   use Mail::Mailer;
 
-  my $server = qq{relay.mail.umich.edu};
+  my $server = $gMailServer;
   my $mailer = new Mail::Mailer->new('smtp', Server => $server);
   $mailer->open(
 		{
@@ -347,7 +346,7 @@ sub EmailReportCorrection
   my $subject = qq{CORRECTION on 2009/09 download report from Deep Blue};    
 
   use Mail::Mailer;
-  my $server = qq{relay.mail.umich.edu};
+  my $server = $gMailServer;
   my $mailer = new Mail::Mailer->new('smtp', Server => $server);
   $mailer->open(
 		{
@@ -380,10 +379,6 @@ $report};
 sub GetIndividuals
 {
     
-  #my @individuals;
-  #push ( @individuals, 'De Young, Raymond' );
-  #push ( @individuals, 'Epstein, David L.' );
-
   my %users = (
         'De Young, Raymond', 'rdeyoung@umich.edu',
         'Epstein, David L.', 'davideps@umich.edu',

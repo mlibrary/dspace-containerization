@@ -70,7 +70,20 @@ sub ReportMsg
 sub FindSize
   {
     
-    my $statement = qq{select text_value, dspace_object_id from metadatavalue where metadata_field_id =11 and text_value like '2024%' order by 1 asc};
+   # Get current date info
+   my ($sec, $min, $hour, $mday, $mon, $year) = localtime();
+
+   # Adjust for previous month
+   if ($mon == 0) {           # If current month is January
+    $mon = 11;             # Previous month is December (11)
+    $year -= 1;            # And one year earlier
+   } else {
+    $mon -= 1;
+   }
+
+   my $prev_month_year = $year + 1900;  # localtime years since 1900
+
+    my $statement = qq{select text_value, dspace_object_id from metadatavalue where metadata_field_id =11 and text_value like '$prev_month_year%' order by 1 asc};
 
     my $sth = $dbhP->prepare($statement)
       or die "Couldn't prepare statement: " . $dbhP->errstr;

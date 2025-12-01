@@ -24,7 +24,6 @@
 BEGIN
 {
   require "strict.pm";
-  strict::import();
 }
 
 # ----------------------------------------------------------------------
@@ -33,7 +32,10 @@ BEGIN
 
 use DBI;
 use File::Path;
+use lib '.';
 use StatsUtils;
+use Encode qw(encode);
+
 
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
@@ -41,7 +43,8 @@ my $gDbPassword     = $ENV{'DB_PASSWORD'};
 my $gDbService      = $ENV{'DB_SERVICE'};
 my $gDbPort         = $ENV{'DB_PORT'};
 
-my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
+my $gMailServer     = $ENV{'mail__P__server'};
+my $gBaseDataDir    = qq{/mnt/prep};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
@@ -137,15 +140,15 @@ sub GetDownloadDataAccess
     my $PBitReferer;
 
     if ( $collid == 6 )
-      {
-	$Line =  qq{Handle\tTitle\tAuthors\tItemViews\tBitDownloads\n};
-      }
+    {
+	    $Line =  qq{Handle\tTitle\tAuthors\tItemViews\tBitDownloads\n};
+    }
     else
-      {
-	$Line =  qq{Handle\tTitle\tAuthors\tItemViews\tBitDownloads\n};
-      }
+    {
+	    $Line =  qq{Handle\tTitle\tAuthors\tItemViews\tBitDownloads\n};
+    }
     my $buffer;
-   $buffer = $Line;
+    $buffer = $Line;
 
     my ( $colldt, $collid, $collname, $handle, $title, $publisher, $inside_count, $out_count, $bit_count,  $insideum_count, $insidenonum_count, $outum_count,  $outnonum_count, $bitum_count, $bitnonum_count, $itemoutsidereferer, $bitreferer, @data );
     while ( @data = $sth->fetchrow_array() )  {
@@ -172,57 +175,55 @@ sub GetDownloadDataAccess
 
       if ( $PHandle eq $handle )
       {
-	$PPublisher = $publisher;
-	$PInside = $PInside + $inside_count;
-	$POutside = $POutside + $out_count;
-	$PBit = $PBit + $bit_count;
+	      $PPublisher = $publisher;
+	      $PInside = $PInside + $inside_count;
+	      $POutside = $POutside + $out_count;
+	      $PBit = $PBit + $bit_count;
 
-	$PInsideUM = $PInsideUM + $insideum_count;
-	$PInsideNONUM = $PInsideNONUM + $insidenonum_count;
-	$POutsideUM = $POutsideUM + $outum_count;
-	$POutsideNONUM = $POutsideNONUM + $outnonum_count;
-	$PBitUM = $PBitUM + $bitum_count;
-	$PBitNONUM = $PBitNONUM + $bitnonum_count;
+	      $PInsideUM = $PInsideUM + $insideum_count;
+	      $PInsideNONUM = $PInsideNONUM + $insidenonum_count;
+	      $POutsideUM = $POutsideUM + $outum_count;
+	      $POutsideNONUM = $POutsideNONUM + $outnonum_count;
+	      $PBitUM = $PBitUM + $bitum_count;
+	      $PBitNONUM = $PBitNONUM + $bitnonum_count;
 
-	$PItemOutsideReferer = qq{$PItemOutsideReferer $itemoutsidereferer};
-	$PBitReferer = qq{$PBitReferer $bitreferer};
+	      $PItemOutsideReferer = qq{$PItemOutsideReferer $itemoutsidereferer};
+	      $PBitReferer = qq{$PBitReferer $bitreferer};
 
+	      $SHandle = $handle;
 
-	$SHandle = $handle;
-
-	$CreateLine = 1;
-
+	      $CreateLine = 1;
       }
       else
       {
-	if ( $CreateLine )
-	  {
-	    if ( $dateRange ne 'count' )
+	      if ( $CreateLine )
 	      {
-		$Line = &GetLineAccessForDownload ( $dbhP, $collid, $dateRange, $PHandle, $PHandle,  $PInside, $PInsideUM, $PInsideNONUM, $POutside, $POutsideUM, $POutsideNONUM, $PBit, $PBitUM, $PBitNONUM, $PPublisher, $PItemOutsideReferer, $PBitReferer ) ;
-		$buffer .= $Line;
+	        if ( $dateRange ne 'count' )
+	        {
+		        $Line = &GetLineAccessForDownload ( $dbhP, $collid, $dateRange, $PHandle, $PHandle,  $PInside, $PInsideUM, $PInsideNONUM, $POutside, $POutsideUM, $POutsideNONUM, $PBit, $PBitUM, $PBitNONUM, $PPublisher, $PItemOutsideReferer, $PBitReferer ) ;
+		        $buffer .= $Line;
+	        }
+	        $RecCount = $RecCount + 1;
 	      }
-	    $RecCount = $RecCount + 1;
-	  }
 
-	$PPublisher = $publisher;
-	$PInside = $inside_count;
-	$POutside = $out_count;
-	$PBit = $bit_count;
+	      $PPublisher = $publisher;
+	      $PInside = $inside_count;
+	      $POutside = $out_count;
+	      $PBit = $bit_count;
 
-	$PInsideUM = $insideum_count;
-	$PInsideNONUM = $insidenonum_count;
-	$POutsideUM = $outum_count;
-	$POutsideNONUM = $outnonum_count;
-	$PBitUM = $bitum_count;
-	$PBitNONUM = $bitnonum_count;
+	      $PInsideUM = $insideum_count;
+	      $PInsideNONUM = $insidenonum_count;
+	      $POutsideUM = $outum_count;
+	      $POutsideNONUM = $outnonum_count;
+	      $PBitUM = $bitum_count;
+	      $PBitNONUM = $bitnonum_count;
 
-	$PItemOutsideReferer = $itemoutsidereferer;
-	$PBitReferer = $bitreferer;
+	      $PItemOutsideReferer = $itemoutsidereferer;
+	      $PBitReferer = $bitreferer;
 
-	$CreateLine = 1;
+	      $CreateLine = 1;
       }
-      $PHandle = $handle;
+        $PHandle = $handle;
     }
     $sth->finish;
 
@@ -238,30 +239,29 @@ sub GetDownloadDataAccess
 
     if ( $CreateLine )
       {
-	if ( $PHandle eq $SHandle )
-	  {
-	    $PPublisher = $publisher;
-	    $PInside = $PInside + $inside_count;
-	    $POutside = $POutside + $out_count;
-	    $PBit = $PBit + $bit_count;
+	      if ( $PHandle eq $SHandle )
+	      {
+	        $PPublisher = $publisher;
+	        $PInside = $PInside + $inside_count;
+	        $POutside = $POutside + $out_count;
+	        $PBit = $PBit + $bit_count;
 	    
-	    $PInsideUM = $PInsideUM + $insideum_count;
-	    $PInsideNONUM = $PInsideNONUM + $insidenonum_count;
-	    $POutsideUM = $POutsideUM + $outum_count;
-	    $POutsideNONUM = $POutsideNONUM + $outnonum_count;
-	    $PBitUM = $PBitUM + $bitum_count;
-	    $PBitNONUM = $PBitNONUM + $bitnonum_count;
+	        $PInsideUM = $PInsideUM + $insideum_count;
+	        $PInsideNONUM = $PInsideNONUM + $insidenonum_count;
+	        $POutsideUM = $POutsideUM + $outum_count;
+	        $POutsideNONUM = $POutsideNONUM + $outnonum_count;
+	        $PBitUM = $PBitUM + $bitum_count;
+	        $PBitNONUM = $PBitNONUM + $bitnonum_count;
 
-	    $PItemOutsideReferer = qq{$PItemOutsideReferer $itemoutsidereferer};
-            $PBitReferer = qq{$PBitReferer $bitreferer};
+	        $PItemOutsideReferer = qq{$PItemOutsideReferer $itemoutsidereferer};
+          $PBitReferer = qq{$PBitReferer $bitreferer};
+	      }
 
-	  }
-
-	if ( $dateRange ne 'count' )
-	  {
-	    $Line = &GetLineAccessForDownload ( $dbhP, $collid, $dateRange, $PHandle, $PHandle,  $PInside, $PInsideUM, $PInsideNONUM, $POutside, $POutsideUM, $POutsideNONUM, $PBit, $PBitUM, $PBitNONUM, $PPublisher, $PItemOutsideReferer, $PBitReferer ) ;
-	    $buffer .= $Line;
-	  }
+	      if ( $dateRange ne 'count' )
+	      {
+	        $Line = &GetLineAccessForDownload ( $dbhP, $collid, $dateRange, $PHandle, $PHandle,  $PInside, $PInsideUM, $PInsideNONUM, $POutside, $POutsideUM, $POutsideNONUM, $PBit, $PBitUM, $PBitNONUM, $PPublisher, $PItemOutsideReferer, $PBitReferer ) ;
+	        $buffer .= $Line;
+	      }
       }
   
   return ( $buffer, $RecCount, $TotalPages );
@@ -296,17 +296,17 @@ sub GetLineAccessForDownload
     my ( $authors, $title, $dateAdded, $bitCount ) = &StatsUtils::GetRestOfData ( $dbhP, $PHandle );
     if ( $collid == 6 )
       {
-	my ( $doi, $issn ) = &StatsUtils::GetRestOfDataForPR ( $dbhP, $PHandle );
+	      my ( $doi, $issn ) = &StatsUtils::GetRestOfDataForPR ( $dbhP, $PHandle );
 
-	my $ItemCount = $PInside + $POutside;
+	      my $ItemCount = $PInside + $POutside;
 
-	$Line =  qq{http://hdl.handle.net/$PHandle\t$title\t$authors\t$ItemCount\t$PBit\n};
+	      $Line =  qq{http://hdl.handle.net/$PHandle\t$title\t$authors\t$ItemCount\t$PBit\n};
       }
     else
       {
-	my $ItemCount = $PInside + $POutside;
+	      my $ItemCount = $PInside + $POutside;
 
-	$Line =  qq{http://hdl.handle.net/$PHandle\t$title\t$authors\t$ItemCount\t$PBit\n};
+	      $Line =  qq{http://hdl.handle.net/$PHandle\t$title\t$authors\t$ItemCount\t$PBit\n};
       }
 
     return $Line;
@@ -322,43 +322,37 @@ sub EmailZipFileData
     my $subject = qq{Monthly Stats for $collname.};
     my $msg = qq{\nThis is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\nStats for $collname for $gMonth $gYear attached.};
 
-use MIME::Lite;
-$cc = '';
-$from = 'deepblue@umich.edu';
+    use MIME::Lite;
+    my $cc = '';
+    my $from = 'deepblue@umich.edu';
 
-$msg = MIME::Lite ->new(
-   From => $from,
-   To => $to,
-   Cc => $cc,
-   Subject => $subject,
-   Type => 'multipart/mixed'
-);
-# Add your text message.
-$msg->attach(
-   Type => 'TEXT',
-   Data => $msg
-);
-# Specify your file as attachement.
-$msg->attach(Type => 'application/gzip',
-   Path => '$file',
-   Filename => 'data.txt.gz',
-   Disposition => 'attachment'
-);       
-$msg->send('smtp','relay.mail.umich.edu');
-print "Email Sent Successfully\n";
+    my $email = MIME::Lite ->new(
+       From => $from,
+       To => $to,
+       Cc => $cc,
+       Subject => $subject,
+       Type => 'multipart/mixed'
+    );
 
+    my $encoded_report = encode('UTF-8', $msg);
 
+    # Add your text message.
+    $email->attach(
+         Type => 'TEXT',
+         Data => $encoded_report,
+         Encoding => 'quoted-printable',  # safer for email
+         Charset => 'UTF-8'               # declare the charset
+    );
 
+    # Specify your file as attachement.
+    $email->attach(Type => 'application/gzip',
+       Path => $file,
+       Filename => 'data.txt.gz',
+       Disposition => 'attachment'
+    );       
 
-
-    # use Mail::Sender;
-    # my $sender = new Mail::Sender
-    #   {smtp => 'localhost', from => 'deepblue@umich.edu'};
-    # $sender->MailFile({to => $to,
-		#        subject => $subject,
-		#        msg => $msg,
-		#        file => $file});
-    # $sender->Close;
+    $email->send('smtp', $gMailServer);
+    print "Email Sent Successfully\n";
 
 }
 

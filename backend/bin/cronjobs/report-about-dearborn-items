@@ -43,6 +43,7 @@ my $gDbPort         = $ENV{'DB_PORT'};
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
+my $gMailServer     = $ENV{'mail__P__server'};
 
 my $report = qq{Handle\tcollections\t};
 my @metadata_ids = &GetMetadataIds();
@@ -244,7 +245,7 @@ sub EmailZipFileData
     Disposition => 'attachment'
   );       
 
-  $msg->send('smtp','relay.mail.umich.edu');
+  $msg->send('smtp', $gMailServer);
   print "Email Sent Successfully\n";
 
 }

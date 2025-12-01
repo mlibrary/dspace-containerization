@@ -168,7 +168,7 @@ else
 
 
 #my $fileNumber = 'NewAfterEmbargoFixNov19';
-my $action = 'p';
+my $action = 'u';
 if ( $action eq 'p' )
   {
     my $msg = qq{Preparering dir for import \n};

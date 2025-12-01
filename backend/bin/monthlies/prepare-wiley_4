@@ -34,13 +34,36 @@ use DBI;
 use File::Path;
 use Encode;
 
-my $gSource = qq{/mnt/prep/wiley/PeriodicUpdateScripts/data/NewAfterEmbargoFixOct25-open};
+
+my $prevMonth = &prev_month_string();
+
+my $gSource = qq{/mnt/prep/wiley/PeriodicUpdateScripts/data/NewAfterEmbargoFix$prevMonth\-open};
+my $msg = qq{fixing characters in $Source\n};
+pring $msg;
 
 &FixMeta();
 
 exit;
 
 ################################################################################################
+
+sub prev_month_string {
+    my @months = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+    my ($sec,$min,$hour,$mday,$mon,$year) = localtime();
+
+    # Find previous month
+    $mon--;
+    if ($mon < 0) {
+        $mon = 11;    # December
+        $year--;      # Previous year
+    }
+    $year += 1900;        # Adjust year
+    my $yy = $year % 100; # Last two digits
+
+    return $months[$mon] . sprintf("%02d", $yy);
+}
+
+
 
 sub FixMeta
   {

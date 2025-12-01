@@ -34,9 +34,9 @@ BEGIN
 use open ':std', ':encoding(UTF-8)';
 use DBI;
 use File::Path;
-use Mail::Sender;
+use lib '.';
 use StatsUtils;
-
+use Encode qw(encode);
 
 my $gDbName         = $ENV{'DB_NAME'};
 my $gDbUser         = $ENV{'DB_USER'};
@@ -44,7 +44,8 @@ my $gDbPassword     = $ENV{'DB_PASSWORD'};
 my $gDbService      = $ENV{'DB_SERVICE'};
 my $gDbPort         = $ENV{'DB_PORT'};
 
-my $gBaseDataDir    = $ENV{'BASE_DATA_DIR'};
+my $gMailServer     = $ENV{'mail__P__server'};
+my $gBaseDataDir    = qq{/mnt/prep};
 
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
@@ -74,12 +75,6 @@ sub ProcessReports
 
   foreach my $email ( @emails )
   {
-
-    #This is for testing.  This user was the one that initially requested that
-    #the stats be attached.
-    #if ($email =~ m,beperron.*, )
-    #{
-
       my $msg = qq{email is $email \n};
       print $msg;
       my ( @handles ) = &GetHandles ( $email );
@@ -96,59 +91,12 @@ sub ProcessReports
       #$email = qq{blancoj\@umich.edu};
 
       &EmailZipFileData ( $email, $count, $report, $file );
-    #}
-    
   }
 
 }
 
 
 sub PrepareZipFile
-{
-
-    my ( $buffer ) = @_;
-    
-    my $count = &StatsUtils::GetCount( $dbhP );
-
-    my $baseDir = {$gBaseDataDir/stats/email};
-    my $DirName = qq{output$count};
-    my $destination = qq{$gBaseDataDir/stats/email/output$count};
-
-    if ( -d $destination )
-      {
-	`rm -r $destination`;
-      }
-    my @args = ("mkdir", "$destination");
-    system (@args) == 0 or &errorBail("Could not make destination directory.  Program has terminated");
-    my @args = ("chmod", "777", "$destination");
-    system (@args) == 0 or &errorBail("Could not grant permissions to destination dir.  Program has terminated");
-
-    my $dataFile = qq{$destination/data.txt};
-    &WriteFile ( $dataFile, $buffer );
-
-    #Call Unix to Zip the files
-    `/bin/gzip  $destination/data.txt`;
-    my $ZipFile = $destination . '/' . 'data.txt.gz';
-
-    #This was the old way of doing it, but I could not get zip to 
-    #exclue dir names from the zip fle.
-    #`/usr/bin/zip -r $destination  $destination`;
-    #`find $destination -name "data" -print | zip -D $destination -@` ;
-    #my @args = ("/usr/bin/zip", "-r", "$destination",  "$destination");
-    #my @args = ("/usr/bin/zip", "-r", "$DirName",  "$destination");
-    #system (@args) == 0 or &errorBail("Could not zip files.  Program has terminated");
-    #my $baseFile = $baseDir . '/' . $DirName . '.zip';
-    #my @args = ("mv", "$baseFile", "$destination");
-    #system (@args) == 0 or &errorBail("Could not move base file to destination.  Program has terminated");
-
-
-    return $ZipFile;
-
-}
-
-
-
-sub PrepareFile
 {
 
     my ( $buffer ) = @_;
@@ -163,6 +111,38 @@ sub PrepareFile
       {
 	      `rm -r $destination`;
       }
+    my @args = ("mkdir", "$destination");
+    system (@args) == 0 or &errorBail("Could not make destination directory.  Program has terminated");
+    my @args = ("chmod", "777", "$destination");
+    system (@args) == 0 or &errorBail("Could not grant permissions to destination dir.  Program has terminated");
+
+    my $dataFile = qq{$destination/data.txt};
+    &WriteFile ( $dataFile, $buffer );
+
+    #Call Unix to Zip the files
+    `/bin/gzip  $destination/data.txt`;
+    my $ZipFile = $destination . '/' . 'data.txt.gz';
+
+    return $ZipFile;
+}
+
+
+sub PrepareFile
+{
+
+    my ( $buffer ) = @_;
+    
+    my $count = &StatsUtils::GetCount( $dbhP );
+
+    my $baseDir = qq{$gBaseDataDir/stats/email};
+    my $DirName = qq{output$count};
+    my $destination = qq{$gBaseDataDir/stats/email/output$count};
+
+    if ( -d $destination )
+    {
+	     `rm -r $destination`;
+    }
+
     my @args = ("mkdir", "$destination");
     system (@args) == 0 or &errorBail("Could not make destination directory.  Program has terminated");
     my @args = ("chmod", "777", "$destination");
@@ -205,7 +185,6 @@ sub GetReport
 
   }
 
- 
   return ( $report, $count );
 
 }
@@ -282,7 +261,6 @@ sub GetEPersonId
 }
 
 
-
 sub GetHandles
 {
   my ( $email  ) = @_;
@@ -296,63 +274,63 @@ sub GetHandles
       my $statement = qq{select dspace_object_id from metadatavalue where metadata_field_id = 28 and (text_value like 'Deposited by%(malguire\@umich.edu)%' or text_value like 'Submitted by%(malguire\@umich.edu)%')};
 
       my $sth = $dbhP->prepare($statement)
-	or die "Couldn't prepare statement: " . $dbhP->errstr;
+	      or die "Couldn't prepare statement: " . $dbhP->errstr;
     
       # Read the matching records and print them out
       $sth->execute()             # Execute the query
-	or die "Couldn't execute statement: " . $sth->errstr;
+	      or die "Couldn't execute statement: " . $sth->errstr;
       
       my ( @data, $handle );
       while (@data = $sth->fetchrow_array()) {
-	my $handle = &GetHandle ( $data[0] );
-	push ( @handles, $handle );
+	      my $handle = &GetHandle ( $data[0] );
+	      push ( @handles, $handle );
       }
       $sth->finish; 
 
       my $statement = qq{select dspace_object_id from metadatavalue where metadata_field_id = 28 and (text_value like 'Deposited by%(bsweet\@umich.edu)%' or text_value like 'Submitted by%(bsweet\@umich.edu)%')};
      
       my $sth = $dbhP->prepare($statement)
-	or die "Couldn't prepare statement: " . $dbhP->errstr;
+	       or die "Couldn't prepare statement: " . $dbhP->errstr;
     
       # Read the matching records and print them out
       $sth->execute()             # Execute the query
-	or die "Couldn't execute statement: " . $sth->errstr;
+	      or die "Couldn't execute statement: " . $sth->errstr;
       
       my ( @data, $handle );
       while (@data = $sth->fetchrow_array()) {
-	my $handle = &GetHandle ( $data[0] );
-	push ( @handles, $handle );
+	      my $handle = &GetHandle ( $data[0] );
+	      push ( @handles, $handle );
       }
+      
       $sth->finish; 
       
-
     }
   else
     {
 
       if ( $eperson_id ne '' )
-	{ 
-	  my $statement = qq{select uuid from item  where submitter_id = '$eperson_id'};
+	    { 
+	      my $statement = qq{select uuid from item  where submitter_id = '$eperson_id'};
 
-	  my $sth = $dbhP->prepare($statement)
-	    or die "Couldn't prepare statement: " . $dbhP->errstr;
+	      my $sth = $dbhP->prepare($statement)
+	        or die "Couldn't prepare statement: " . $dbhP->errstr;
     
-	  # Read the matching records and print them out
-	  $sth->execute()             # Execute the query
-	    or die "Couldn't execute statement: " . $sth->errstr;
+	      # Read the matching records and print them out
+	      $sth->execute()             # Execute the query
+	        or die "Couldn't execute statement: " . $sth->errstr;
       
-	  my ( @data, $handle );
-	  while (@data = $sth->fetchrow_array()) {
-	    my $handle = &GetHandle ( $data[0] );
-	    push ( @handles, $handle );
-	  }
-	  $sth->finish; 
-	}
+	      my ( @data, $handle );
+	      while (@data = $sth->fetchrow_array()) {
+	        my $handle = &GetHandle ( $data[0] );
+	        push ( @handles, $handle );
+	      }
+	      $sth->finish; 
+	    }
       else
-	{
-	  my $msg = qq{Erperon not valid\n};
-	  print $msg;
-	}
+	    {
+	      my $msg = qq{Erperon not valid\n};
+	      print $msg;
+	   }
     }
 
   &SortUniquifyList ( \@handles );
@@ -475,51 +453,41 @@ sub EmailZipFileData
       my $subject = qq{$gMonth $gYear download report from Deep Blue};
       $report = qq{\nThis is your monthly download report from Deep Blue Documents. While we attempt to filter out activity by automated web crawlers, it is not possible to completely exclude them. Therefore, item download counts may  reflect both human and crawler activity.\n\nThe same information is also available in the attached file.\n\n$report};
 
-use MIME::Lite;
-$cc = '';
-$from = 'deepblue@umich.edu';
+      use MIME::Lite;
+      my $cc = '';
+      my $from = 'deepblue@umich.edu';
 
+      my $email = MIME::Lite ->new(
+         From => $from,
+         To => $to,
+         Cc => $cc,
+         Subject => $subject,
+         Type => 'multipart/mixed'
+      );
 
-$msg = MIME::Lite ->new(
-   From => $from,
-   To => $to,
-   Cc => $cc,
-   Subject => $subject,
-   Type => 'multipart/mixed'
-);
-# Add your text message.
-$msg->attach(
-   Type => 'TEXT',
-   Data => $report
-);
-# Specify your file as attachement.
-$msg->attach(Type => 'text/plain',
-   Path => $file,
-   Filename => 'data.txt',
-   Disposition => 'attachment'
-);       
-$msg->send('smtp','relay.mail.umich.edu');
-print "Email Sent Successfully\n";
+      my $encoded_report = encode('UTF-8', $report);
 
+      # Add your text message.
+      $email->attach(
+         Type => 'TEXT',
+         Data => $encoded_report,
+         Encoding => 'quoted-printable',  # safer for email
+         Charset => 'UTF-8'               # declare the charset
+      );
 
+      # Specify your file as attachement.
+      $email->attach(Type => 'text/plain',
+         Path => $file,
+         Filename => 'data.txt',
+         Disposition => 'attachment'
+      );       
 
-      # #use Mail::Sender;
-      # my $sender = new Mail::Sender
-      #   {smtp => 'localhost', from => 'deepblue@umich.edu'};
-      # $sender->MailFile({to => $to,
-	    #      	 subject => $subject,
-		  #        msg => $report,
-		  #        file => $file});
-      # $sender->Close;
-
-
+      $email->send('smtp', $gMailServer);
+      print "Email Sent Successfully\n";
 
      }
 
 }
-
-
-
 
 
 sub GetIndividuals
@@ -545,10 +513,8 @@ sub GetIndividuals
 }
 
 
-
 sub WriteFile
 {
-
     my ( $fileName, $buffer ) = @_;
 
     #Now you want to append this to the file.
@@ -559,7 +525,6 @@ sub WriteFile
     return;
 
 }
-
 
 __END__;
 

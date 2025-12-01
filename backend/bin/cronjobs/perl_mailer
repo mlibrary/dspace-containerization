@@ -42,6 +42,7 @@ use warnings;
 my %opts;
 getopts('s:e:', \%opts);
 
+my $gMailServer     = $ENV{'mail__P__server'};
 
 #How to use it
 #ls | /deepblue-prep/bin/misc/perl_mailer    -s "This is a test" -e blancoj@umich.edu
@@ -81,7 +82,7 @@ sub SendEmail
 
     #my $to = qq{blancoj\@umich.edu};
     use Mail::Mailer;
-    my $server = qq{relay.mail.umich.edu};
+    my $server = $gMailServer;
     my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {

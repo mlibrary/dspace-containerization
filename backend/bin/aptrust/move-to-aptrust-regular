@@ -84,10 +84,14 @@ my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort",
 
 
 
-my $gRepositoryDir        = $ENV{'BASE_REPOSITORY_DIR'};
-my $gBaseDataDir          = $ENV{'BASE_DATA_DIR'};
+#my $gRepositoryDir        = $ENV{'BASE_REPOSITORY_DIR'};  # /dspace
+my $gRepositoryDir        = qq{/mnt/prep};
+#my $gBaseDataDir          = $ENV{'BASE_DATA_DIR'};
+my $gBaseDataDir          = qq{/mnt/prep};
 
-my $gBaseBinDir = $ENV{'BASE_BIN_DIR'};
+
+
+my $gBaseBinDir = $ENV{'BASE_BIN_DIR'}; #/dspace/bin
 
 my $gBagDir = qq{$gBaseDataDir/bags};
 my $gZipDir = qq{$gRepositoryDir/repstore/aip-store};
@@ -99,7 +103,7 @@ my $gToolsDir = qq{$gBaseBinDir/aptrust/};
 
 #For Deposit, default to testing area
 my $gHandlePrefix  = qq{2027.42};
-my $gBucketname = $ENV{'APTURST_BUCKET_NAME'};
+my $gBucketname = $ENV{'APTRUST_BUCKET_NAME'};
 
 my $gAllIsFine = 1;
 
@@ -175,7 +179,7 @@ sub GetItemIdsToUpdateOrAdd
              push ( @handles, $handle );
            }
         }
-      }
+      } else
       {
         my $msg = qq{Could not find item_id for $handle\n};
         print $handle;
