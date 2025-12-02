@@ -14,11 +14,12 @@ RUN apk add --update python3 make g++ curl && rm -rf /var/cache/apk/*
 # See, for example https://github.com/yarnpkg/yarn/issues/5540
 RUN yarn install --network-timeout 600000
 
-RUN  yarn build:prod
-
+#RUN  yarn build:prod
+RUN yarn build:ssr
 
 # On startup, run in DEVELOPMENT mode (this defaults to live reloading enabled, etc).
 # Listen / accept connections from all IP addresses.
 # NOTE: At this time it is only possible to run Docker container in Production mode
 # if you have a public IP. See https://github.com/DSpace/dspace-angular/issues/1485
-CMD yarn serve:ssr --disable-host-check --host 0.0.0.0
+#CMD yarn serve:ssr --disable-host-check --host 0.0.0.0
+CMD node dist/server/main.js
