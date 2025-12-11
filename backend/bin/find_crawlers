@@ -260,8 +260,8 @@ sub ReportSites
           if ( $hostname eq 'NOTFOUND' )
 	        {
 		        $hostname = ''
-            my $stmt = qq{insert into all_ips (ip, hostname, stat_date) values('$ip', E'$hostname', '$IPDate' )};
-            &ProcessSQL ( $stm );	
+            #my $stmt = qq{insert into all_ips (ip, hostname, stat_date) values('$ip', E'$hostname', '$IPDate' )};
+            #&ProcessSQL ( $stm );	
 	        }
 	      }	
       

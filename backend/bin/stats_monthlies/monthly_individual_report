@@ -60,9 +60,6 @@ my ( $date, $gMonth, $gYear ) = &GetDate ();
 
 my @individuals = &GetIndividuals ();
 
-#my @individuals;
-#push ( @individuals, 'blancoj@umich.edu' );
-
 &ProcessReports ( @individuals );
 
 $dbhP->disconnect;
@@ -81,14 +78,7 @@ sub ProcessReports
 
       my ( $report, $count ) = &GetReport ( $date, @handles );
 
-      #Alternative
-      #$email = qq{blancoj\@umich.edu};
-
       my $file = &PrepareZipFile ( $report );
-
-      #For testing Oct 14 2016
-      #my $file = &PrepareFile ( $report );
-      #$email = qq{blancoj\@umich.edu};
 
       &EmailZipFileData ( $email, $count, $report, $file );
   }
@@ -476,9 +466,9 @@ sub EmailZipFileData
       );
 
       # Specify your file as attachement.
-      $email->attach(Type => 'text/plain',
+      $email->attach(Type => 'application/gzip',
          Path => $file,
-         Filename => 'data.txt',
+         Filename => 'data.txt.gz',
          Disposition => 'attachment'
       );       
 

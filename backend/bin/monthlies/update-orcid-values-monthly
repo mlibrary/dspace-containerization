@@ -46,8 +46,8 @@ my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort",
 
 my $coll_id = 1234;
 
-# ./dspace itemupdate -e blancoj@umich.edu -s /meta_delete -d dc.identifier.name-orcid 2>&1 | tee outfile_delete
-# ./dspace itemupdate -e blancoj@umich.edu -s /meta -a dc.identifier.name-orcid 2>&1 | tee outfile_add
+# ./dspace itemupdate -e fritx@umich.edu -s /meta_delete -d dc.identifier.name-orcid 2>&1 | tee outfile_delete
+# ./dspace itemupdate -e fritx@umich.edu -s /meta -a dc.identifier.name-orcid 2>&1 | tee outfile_add
 &ReportMsg ( 'Prepare ORCID name metadata.' );
 
 &FixMeta();

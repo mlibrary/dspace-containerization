@@ -56,8 +56,7 @@ $dbhP->disconnect;
 exit;
 
 sub ProcessReports 
-{
-    #my $email = qq{blancoj\@umich.edu};    
+{  
     my $email = qq{eckardm\@umich.edu};
     &CreateAndSendReport ( $date, $email );
 }
@@ -328,7 +327,6 @@ sub EmailZipFileData
     my ( $file, $to ) = @_;
     
     my $actualto = $to;
-    #$to = qq{blancoj\@umich\.edu};
 
     use MIME::Lite;    
     my $cc = '';

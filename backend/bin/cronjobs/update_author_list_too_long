@@ -47,34 +47,11 @@ my $gBaseBinDir     = $ENV{'BASE_BIN_DIR'};
 my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort", "$gDbUser", "$gDbPassword");
 
 
-# ./dspace itemupdate -e blancoj@umich.edu -s /misc/meta_delete -d dc.type 2>&1 | tee outfile_delete
-# ./dspace itemupdate -e blancoj@umich.edu -s /misc/meta -a dc.type 2>&1 | tee outfile_add
+# ./dspace itemupdate -e fritx@umich.edu -s /misc/meta_delete -d dc.type 2>&1 | tee outfile_delete
+# ./dspace itemupdate -e fritx@umich.edu -s /misc/meta -a dc.type 2>&1 | tee outfile_add
 
 
 ################## How to update the db: ##########################
-
-#mv /misc/meta_delete/1 /misc/temp2/meta_delete
-#mv /misc/meta_desc/1 /misc/temp2/meta_desc
-#mv /misc/meta_author/1 /misc/temp2/meta_author
-
-#mkdir meta_delete
-#mkdir meta_desc
-#mkdir meta_author
-
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/temp2/meta_delete -d dc.contributor.author 2>&1 | tee outfile_delete
-
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/temp2/meta_desc -a dc.description 2>&1 | tee outfile_add
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/temp2/meta_author -a dc.contributor.author 2>&1 | tee outfile_add
-
-#To Do:
-
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/meta_delete -d dc.contributor.author 2>&1 | tee outfile_delete
-
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/meta_desc -a dc.description 2>&1 | tee outfile_add
-#./dspace itemupdate -e blancoj@umich.edu -s /misc/meta_author -a dc.contributor.author 2>&1 | tee outfile_add
-
-########################################################
-
 
 
 &FixMeta();

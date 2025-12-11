@@ -46,8 +46,8 @@ my $dbhP = DBI->connect("dbi:Pg:dbname=$gDbName;host=$gDbService;port=$gDbPort",
 
 my $coll_id = 1234;  #In prod it's 14
 
-# ./dspace itemupdate -e blancoj@umich.edu -s /uri_delete -d dc.identifier.uri 2>&1 | tee outfile_delete
-# ./dspace itemupdate -e blancoj@umich.edu -s /uri -a dc.identifier.uri 2>&1 | tee outfile_add
+# ./dspace itemupdate -e fritx@umich.edu -s /uri_delete -d dc.identifier.uri 2>&1 | tee outfile_delete
+# ./dspace itemupdate -e fritx@umich.edu -s /uri -a dc.identifier.uri 2>&1 | tee outfile_add
 &ReportMsg ( 'Starting To Fix Uri.' );
 
 &FixMeta();

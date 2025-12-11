@@ -80,23 +80,7 @@ use Encode;
 #         deepblue, you will need to insert records indicating the (id,batch,handle, embargo) information into 
 #         the table wileyidbatchhandle.
 #
-########################################################################
-#
-#  Getting xemacs to accept utf-8 characters, like the hyphen that we
-#  were having issues with.
-#
-#  You have to set up a config file so that this happens.
-#  Since blancoj is always the person that edits this file with xemacs
-#    the config file lives here:
-#     ~blancoj/.xemacs/init.el
-#  I got the settings for this file from the web
-#  This is what the file contains, in case it gets lost:
-#   [blancoj@bulleit-2:~/.xemacs]# more init.el
-#     (require 'un-define)
-#     (set-coding-priority-list '(utf-8))
-#     (set-coding-category-system 'utf-8 'utf-8)
-#     
-
+########################################################################  
 
 ######
 ###

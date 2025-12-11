@@ -52,9 +52,6 @@ my ( $date, $gMonth, $gYear ) = &GetLastMonthDate ();
 
 my @admins = &GetAdmins ();
 
-#my @admins;
-#push ( @admins, 'c5a42028-499d-4e85-9fdc-dc71e2baca26 : blancoj@umich.edu' );
-
 &ProcessReports ( @admins );
 
 $dbhP->disconnect;
@@ -73,9 +70,7 @@ sub ProcessReports
     $collid =~ s,(.*?) \: .*,$1,;
     my $email = $admin;
     $email =~ s,.*? \: (.*),$1,;
-
-    #For testing.
-    #$email = qq{blancoj\@umich.edu};    
+   
     if ( $email eq 'deromedi@umich.edu' )
     {
       #Mike asked me to not send him these report.  Sept 2015.

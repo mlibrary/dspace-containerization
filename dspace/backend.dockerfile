@@ -75,6 +75,7 @@ RUN apt update; \
         libmailtools-perl \
         libio-pty-perl \ 
         unzip \
+        zip \
         xsltproc \
         dnsutils \
         emacs \

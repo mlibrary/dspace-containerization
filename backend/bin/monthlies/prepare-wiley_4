@@ -38,8 +38,8 @@ use Encode;
 my $prevMonth = &prev_month_string();
 
 my $gSource = qq{/mnt/prep/wiley/PeriodicUpdateScripts/data/NewAfterEmbargoFix$prevMonth\-open};
-my $msg = qq{fixing characters in $Source\n};
-pring $msg;
+my $msg = qq{fixing characters in $gSource\n};
+print $msg;
 
 &FixMeta();
 

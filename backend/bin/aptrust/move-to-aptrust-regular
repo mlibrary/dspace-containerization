@@ -440,7 +440,7 @@ sub DoReplication
   {
     my ( $handle ) = @_;
 
-    my $statement = qq{$gBaseBinDir/dspace curate -t transmitaip -i  $handle -r - -e blancoj\@umich.edu 2>&1};
+    my $statement = qq{$gBaseBinDir/dspace curate -t transmitaip -i  $handle -r - -e fritx\@umich.edu 2>&1};
 
     my $out = `$statement`;
     #$out =~ s,log4j:ERROR Unable to delete log file,,gs;

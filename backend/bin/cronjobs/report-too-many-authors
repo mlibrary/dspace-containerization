@@ -149,14 +149,14 @@ sub SendEmail
 
     my $msg = qq{You may want to use: misc/update_author_list_too_long to eliminate the number of authors for the following items, because these items have more than 100 authors and in the past that has lead to locked in transactions connections in the database.  Here is the list: \n\n $report};
 
-    my $to = qq{blancoj\@umich.edu};
+    my $to = qq{ulib-deepblue-documents-cron-reporting\@umich.edu};
     use Mail::Mailer;
     my $server = $gMailServer;
     my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,
-                   'From'     => 'blancoj@umich.edu',
+                   'From'     => 'ulib-deepblue-documents-cron-reporting@umich.edu',
                     'Subject'  => 'These items have more than 100 authors.',
                   }
                  );

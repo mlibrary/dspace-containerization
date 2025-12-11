@@ -44,9 +44,6 @@ getopts('s:e:', \%opts);
 
 my $gMailServer     = $ENV{'mail__P__server'};
 
-#How to use it
-#ls | /deepblue-prep/bin/misc/perl_mailer    -s "This is a test" -e blancoj@umich.edu
-
 my $gSubject   = $opts{'s'};
 my $gEmail     = $opts{'e'};
 
@@ -80,14 +77,13 @@ sub SendEmail
 
     my ( $to, $subject, $message ) = @_;
 
-    #my $to = qq{blancoj\@umich.edu};
     use Mail::Mailer;
     my $server = $gMailServer;
     my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,
-                   'From'     => 'blancoj@umich.edu',
+                   'From'     => 'ulib-deepblue-documents-cron-reporting@umich.edu',
                    'Subject'  => $subject,
                   }
                  );

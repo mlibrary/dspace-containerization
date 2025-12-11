@@ -41,6 +41,11 @@ use LWP::UserAgent;
 my $gBaseLogDir    = $ENV{'BASE_LOG_DIR'};
 my $gBaseBinDir    = $ENV{'BASE_BIN_DIR'};
 
+#Remove anything in this directory that is over 4 months old.
+#/dspace/data/log subdirectories also
+
+
+
 &CheckDspaceLog ();
 
 exit;

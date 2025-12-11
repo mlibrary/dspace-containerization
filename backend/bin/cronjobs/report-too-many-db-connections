@@ -66,14 +66,14 @@ sub SendEmail
 
     my $msg = qq{count = $count There are more than 10 db connections in transaction in prod.  Please check this out.  This has caused us to have to reboot the server before.  It is as if these connections are not closed. ps -ef | grep $gDbName};
 
-    my $to = qq{blancoj\@umich.edu};
+    my $to = qq{ulib-deepblue-documents-cron-reporting\@umich.edu};
     use Mail::Mailer;
     my $server = $gMailServer;
     my $mailer = new Mail::Mailer->new('smtp', Server => $server);
     $mailer->open(
                   {
                    'To'       => $to,
-                   'From'     => 'blancoj@umich.edu',
+                   'From'     => 'ulib-deepblue-documents-cron-reporting@umich.edu',
                     'Subject' => 'Too mane DB connections in prod',
                   }
                  );

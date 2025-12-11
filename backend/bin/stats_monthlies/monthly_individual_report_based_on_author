@@ -80,7 +80,6 @@ sub ProcessReportsNoStats
   {
 
     my $report;
-    #$email = qq{blancoj\@umich.edu};
     &EmailReportNoStats ( $email, 0, $report );
 
   }

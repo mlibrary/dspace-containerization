@@ -73,7 +73,7 @@ sub FindBaggingErrors
   $count = $count + 0;
   if ( $count > 0 )
     {
-      my $email = qq{blancoj\@umich.edu};    
+      my $email = qq{ulib-deepblue-documents-cron-reporting\@umich.edu};    
       &EmailErrorMsg ( $email );
     }
 
@@ -96,7 +96,7 @@ sub FindBaggingErrors
 
   if ( $objects ne '' )
     {
-      my $email = qq{blancoj\@umich.edu};    
+      my $email = qq{ulib-deepblue-documents-cron-reporting\@umich.edu};    
       &EmailErrorMsgTwo ( $email, $objects );
     }
 
