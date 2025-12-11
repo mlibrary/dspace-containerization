@@ -33,7 +33,8 @@ BEGIN
 use Encode;
 use utf8;
 use DBI;
-use File::Path;
+use File::Path qw(remove_tree);
+use File::stat;
 
 use LWP::Simple;
 use LWP::UserAgent;
@@ -43,12 +44,60 @@ my $gBaseBinDir    = $ENV{'BASE_BIN_DIR'};
 
 #Remove anything in this directory that is over 4 months old.
 #/dspace/data/log subdirectories also
-
+my $monthsOld = 4;
+&RemoveOldFilesAndDirs ('/dspace/data/log', $monthsOld);
 
 
 &CheckDspaceLog ();
 
 exit;
+
+sub RemoveOldFilesAndDirs
+{
+  my ( $base, $months ) = @_;
+
+  my $now = time;
+  my $age_limit = $now - ($months * 30 * 24 * 60 * 60);
+  
+  # Get all files and directories, including subdirectories
+  my @items = glob("$base/* $base/**/*");
+                
+  for my $item (@items) {
+    next unless -e $item;  # skip non-existent
+                
+    my $stat = stat($item);
+    next unless $stat;
+    my $mtime = $stat->mtime;
+                
+    if (-f $item and $mtime < $age_limit) {
+        print "Deleting file: $item\n";
+        unlink $item or warn "Unable to delete $item: $!";
+    }
+  }
+
+  # Pass over directories after files, so they may be empty
+  for my $item (reverse @items) {
+    next unless -d $item;  # only directories
+    next if $item eq $base; # don't remove root directory
+
+    my $stat = stat($item);
+    next unless $stat;
+    my $mtime = $stat->mtime;
+
+    # Remove if older than limit and empty
+    if ($mtime < $age_limit) {
+        opendir(my $dh, $item) or next;
+        my @left = grep { $_ ne '.' && $_ ne '..' } readdir($dh);
+        closedir($dh);
+        if (!@left) {
+            print "Removing empty directory: $item\n";
+            remove_tree($item) or warn "Unable to remove directory $item: $!";
+        }
+    }
+  }
+
+}
+
 
 sub GetMonthYear
 {
