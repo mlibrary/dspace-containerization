@@ -29,7 +29,8 @@ BEGIN
 # ----------------------------------------------------------------------
 #               start of MAIN
 # ----------------------------------------------------------------------
-
+use strict;
+use warnings;
 use DBI;
 use File::Path;
 use Getopt::Std;
@@ -81,13 +82,13 @@ if ( &IsItemInTable ( $item_id ) )
 
   #If Item is in table, then update the date
   &UpdateItemInTable ( $item_id, $date );
-  $msg = qq{REQUEST NOT COMPLTED: $handle was previosly embargoed for $old_date, but will now be embargoed till $date\n};
+  $msg = qq{REQUEST NOT COMPLETED: $handle was previously embargoed for $old_date, but will now be embargoed till $date\n};
 }
 else
 {
   #Tell User it all finished successfully.
   &StoreItemInTable ( $item_id, $date );
-  $msg = qq{REQUEST COMPLETED: $handle has been embargoed and will be release on $date\n};
+  $msg = qq{REQUEST COMPLETED: $handle has been embargoed and will be released on $date\n};
 }
 
 print $msg;
