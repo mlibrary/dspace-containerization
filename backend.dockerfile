@@ -120,3 +120,8 @@ RUN ln -s $DSPACE_INSTALL/webapps/server   /usr/local/tomcat/webapps/server   &&
 # WARNING: THIS IS OBVIOUSLY INSECURE. NEVER DO THIS IN PRODUCTION.
 COPY --from=source /DSpace/dspace/src/main/docker/test/rest_web.xml $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
 RUN sed -i -e "s|\${dspace.dir}|$DSPACE_INSTALL|" $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
+
+# Create symlinks for the configs we will be mounting from kubernetes Secrets
+ARG SYMLINK_SECRETS=false
+RUN if [ "$SYMLINK_SECRETS" == true ]; then ln -s $DSPACE_INSTALL/secret/dspace.cfg $DSPACE_INSTALL/config/dspace.cfg && \
+    ln -s $DSPACE_INSTALL/secret2/authentication-oidc.cfg $DSPACE_INSTALL/config/modules/authentication-oidc.cfg; fi
