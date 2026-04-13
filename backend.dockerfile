@@ -2,9 +2,10 @@
 # To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
 ARG DSPACE_VERSION=7.6
 
-# This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
-# To build with JDK17, use "--build-arg JDK_VERSION=17"
-ARG JDK_VERSION=11
+# This Dockerfile uses JDK17 by default (eclipse-temurin). JDK11 is no longer
+# available as openjdk:11-slim on Docker Hub; use eclipse-temurin:11-jdk if needed.
+# To build with JDK11, use "--build-arg JDK_VERSION=11"
+ARG JDK_VERSION=17
 
 FROM dspace-containerization-source as source
 
@@ -29,7 +30,8 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
   mvn clean
 
 # Step 2 - Run Ant Deploy
-FROM openjdk:${JDK_VERSION}-slim as ant_build
+# eclipse-temurin is the official successor to the deprecated openjdk Docker Hub images.
+FROM eclipse-temurin:${JDK_VERSION}-jdk as ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src

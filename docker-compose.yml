@@ -38,7 +38,7 @@ services:
       context: .
       args:
         DSPACE_VERSION: ${DSPACE_VERSION:-7.6}
-        JDK_VERSION: ${JDK_VERSION:-11}
+        JDK_VERSION: ${JDK_VERSION:-17}
     environment:
       - dspace__P__dir=/dspace
       - dspace__P__name=DSpace Demo
