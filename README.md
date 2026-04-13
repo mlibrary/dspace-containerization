@@ -8,40 +8,47 @@ Essentially there are two, for lack of a better word, contexts: local and remote
 
 It is recommend that you first get an instance of DSpace running locally via `docker compose` prior to attempting to get an instance of DSpace running remotely in Kubernetes.
 
+
 ## Building and running locally
 
-### login
-```shell
-docker login
-```
-### build
-```shell
-docker compose build
-```
-NOTES:
+### Quick Start
+1. (Optional) Copy `.env.example` to `.env` and adjust build arguments as needed.
+2. Build images:
+   ```shell
+   docker compose build
+   ```
+3. Start the core services:
+   ```shell
+   docker compose up -d
+   ```
 
-Build uses `umich` by default. To build with `issue-working`, use "--build-arg GITHUB_BRANCH=issue-working"
+### Optional Services
+- The `apache` service is optional for most local development. To include it, run:
+  ```shell
+  docker compose --profile optional up -d apache
+  ```
 
-Build uses `dspace-7.6` by default. To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
-
-Build uses `JDK11` by default. To build with JDK17, use "--build-arg JDK_VERSION=17"
-
-
-### run
-``` shell
-docker compose up -d
-```
-### localhost
+### Service URLs
 | URL                                     | Container | Comments                                     |
 |-----------------------------------------|-----------|----------------------------------------------|
 | http://localhost:4000/home              | frontend  | Angular GUI                                  |
 | jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace) |
-| http://localhost:8009/                  | backend   | debugging???                                 |
-| http://localhost:8080/rest              | backend   | REST API (Deprecated)                        |
 | http://localhost:8080/server            | backend   | Server API                                   |
-| http://localhost:8888/                  | apache    | Apache Web Server                            |
 | http://localhost:8983/solr              | solr      | Solr GUI                                     |
-| http://localhost:9876/                  | frontend  | debugging???                                 |
+| http://localhost:8888/                  | apache    | Apache Web Server (optional)                 |
+
+### Build Arguments
+Build arguments can be set in your `.env` file:
+```
+GITHUB_BRANCH=umich
+DSPACE_VERSION=dspace-7.6
+JDK_VERSION=11
+```
+
+### Notes
+- Debugging ports (e.g., 8009, 9876) are not exposed by default. Add them to `docker-compose.yml` if needed.
+
+## References
 
 ## References
 * https://dspace.lyrasis.org/

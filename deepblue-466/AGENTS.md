@@ -2,7 +2,7 @@
 
 ## DSpace
 
-Target DSpace Version 7.6.5
+Target DSpace Version 7.6.6 (17 Dec 2025)
 
 ## Usage
 Begin your agent session with:
