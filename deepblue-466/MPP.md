@@ -1,4 +1,4 @@
-## [PDF Remediation at Scale Pilot](./PDF%20Remediation%20at%20Scale%20Pilot%20(MPP).pdf)
+## [PDF Remediation at Scale Pilot](./PDF%20Remediation%20at%20Scale%20Pilot%20(MPP).txt)
 
 The team met and aligned on a realistic goal: maximizing automated compliance since even follow-on manual remediation isn't feasible at this scale.
 
