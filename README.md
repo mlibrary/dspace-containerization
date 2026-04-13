@@ -13,42 +13,60 @@ It is recommend that you first get an instance of DSpace running locally via `do
 
 ### Quick Start
 1. (Optional) Copy `.env.example` to `.env` and adjust build arguments as needed.
-2. Build images:
+2. Build the shared **source image** (required once, and whenever the source branch changes):
+   ```shell
+   docker build -t dspace-containerization-source .
+   ```
+   > The `frontend`, `backend`, and `solr` images depend on this image at build time.
+   > Use `make build` (see [Makefile](Makefile)) to build source + all compose services in one step.
+3. Build the compose service images:
    ```shell
    docker compose build
    ```
-3. Start the core services:
+4. Start the core services:
    ```shell
    docker compose up -d
    ```
+   > `db` and `solr` include healthchecks; `backend` will not start until both are healthy.
 
 ### Optional Services
-- The `apache` service is optional for most local development. To include it, run:
-  ```shell
-  docker compose --profile optional up -d apache
-  ```
+The `apache` and `express` services are not started by default. To include them:
+```shell
+docker compose --profile optional up -d
+```
+Or start a single optional service:
+```shell
+docker compose --profile optional up -d apache
+docker compose --profile optional up -d express
+```
 
 ### Service URLs
-| URL                                     | Container | Comments                                     |
-|-----------------------------------------|-----------|----------------------------------------------|
-| http://localhost:4000/home              | frontend  | Angular GUI                                  |
-| jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace) |
-| http://localhost:8080/server            | backend   | Server API                                   |
-| http://localhost:8983/solr              | solr      | Solr GUI                                     |
-| http://localhost:8888/                  | apache    | Apache Web Server (optional)                 |
+| URL                                     | Container | Comments                                              |
+|-----------------------------------------|-----------|-------------------------------------------------------|
+| http://localhost:4000/home              | frontend  | Angular GUI                                           |
+| jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace)          |
+| http://localhost:8080/server            | backend   | Server API                                            |
+| http://localhost:8983/solr              | solr      | Solr GUI                                              |
+| http://localhost:8888/                  | apache    | Apache Web Server – optional (CGI stats scripts)      |
+| http://localhost:3000/metrics           | express   | Prometheus metrics endpoint – optional                |
 
 ### Build Arguments
-Build arguments can be set in your `.env` file:
+Build arguments are read from `.env` (copy from `.env.example`):
 ```
 GITHUB_BRANCH=umich
-DSPACE_VERSION=dspace-7.6
+DSPACE_VERSION=7.6
 JDK_VERSION=11
 ```
+- `GITHUB_BRANCH` — branch in the mlibrary forks used to build the source image.
+- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Target: **7.6.6** (Dec 2025).
+- `JDK_VERSION` — Java version for the backend Tomcat image (`11` or `17`).
+
+`docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
 
 ### Notes
 - Debugging ports (e.g., 8009, 9876) are not exposed by default. Add them to `docker-compose.yml` if needed.
-
-## References
+- The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, ensuring correct startup ordering without manual delays.
+- Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
 
 ## References
 * https://dspace.lyrasis.org/
