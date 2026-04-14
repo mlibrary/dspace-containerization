@@ -43,9 +43,9 @@ jobs:
 
       # ── Step 2: build all compose service images ───────────────────────────
       # DSPACE_VERSION and JDK_VERSION are passed both via env (consumed by the
-      # `args: ${DSPACE_VERSION:-7.6}` stanzas in docker-compose.yml) and as
-      # explicit --build-arg flags so the values are unambiguous regardless of
-      # how Docker Compose resolves build arguments.
+      # build.args.DSPACE_VERSION / build.args.JDK_VERSION entries in
+      # docker-compose.yml) and as explicit --build-arg flags so the values are
+      # unambiguous regardless of how Docker Compose resolves build arguments.
       - name: Build compose service images
         run: |
           docker compose build \
