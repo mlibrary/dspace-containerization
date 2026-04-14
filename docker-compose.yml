@@ -7,7 +7,7 @@ services:
   frontend:
     depends_on:
       backend:
-        condition: service_started
+        condition: service_healthy
     build:
       dockerfile: frontend.dockerfile
       context: .
@@ -48,6 +48,12 @@ services:
       - "8080:8080"
     volumes:
       - dspace-assetstore:/dspace/assetstore
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8080/server || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
     restart: unless-stopped
 
   db:

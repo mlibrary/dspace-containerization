@@ -87,24 +87,6 @@ The project is a foundational accessibility action designed to ensure digital co
 ..- Was any out-of-scope work incorporated into the work/reasons?
 ..- Any general lessons about managing time or scope?
 ..- Impact on the next queued up projects?
-Submitter Name: Bohyun Kim & John Weise 
-Written: 2/11/2026 
-Last Updated: 2/11/2026 
-1. Project Overview 
-Goal: Evaluate the feasibility, cost, and quality of an automated PDF remediation toolchain to meet ADA Title II compliance for large-scale digital collections. This pilot aims to determine if an "automation => manual improvement" workflow is sustainable and whether the library should release auto-processed files with disclaimers or wait for future technological improvements. 
-Deliverables: 
-..Assembled Test Sets: A diverse collection of PDFs including Deep Blue Docs (theses/dissertations stratified by discipline and year) and ACLS HEB Open Access titles. 
-..Budgetary Estimate: A ballpark dollar estimate for processing these test sets to inform long-term budgetary planning. 
-..Performance Evaluation Report:  
-..A detailed analysis of how the toolchain handles accessibility from a human user experience perspective, including readability/listenability, going beyond technically legal Title II compliance. 
-..A detailed analysis of how the toolchain handles complex notations (math, music, foreign languages esp. non-latin scripts) and challenging layouts (two-column, art-heavy). 
-..Were the budgetary estimates for the full 3.75 million-page theses and dissertations backlog accurate based on the pilot data? 
-
-
-..Recommendations:  
-..Insights into the speed and quality of human review/manual remediation post-automation.  
-..A proposed strategy for user-facing disclaimers. 
-
 
 
 Scope (In and Out): 

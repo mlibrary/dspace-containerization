@@ -58,7 +58,7 @@ DSPACE_VERSION=7.6
 JDK_VERSION=17
 ```
 - `GITHUB_BRANCH` — branch in the mlibrary forks used to build the source image.
-- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Target: **7.6.6** (Dec 2025).
+- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Use `7.6` here; the current upstream DSpace patch release targeted by this configuration is **7.6.6** (Dec 2025).
 - `JDK_VERSION` — Java version for the backend Tomcat image (`17` recommended; `11` also supported). The build uses `eclipse-temurin` images — the official successor to the deprecated `openjdk` Docker Hub images.
 
 `docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
