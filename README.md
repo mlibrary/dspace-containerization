@@ -68,6 +68,44 @@ JDK_VERSION=17
 - The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, ensuring correct startup ordering without manual delays.
 - Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
 
+## Integration Testing
+
+A shell-based smoke test suite lives in [`tests/`](tests/). It requires only `bash` and `curl`.
+
+### Quick run (stack already up)
+```shell
+bash tests/smoke.sh
+```
+
+### Full run (start → wait → test)
+```shell
+make test
+```
+This is equivalent to:
+```shell
+make up                     # docker compose up -d
+bash tests/wait-for-stack.sh  # poll until backend/solr/frontend are ready
+bash tests/smoke.sh           # run all assertions
+```
+
+### What is tested
+
+| Layer | Endpoint | Assertion |
+|---|---|---|
+| Backend REST API | `GET /server/api` | HTTP 200, HAL `_links` present |
+| Backend REST API | `GET /server/api/core/communities` | HTTP 200 |
+| Backend REST API | `GET /server/api/core/collections` | HTTP 200 |
+| Backend REST API | `GET /server/api/authn/status` | HTTP 200, `"authenticated":false` |
+| Backend REST API | `GET /server/api/info/status` | HTTP 200, `dspaceVersion` field present |
+| Backend Actuator | `GET /server/actuator/health` | `"status":"UP"` |
+| Solr | `GET /solr/admin/info/system` | HTTP 200, version info present |
+| Solr | `GET /solr/admin/cores` | All four DSpace cores present (`authority`, `oai`, `search`, `statistics`) |
+| Solr | `GET /solr/search/admin/ping` | HTTP 200 |
+| Frontend | `GET /home` | HTTP 200, `app-root` in body, no error boundary |
+
+### CI (GitHub Actions)
+The workflow [`.github/workflows/integration-test.yml`](.github/workflows/integration-test.yml) runs the full suite automatically on pushes that affect dockerfiles or test files, and can also be triggered manually with custom `dspace_version`/`jdk_version` inputs.
+
 ## References
 * https://dspace.lyrasis.org/
 * https://wiki.lyrasis.org/display/DSPACE/
