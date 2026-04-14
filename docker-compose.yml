@@ -12,12 +12,23 @@ services:
       dockerfile: frontend.dockerfile
       context: .
     environment:
+      # HOST controls the Node.js SSR server bind address.
+      # Must be 0.0.0.0 so Docker port-mapping (4000:4000) works from the host.
+      HOST: '0.0.0.0'
       DSPACE_UI_SSL: 'false'
-      DSPACE_UI_HOST: ${DSPACE_UI_HOST:-localhost}
+      # DSPACE_UI_HOST must be 0.0.0.0 for Node.js 18+ in Docker: 'localhost' resolves
+      # to ::1 (IPv6 loopback only), breaking Docker port-mapping.  Angular's client-side
+      # router uses the browser URL for navigation so 0.0.0.0 does not appear in page links.
+      # Override in .env with the public hostname for staging/production.
+      DSPACE_UI_HOST: ${DSPACE_UI_HOST:-0.0.0.0}
       DSPACE_UI_PORT: '4000'
       DSPACE_UI_NAMESPACE: /
       DSPACE_REST_SSL: 'false'
-      DSPACE_REST_HOST: ${DSPACE_REST_HOST:-localhost}
+      # DSPACE_REST_HOST must be the Docker service name 'backend' so that the Angular SSR
+      # server (running inside the frontend container) can reach the backend over Docker's
+      # internal DNS.  The browser-side Angular re-uses the dspaceServer URL returned by
+      # the HAL root, which points to localhost:8080 (the Docker host port).
+      DSPACE_REST_HOST: ${DSPACE_REST_HOST:-backend}
       DSPACE_REST_PORT: 8080
       DSPACE_REST_NAMESPACE: /server
       NODE_OPTIONS: "--max-old-space-size=4096"
@@ -44,6 +55,13 @@ services:
       - dspace__P__name=DSpace Demo
       - db__P__url=jdbc:postgresql://db:5432/dspace
       - solr__P__server=http://solr:8983/solr
+      # dspace.server.url MUST match the Angular DSPACE_REST_HOST:PORT/NAMESPACE so that
+      # HAL root links use the same hostname Angular is configured with.  A mismatch causes
+      # Angular SSR's URL normalizer to recurse infinitely (Maximum call stack size exceeded).
+      # Each "." in the property key is represented by "__P__" in the env var name.
+      - dspace__P__server__P__url=http://backend:8080/server
+      # dspace.ui.url is used by the backend to generate frontend links (e.g. e-mail alerts).
+      - dspace__P__ui__P__url=http://localhost:4000
     ports:
       - "8080:8080"
     volumes:

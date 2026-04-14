@@ -43,7 +43,7 @@ docker compose --profile optional up -d express
 ### Service URLs
 | URL                                     | Container | Comments                                              |
 |-----------------------------------------|-----------|-------------------------------------------------------|
-| http://localhost:4000/home              | frontend  | Angular GUI                                           |
+| http://localhost:4000/                  | frontend  | Angular GUI (SSR app shell; Angular router handles `/home` etc. client-side) |
 | jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace)          |
 | http://localhost:8080/server            | backend   | Server API                                            |
 | http://localhost:8983/solr              | solr      | Solr GUI                                              |
@@ -101,7 +101,7 @@ bash tests/smoke.sh           # run all assertions
 | Solr | `GET /solr/admin/info/system` | HTTP 200, version info present |
 | Solr | `GET /solr/admin/cores` | All four DSpace cores present (`authority`, `oai`, `search`, `statistics`) |
 | Solr | `GET /solr/search/admin/ping` | HTTP 200 |
-| Frontend | `GET /home` | HTTP 200, `app-root` in body, no error boundary |
+| Frontend | `GET /` | HTTP 200, `ds-root` element present (DSpace Angular root), no error boundary |
 
 ### CI (GitHub Actions)
 The workflow [`.github/workflows/integration-test.yml`](.github/workflows/integration-test.yml) runs the full suite automatically on pushes that affect dockerfiles or test files, and can also be triggered manually with custom `dspace_version`/`jdk_version` inputs.

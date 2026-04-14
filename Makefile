@@ -1,4 +1,4 @@
-.PHONY: build up up-all down clean rebuild logs wait test help
+.PHONY: build ensure-source up up-all down clean rebuild logs wait test help
 
 ## Default target
 .DEFAULT_GOAL := help
@@ -10,8 +10,18 @@ build:
 	  --build-arg GITHUB_BRANCH=$${GITHUB_BRANCH:-umich} .
 	docker compose build
 
+## Build the source image only when it is not already present locally.
+## Called automatically by 'up' so you can never accidentally start with a missing source image.
+ensure-source:
+	@docker image inspect dspace-containerization-source:latest > /dev/null 2>&1 \
+	  && echo "Source image already exists – skipping build." \
+	  || (echo "Source image not found – building now..." && \
+	      docker build -t dspace-containerization-source \
+	        --build-arg GITHUB_BRANCH=$${GITHUB_BRANCH:-umich} .)
+
 ## Start the core services (db, solr, backend, frontend) in the background.
-up:
+## Builds the source image first if it is not already present.
+up: ensure-source
 	docker compose up -d
 
 ## Start core + all optional services (apache, express).
@@ -40,7 +50,7 @@ wait:
 	@bash tests/wait-for-stack.sh
 
 ## Run the smoke-test suite against the running local stack.
-## Starts the stack first if not already running (make up), then waits, then tests.
+## Ensures the source image exists, starts the stack, waits for readiness, then runs tests.
 test: up wait
 	@bash tests/smoke.sh
 
@@ -51,15 +61,16 @@ help:
 	@echo ""
 	@echo "Usage: make <target>"
 	@echo ""
-	@echo "  build      Build source image + all compose service images"
-	@echo "  up         Start core services (db, solr, backend, frontend)"
-	@echo "  up-all     Start core + optional services (apache, express)"
-	@echo "  down       Stop containers (volumes preserved)"
-	@echo "  clean      Stop containers and delete volumes + images"
-	@echo "  rebuild    Full clean, build, and up"
-	@echo "  logs       Tail logs for all services"
-	@echo "  wait       Wait for all services to be healthy"
-	@echo "  test       Start stack, wait, then run smoke tests"
-	@echo "  help       Show this message"
+	@echo "  build          Build source image + all compose service images"
+	@echo "  ensure-source  Build source image only if not already present"
+	@echo "  up             Start core services (db, solr, backend, frontend)"
+	@echo "  up-all         Start core + optional services (apache, express)"
+	@echo "  down           Stop containers (volumes preserved)"
+	@echo "  clean          Stop containers and delete volumes + images"
+	@echo "  rebuild        Full clean, build, and up"
+	@echo "  logs           Tail logs for all services"
+	@echo "  wait           Wait for all services to be healthy"
+	@echo "  test           Ensure source, start stack, wait, run smoke tests"
+	@echo "  help           Show this message"
 	@echo ""
 
