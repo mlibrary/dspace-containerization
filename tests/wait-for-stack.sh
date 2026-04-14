@@ -45,7 +45,7 @@ wait_for() {
 
 wait_for "backend"   "$BACKEND_URL/server/api"
 wait_for "solr"      "$SOLR_URL/solr/admin/info/system"
-wait_for "frontend"  "$FRONTEND_URL/home"
+wait_for "frontend"  "$FRONTEND_URL/"
 
 echo -e "${GREEN}All services ready.${NC}"
 
