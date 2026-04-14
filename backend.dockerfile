@@ -41,13 +41,13 @@ ENV ANT_VERSION 1.10.12
 ENV ANT_HOME /tmp/ant-$ANT_VERSION
 ENV PATH $ANT_HOME/bin:$PATH
 # Need wget to install ant
+# Download and install 'ant', then remove wget once it is no longer needed
 RUN apt-get update \
     && apt-get install -y --no-install-recommends wget \
-    && apt-get purge -y --auto-remove \
+    && mkdir $ANT_HOME \
+    && wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME \
+    && apt-get purge -y --auto-remove wget \
     && rm -rf /var/lib/apt/lists/*
-# Download and install 'ant'
-RUN mkdir $ANT_HOME && \
-    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME
 # Run necessary 'ant' deploy scripts
 RUN ant init_installation update_configs update_code update_webapps
 

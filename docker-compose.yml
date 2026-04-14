@@ -13,11 +13,11 @@ services:
       context: .
     environment:
       DSPACE_UI_SSL: 'false'
-      DSPACE_UI_HOST: frontend
+      DSPACE_UI_HOST: ${DSPACE_UI_HOST:-localhost}
       DSPACE_UI_PORT: '4000'
       DSPACE_UI_NAMESPACE: /
       DSPACE_REST_SSL: 'false'
-      DSPACE_REST_HOST: backend
+      DSPACE_REST_HOST: ${DSPACE_REST_HOST:-localhost}
       DSPACE_REST_PORT: 8080
       DSPACE_REST_NAMESPACE: /server
       NODE_OPTIONS: "--max-old-space-size=4096"

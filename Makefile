@@ -1,4 +1,4 @@
-.PHONY: build up down clean rebuild help
+.PHONY: build up up-all down clean rebuild logs help
 
 ## Default target
 .DEFAULT_GOAL := help
