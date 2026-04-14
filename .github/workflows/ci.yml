@@ -42,11 +42,15 @@ jobs:
             .
 
       # ── Step 2: build all compose service images ───────────────────────────
-      # DSPACE_VERSION and JDK_VERSION are consumed via the `args:` stanzas in
-      # docker-compose.yml; they are already exported from the workflow `env:`
-      # block above so docker compose picks them up automatically.
+      # DSPACE_VERSION and JDK_VERSION are passed both via env (consumed by the
+      # build.args.DSPACE_VERSION / build.args.JDK_VERSION entries in
+      # docker-compose.yml) and as explicit --build-arg flags so the values are
+      # unambiguous regardless of how Docker Compose resolves build arguments.
       - name: Build compose service images
-        run: docker compose build
+        run: |
+          docker compose build \
+            --build-arg DSPACE_VERSION=${DSPACE_VERSION} \
+            --build-arg JDK_VERSION=${JDK_VERSION}
 
       # ── Step 3: start the stack, wait for readiness, run smoke tests ───────
       # `make test` expands to: up (ensure-source + docker compose up -d)
