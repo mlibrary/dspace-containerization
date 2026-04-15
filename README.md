@@ -8,40 +8,103 @@ Essentially there are two, for lack of a better word, contexts: local and remote
 
 It is recommend that you first get an instance of DSpace running locally via `docker compose` prior to attempting to get an instance of DSpace running remotely in Kubernetes.
 
+
 ## Building and running locally
 
-### login
+### Quick Start
+1. (Optional) Copy `.env.example` to `.env` and adjust build arguments as needed.
+2. Build the shared **source image** (required once, and whenever the source branch changes):
+   ```shell
+   docker build -t dspace-containerization-source .
+   ```
+   > The `frontend`, `backend`, and `solr` images depend on this image at build time.
+   > Use `make build` (see [Makefile](Makefile)) to build source + all compose services in one step.
+3. Build the compose service images:
+   ```shell
+   docker compose build
+   ```
+4. Start the core services:
+   ```shell
+   docker compose up -d
+   ```
+   > `db` and `solr` include healthchecks; `backend` will not start until both are healthy.
+
+### Optional Services
+The `apache` and `express` services are not started by default. To include them:
 ```shell
-docker login
+docker compose --profile optional up -d
 ```
-### build
+Or start a single optional service:
 ```shell
-docker compose build
+docker compose --profile optional up -d apache
+docker compose --profile optional up -d express
 ```
-NOTES:
 
-Build uses `umich` by default. To build with `issue-working`, use "--build-arg GITHUB_BRANCH=issue-working"
+### Service URLs
+| URL                                     | Container | Comments                                              |
+|-----------------------------------------|-----------|-------------------------------------------------------|
+| http://localhost:4000/                  | frontend  | Angular GUI (SSR app shell; Angular router handles `/home` etc. client-side) |
+| jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace)          |
+| http://localhost:8080/server            | backend   | Server API                                            |
+| http://localhost:8983/solr              | solr      | Solr GUI                                              |
+| http://localhost:8888/                  | apache    | Apache Web Server – optional (CGI stats scripts)      |
+| http://localhost:3000/metrics           | express   | Prometheus metrics endpoint – optional                |
 
-Build uses `dspace-7.6` by default. To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
-
-Build uses `JDK11` by default. To build with JDK17, use "--build-arg JDK_VERSION=17"
-
-
-### run
-``` shell
-docker compose up -d
+### Build Arguments
+Build arguments are read from `.env` (copy from `.env.example`):
 ```
-### localhost
-| URL                                     | Container | Comments                                     |
-|-----------------------------------------|-----------|----------------------------------------------|
-| http://localhost:4000/home              | frontend  | Angular GUI                                  |
-| jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace) |
-| http://localhost:8009/                  | backend   | debugging???                                 |
-| http://localhost:8080/rest              | backend   | REST API (Deprecated)                        |
-| http://localhost:8080/server            | backend   | Server API                                   |
-| http://localhost:8888/                  | apache    | Apache Web Server                            |
-| http://localhost:8983/solr              | solr      | Solr GUI                                     |
-| http://localhost:9876/                  | frontend  | debugging???                                 |
+GITHUB_BRANCH=umich
+DSPACE_VERSION=7.6
+JDK_VERSION=17
+```
+- `GITHUB_BRANCH` — branch in the mlibrary forks used to build the source image.
+- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Use `7.6` here; the current upstream DSpace patch release targeted by this configuration is **7.6.6** (Dec 2025).
+- `JDK_VERSION` — Java version for the backend Tomcat image (`17` recommended; `11` also supported). The build uses `eclipse-temurin` images — the official successor to the deprecated `openjdk` Docker Hub images.
+
+`docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
+
+### Notes
+- Debugging ports (e.g., 8009, 9876) are not exposed by default. Add them to `docker-compose.yml` if needed.
+- The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, ensuring correct startup ordering without manual delays.
+- Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
+
+## Integration Testing
+
+A shell-based smoke test suite lives in [`tests/`](tests/). It requires only `bash` and `curl`.
+
+### Quick run (stack already up)
+```shell
+bash tests/smoke.sh
+```
+
+### Full run (start → wait → test)
+```shell
+make test
+```
+This is equivalent to:
+```shell
+make up                     # docker compose up -d
+bash tests/wait-for-stack.sh  # poll until backend/solr/frontend are ready
+bash tests/smoke.sh           # run all assertions
+```
+
+### What is tested
+
+| Layer | Endpoint | Assertion |
+|---|---|---|
+| Backend REST API | `GET /server/api` | HTTP 200, HAL `_links` present |
+| Backend REST API | `GET /server/api/core/communities` | HTTP 200 |
+| Backend REST API | `GET /server/api/core/collections` | HTTP 200 |
+| Backend REST API | `GET /server/api/authn/status` | HTTP 200, `"authenticated":false` |
+| Backend REST API | `GET /server/api/info/status` | HTTP 200, `dspaceVersion` field present |
+| Backend Actuator | `GET /server/actuator/health` | `"status":"UP"` |
+| Solr | `GET /solr/admin/info/system` | HTTP 200, version info present |
+| Solr | `GET /solr/admin/cores` | All four DSpace cores present (`authority`, `oai`, `search`, `statistics`) |
+| Solr | `GET /solr/search/admin/ping` | HTTP 200 |
+| Frontend | `GET /` | HTTP 200, `ds-root` element present (DSpace Angular root), no error boundary |
+
+### CI (GitHub Actions)
+The workflow [`.github/workflows/integration-test.yml`](.github/workflows/integration-test.yml) runs the full suite automatically on pushes that affect dockerfiles or test files, and can also be triggered manually with custom `dspace_version`/`jdk_version` inputs.
 
 ## References
 * https://dspace.lyrasis.org/
