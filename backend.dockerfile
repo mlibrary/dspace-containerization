@@ -125,13 +125,3 @@ RUN ln -s $DSPACE_INSTALL/webapps/server   /usr/local/tomcat/webapps/server   &&
 # WARNING: THIS IS OBVIOUSLY INSECURE. NEVER DO THIS IN PRODUCTION.
 COPY --from=source /DSpace/dspace/src/main/docker/test/rest_web.xml $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
 RUN sed -i -e "s|\${dspace.dir}|$DSPACE_INSTALL|" $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
-
-# Create symlinks for configs mounted from Kubernetes Secrets.
-# SYMLINK_SECRETS=true is passed by the GitHub Actions workflow (build-dspace-images.yml)
-# for production builds; it defaults to false so local dev (docker compose) is unaffected.
-# ln -sf is used to force-overwrite the dspace.cfg that the Ant build places in config/.
-ARG SYMLINK_SECRETS=false
-RUN if [ "$SYMLINK_SECRETS" = "true" ]; then \
-      ln -sf $DSPACE_INSTALL/secret/dspace.cfg $DSPACE_INSTALL/config/dspace.cfg && \
-      ln -sf $DSPACE_INSTALL/secret2/authentication-oidc.cfg $DSPACE_INSTALL/config/modules/authentication-oidc.cfg; \
-    fi
