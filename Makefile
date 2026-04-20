@@ -5,6 +5,14 @@
 
 ## Build the shared source image and all compose service images.
 ## Run this on first setup and whenever the source branch changes.
+##
+## The GITHUB_BRANCH shell variable selects which mlibrary fork branch to clone
+## inside the source image (default: umich).  Override at the command line:
+##   GITHUB_BRANCH=my-branch make build
+##
+## In GitHub Actions CI the same value is carried by SOURCE_BRANCH (because the
+## Actions runner reserves all GITHUB_* env var names) and forwarded to Docker
+## as --build-arg GITHUB_BRANCH=${SOURCE_BRANCH}.  The Dockerfile is unchanged.
 build:
 	docker build -t dspace-containerization-source \
 	  --build-arg GITHUB_BRANCH=$${GITHUB_BRANCH:-umich} .

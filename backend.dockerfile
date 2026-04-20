@@ -7,10 +7,10 @@ ARG DSPACE_VERSION=7.6
 # and unmaintained. To build with JDK11, use "--build-arg JDK_VERSION=11"
 ARG JDK_VERSION=17
 
-FROM dspace-containerization-source as source
+FROM dspace-containerization-source AS source
 
 # Step 1 - Run Maven Build
-FROM dspace/dspace-dependencies:dspace-${DSPACE_VERSION} as mvn_build
+FROM dspace/dspace-dependencies:dspace-${DSPACE_VERSION} AS mvn_build
 ARG TARGET_DIR=dspace-installer
 
 WORKDIR /app
@@ -31,19 +31,19 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
 
 # Step 2 - Run Ant Deploy
 # eclipse-temurin is the official successor to the deprecated openjdk Docker Hub images.
-FROM eclipse-temurin:${JDK_VERSION}-jdk as ant_build
+FROM eclipse-temurin:${JDK_VERSION}-jdk AS ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src
 WORKDIR /dspace-src
 # Create the initial install deployment using ANT
-ENV ANT_VERSION 1.10.12
-ENV ANT_HOME /tmp/ant-$ANT_VERSION
-ENV PATH $ANT_HOME/bin:$PATH
+ENV ANT_VERSION=1.10.12
+ENV ANT_HOME=/tmp/ant-$ANT_VERSION
+ENV PATH=$ANT_HOME/bin:$PATH
 # Need wget to install ant
 # Download and install 'ant', then remove wget once it is no longer needed
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
+RUN apt-get -o Acquire::Retries=3 update \
+    && apt-get -o Acquire::Retries=3 install -y --no-install-recommends wget \
     && mkdir $ANT_HOME \
     && wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME \
     && apt-get purge -y --auto-remove wget \
@@ -60,8 +60,9 @@ ENV TOMCAT_INSTALL=/usr/local/tomcat
 COPY --from=ant_build /dspace $DSPACE_INSTALL
 
 # Install additional libraries needed for backend scripts
-RUN apt update; \
-    apt install -y --no-install-recommends \
+RUN apt-get -o Acquire::Retries=3 update \
+    && apt-get -o Acquire::Retries=3 upgrade -y \
+    && apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
         ccrypt \
         libcgi-pm-perl \
         libdbi-perl \
@@ -84,7 +85,8 @@ RUN apt update; \
         ruby-dev \
         pipx \
         iputils-ping \
-        mailutils
+        mailutils \
+        curl
 
 RUN gem install uri pry net-http json
 RUN pipx install awscli
@@ -94,6 +96,7 @@ RUN mkdir /root/.emacs.d
 # Install additional backend scripts
 COPY ./backend/init.el /root/.emacs.d/init.el
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
+COPY ./backend/config/ $DSPACE_INSTALL/config/
 COPY ./backend/logs/ $DSPACE_INSTALL/logs/
 
 # Enable the AJP connector in Tomcat's server.xml
@@ -104,7 +107,7 @@ EXPOSE 8080 8009
 # Give java extra memory (2GB)
 ENV JAVA_OPTS=-Xmx2000m
 # Set up debugging
-ENV CATALINA_OPTS=-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000
+ENV CATALINA_OPTS="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000"
 
 # Link the DSpace 'server' webapp into Tomcat's webapps directory.
 # This ensures that when we start Tomcat, it runs from /server path (e.g. http://localhost:8080/server/)
@@ -122,3 +125,13 @@ RUN ln -s $DSPACE_INSTALL/webapps/server   /usr/local/tomcat/webapps/server   &&
 # WARNING: THIS IS OBVIOUSLY INSECURE. NEVER DO THIS IN PRODUCTION.
 COPY --from=source /DSpace/dspace/src/main/docker/test/rest_web.xml $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
 RUN sed -i -e "s|\${dspace.dir}|$DSPACE_INSTALL|" $DSPACE_INSTALL/webapps/rest/WEB-INF/web.xml
+
+# Create symlinks for configs mounted from Kubernetes Secrets.
+# SYMLINK_SECRETS=true is passed by the GitHub Actions workflow (build-dspace-images.yml)
+# for production builds; it defaults to false so local dev (docker compose) is unaffected.
+# ln -sf is used to force-overwrite the dspace.cfg that the Ant build places in config/.
+ARG SYMLINK_SECRETS=false
+RUN if [ "$SYMLINK_SECRETS" = "true" ]; then \
+      ln -sf $DSPACE_INSTALL/secret/dspace.cfg $DSPACE_INSTALL/config/dspace.cfg && \
+      ln -sf $DSPACE_INSTALL/secret2/authentication-oidc.cfg $DSPACE_INSTALL/config/modules/authentication-oidc.cfg; \
+    fi

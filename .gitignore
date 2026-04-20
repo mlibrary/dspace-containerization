@@ -1,2 +1,4 @@
 .DS_Store
 .env
+backend/config/*.cfg
+backend/config/DELTA.md

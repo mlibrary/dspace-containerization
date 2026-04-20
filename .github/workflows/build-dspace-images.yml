@@ -62,6 +62,7 @@ jobs:
           build-args: |
             DSPACE_VERSION=${{ github.event.inputs.dspace_version }}
             SOURCE_IMAGE_TAG=${{ github.event.inputs.source_image_tag }}
+            SYMLINK_SECRETS=true
 
       - name: Build and push dspace-frontend image
         uses: docker/build-push-action@v2

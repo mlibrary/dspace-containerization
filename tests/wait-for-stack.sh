@@ -43,7 +43,7 @@ wait_for() {
   echo -e " ${GREEN}ready${NC} (${elapsed}s)"
 }
 
-wait_for "backend"   "$BACKEND_URL/server/api"
+wait_for "backend"   "$BACKEND_URL/server/"
 wait_for "solr"      "$SOLR_URL/solr/admin/info/system"
 wait_for "frontend"  "$FRONTEND_URL/"
 

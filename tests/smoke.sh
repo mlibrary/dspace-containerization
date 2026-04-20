@@ -167,43 +167,59 @@ assert_status        "Solr 'search' core status returns 200" \
   "$SOLR_URL/solr/search/admin/ping"                         200
 
 # ── Frontend (Angular SSR) ────────────────────────────────────────────────────
-# DSpace Angular SSR renders the full page server-side on first request, which can
-# take 20-40 s.  We fetch the page ONCE into a temp file (90 s timeout) and run
-# all body assertions against that cached copy to avoid redundant slow renders.
+# The U-Mich dspace-angular build only SSR-renders specific DSpace object paths
+# (/communities/, /collections/, /items/, /documents/, /bitstream/, /bitstreams/).
+# The root "/" is intentionally served as a CSR shell (empty <body>).
+# We therefore check:
+#   /           — returns 200 and no Angular error boundary
+#   /communities/ — SSR path: server renders ds-root + DSpace title
 section "Frontend  $FRONTEND_URL"
 
-_FE_BODY=$(mktemp)
-_FE_HTTP=$(curl -s -w "%{http_code}" --max-time 90 -o "$_FE_BODY" "$FRONTEND_URL/" 2>/dev/null || echo "000")
+_FE_ROOT_BODY=$(mktemp)
+_FE_ROOT_HTTP=$(curl -s -w "%{http_code}" --max-time 30 -o "$_FE_ROOT_BODY" "$FRONTEND_URL/" 2>/dev/null || echo "000")
 
-if [ "$_FE_HTTP" = "200" ]; then
+if [ "$_FE_ROOT_HTTP" = "200" ]; then
   pass "Frontend / returns 200"
 else
-  fail "Frontend / returns 200 — expected HTTP 200, got $_FE_HTTP"
+  fail "Frontend / returns 200 — expected HTTP 200, got $_FE_ROOT_HTTP"
   info "$FRONTEND_URL/"
 fi
 
-if grep -q "ds-root" "$_FE_BODY" 2>/dev/null; then
-  pass "Frontend / — contains ds-root (DSpace Angular root element)"
-else
-  fail "Frontend / — contains ds-root — 'ds-root' not found in response body"
-  info "$FRONTEND_URL/"
-fi
-
-if grep -q "DSpace" "$_FE_BODY" 2>/dev/null; then
-  pass "Frontend / — contains DSpace title"
-else
-  fail "Frontend / — contains DSpace title — 'DSpace' not found in response body"
-  info "$FRONTEND_URL/"
-fi
-
-if grep -q "ng-error" "$_FE_BODY" 2>/dev/null; then
+if grep -q "ng-error" "$_FE_ROOT_BODY" 2>/dev/null; then
   fail "Frontend / — no Angular error boundary — 'ng-error' found in response body"
   info "$FRONTEND_URL/"
 else
   pass "Frontend / — no Angular error boundary"
 fi
 
-rm -f "$_FE_BODY"
+rm -f "$_FE_ROOT_BODY"
+
+# SSR check on /communities/ — this path is rendered server-side
+_FE_SSR_BODY=$(mktemp)
+_FE_SSR_HTTP=$(curl -s -w "%{http_code}" --max-time 90 -o "$_FE_SSR_BODY" "$FRONTEND_URL/communities/" 2>/dev/null || echo "000")
+
+if [ "$_FE_SSR_HTTP" = "200" ]; then
+  pass "Frontend /communities/ returns 200 (SSR path)"
+else
+  fail "Frontend /communities/ returns 200 — expected HTTP 200, got $_FE_SSR_HTTP"
+  info "$FRONTEND_URL/communities/"
+fi
+
+if grep -q "ds-root" "$_FE_SSR_BODY" 2>/dev/null; then
+  pass "Frontend /communities/ — contains ds-root (Angular SSR rendered)"
+else
+  fail "Frontend /communities/ — contains ds-root — 'ds-root' not found in SSR response"
+  info "$FRONTEND_URL/communities/"
+fi
+
+if grep -q "DSpace" "$_FE_SSR_BODY" 2>/dev/null; then
+  pass "Frontend /communities/ — contains DSpace title"
+else
+  fail "Frontend /communities/ — contains DSpace title — 'DSpace' not found in SSR response"
+  info "$FRONTEND_URL/communities/"
+fi
+
+rm -f "$_FE_SSR_BODY"
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 echo ""
