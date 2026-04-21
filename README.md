@@ -144,7 +144,13 @@ bash tests/smoke.sh           # run all assertions
 | Frontend (SSR)   | `GET /communities/`                | HTTP 200, `ds-root` element present, `DSpace` title present                |
 
 ### CI (GitHub Actions)
-The workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) is the primary CI workflow. It runs automatically on every push to **any branch**, on pull-requests targeting `main`, and can also be triggered manually (`workflow_dispatch`) with optional `dspace_version`, `jdk_version`, and `source_branch` inputs. It is scoped to the canonical `mlibrary/dspace-containerization` repository so fork runs do not consume runner minutes.
+The workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) is the primary CI workflow. It runs automatically on:
+- **Direct pushes to `main`** — validates the branch after a merge.
+- **Pull requests targeting `main`** — validates every push to a PR branch before it lands.
+
+Feature branches that do not yet have an open PR targeting `main` will **not** trigger CI automatically. To run the full smoke-test suite against any branch manually, use the **`workflow_dispatch`** trigger from the GitHub Actions UI (or `gh workflow run ci.yml`) with optional `dspace_version`, `jdk_version`, and `source_branch` inputs.
+
+The workflow is scoped to the canonical `mlibrary/dspace-containerization` repository so fork runs do not consume runner minutes.
 
 Additional image-building workflows live alongside `ci.yml` and can be used to publish individual service images to GitHub Packages independently of the full stack test:
 
