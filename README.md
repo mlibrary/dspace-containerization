@@ -18,6 +18,20 @@ There are two deployment contexts:
 
 It is recommended to get the stack running locally via Docker Compose before attempting a remote deployment.
 
+## Branching Policy
+
+### This repository (`mlibrary/dspace-containerization`)
+
+The canonical branch is **`main`**. All development work and pull requests target `main`. CI runs on direct pushes to `main` and on all PRs targeting `main`.
+
+### Source forks (`mlibrary/DSpace` and `mlibrary/dspace-angular`)
+
+These are forks of the official DSpace repositories. In each fork:
+- **`main`** is kept in sync with upstream official DSpace — it is **never pushed to directly**.
+- **`umich`** is the canonical development branch where U-M-specific changes live. It always pulls from `main` (to incorporate upstream updates) but never pushes back to `main`.
+
+The `GITHUB_BRANCH` build argument (default: `umich`) controls which branch of these forks is cloned when building the source image. In CI it is carried as `SOURCE_BRANCH` because GitHub Actions reserves all `GITHUB_*` variable names.
+
 ## For other institutions
 
 > While this repository is configured for the University of Michigan's **Deep Blue Documents** service, it is designed to serve as a **reference architecture** for how to containerize and orchestrate a heavily customized DSpace 7+ environment using Docker Compose, Kubernetes, and OpenShift.

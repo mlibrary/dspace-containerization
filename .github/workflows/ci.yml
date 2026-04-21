@@ -2,9 +2,17 @@
 name: CI
 
 # Triggers:
-#   1. Every push to any branch (gate check on all active work).
-#   2. Pull-requests targeting the canonical branches.
+#   1. Push to main (direct merges/commits to the canonical branch).
+#   2. Pull-requests targeting main (covers every push to a PR branch,
+#      without double-running alongside the push trigger).
 #   3. Manual trigger with optional version overrides (workflow_dispatch).
+#
+# NOTE: "umich" here is the SOURCE_BRANCH build arg — the default branch
+# in the mlibrary/DSpace and mlibrary/dspace-angular forks from which
+# source code is cloned when building images.  It is NOT a branch of this
+# repository.  In those forks, "umich" is the canonical development branch
+# and always pulls from "main" (which tracks upstream official DSpace);
+# it never pushes back to "main".
 #
 # NOTE: env vars that start with GITHUB_ are reserved by the GitHub Actions
 # runner and will cause the workflow to fail if set in an env: block.
@@ -23,8 +31,9 @@ name: CI
 # `docker compose build` in step 2.
 on:
   push:
+    branches: ["main"]
   pull_request:
-    branches: ["umich", "main"]
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       dspace_version:
