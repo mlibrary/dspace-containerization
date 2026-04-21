@@ -75,9 +75,7 @@ jobs:
 
       - name: Build compose service images
         run: |
-          docker compose build \
-            --build-arg DSPACE_VERSION=${DSPACE_VERSION} \
-            --build-arg JDK_VERSION=${JDK_VERSION}
+          docker compose build
 
       # ── Start ──────────────────────────────────────────────────────────────
       - name: Start core services

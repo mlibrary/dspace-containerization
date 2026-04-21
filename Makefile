@@ -33,7 +33,7 @@ up: ensure-source
 	docker compose up -d
 
 ## Start core + all optional services (apache, express).
-up-all:
+up-all: ensure-source
 	docker compose --profile optional up -d
 
 ## Stop and remove containers (volumes are preserved).
