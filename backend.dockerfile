@@ -2,10 +2,9 @@
 # To build with 7_x, use "--build-arg DSPACE_VERSION=7_x"
 ARG DSPACE_VERSION=7.6
 
-# This Dockerfile uses JDK17 by default (eclipse-temurin). For JDK11, prefer
-# eclipse-temurin:11-jdk because the Docker Hub openjdk images are deprecated
-# and unmaintained. To build with JDK11, use "--build-arg JDK_VERSION=11"
-ARG JDK_VERSION=17
+# This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
+# To build with JDK17, use "--build-arg JDK_VERSION=17"
+ARG JDK_VERSION=11
 
 FROM dspace-containerization-source as source
 
@@ -30,8 +29,7 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
   mvn clean
 
 # Step 2 - Run Ant Deploy
-# eclipse-temurin is the official successor to the deprecated openjdk Docker Hub images.
-FROM eclipse-temurin:${JDK_VERSION}-jdk as ant_build
+FROM openjdk:${JDK_VERSION}-slim as ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src
@@ -41,13 +39,13 @@ ENV ANT_VERSION 1.10.12
 ENV ANT_HOME /tmp/ant-$ANT_VERSION
 ENV PATH $ANT_HOME/bin:$PATH
 # Need wget to install ant
-# Download and install 'ant', then remove wget once it is no longer needed
 RUN apt-get update \
     && apt-get install -y --no-install-recommends wget \
-    && mkdir $ANT_HOME \
-    && wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME \
-    && apt-get purge -y --auto-remove wget \
+    && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
+# Download and install 'ant'
+RUN mkdir $ANT_HOME && \
+    wget -qO- "https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C $ANT_HOME
 # Run necessary 'ant' deploy scripts
 RUN ant init_installation update_configs update_code update_webapps
 
