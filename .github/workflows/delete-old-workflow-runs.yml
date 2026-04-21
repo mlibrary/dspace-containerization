@@ -39,9 +39,9 @@ on:
           - success
       dry_run:
         description: 'Only log actions, do not perform any delete operations.'
-        required: true
+        required: false
         type: boolean
-        default: true
+        default: false
 
 jobs:
   del_runs:
