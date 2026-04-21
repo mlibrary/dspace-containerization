@@ -83,7 +83,8 @@ RUN apt-get -o Acquire::Retries=3 update \
         pipx \
         iputils-ping \
         mailutils \
-        curl
+        curl \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN gem install uri pry net-http json
 RUN pipx install awscli

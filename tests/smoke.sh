@@ -3,7 +3,8 @@
 # Integration smoke tests for the dspace-containerization local Docker stack.
 #
 # Tests the DSpace 7.x REST API (HAL), Solr admin API, and Angular SSR frontend.
-# Requires only: bash, curl  (jq is used for richer assertions when available).
+# Requires: bash, curl.  jq is used for the authn assertion when available
+# (falls back to fixed-string grep if jq is not present).
 #
 # Usage:
 #   ./tests/smoke.sh
@@ -71,35 +72,6 @@ assert_body_contains() {
   fi
 }
 
-# Assert that the response body does NOT contain a given string.
-assert_body_not_contains() {
-  local desc="$1" url="$2" needle="$3"
-  local body
-  body=$(curl -s --max-time "$CURL_TIMEOUT" "$url" 2>/dev/null || echo "")
-  if echo "$body" | grep -Fq -- "$needle"; then
-    fail "$desc — unexpected '$needle' found in response body"
-    info "$url"
-  else
-    pass "$desc"
-  fi
-}
-
-# POST login and assert we get a JWT token back.
-assert_login() {
-  local desc="$1" url="$2" user="$3" pass_arg="$4"
-  local http_code
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time "$CURL_TIMEOUT" \
-    -X POST "$url" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    --data-urlencode "user=$user" \
-    --data-urlencode "password=$pass_arg" 2>/dev/null || echo "000")
-  if [ "$http_code" = "200" ]; then
-    pass "$desc"
-  else
-    fail "$desc — expected 200, got $http_code"
-    info "$url"
-  fi
-}
 
 # ── Backend REST API ──────────────────────────────────────────────────────────
 section "Backend REST API  $BACKEND_URL"

@@ -2,9 +2,14 @@
 name: CI
 
 # Triggers:
-#   1. Push to main (direct merges/commits to the canonical branch).
-#   2. Pull-requests targeting main (covers every push to a PR branch,
-#      without double-running alongside the push trigger).
+#   1. Push to main — post-merge validation on the canonical branch.
+#   2. Pull-requests targeting main — runs on every push to a PR branch so
+#      the merge result is validated before it lands.  Because this covers
+#      PR branches via the pull_request event, the push trigger is scoped to
+#      main only; this avoids double-running the job when a PR branch is
+#      pushed (which would fire both push and pull_request events).
+#      NOTE: feature branches that have no open PR targeting main will NOT
+#      receive CI until a PR is opened.
 #   3. Manual trigger with optional version overrides (workflow_dispatch).
 #
 # NOTE: "umich" here is the SOURCE_BRANCH build arg — the default branch

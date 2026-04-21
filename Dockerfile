@@ -5,7 +5,8 @@ ARG GITHUB_BRANCH=umich
 RUN apt-get update && \
     apt-get -y -o Acquire::Retries=3 install --no-install-recommends \
       ca-certificates \
-      git
+      git \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV GITHUB_BRANCH=${GITHUB_BRANCH}
 
