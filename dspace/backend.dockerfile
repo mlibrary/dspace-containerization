@@ -1,13 +1,12 @@
 ARG DSPACE_VERSION=7.6
 ARG SOURCE_IMAGE_TAG=umich
-# This Dockerfile uses JDK11 by default, but has also been tested with JDK17.
-# To build with JDK17, use "--build-arg JDK_VERSION=17"
+# This Dockerfile uses JDK17 (eclipse-temurin).
 ARG JDK_VERSION=17
 
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} as source
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} AS source
 
 # Step 1 - Run Maven Build
-FROM dspace/dspace-dependencies:dspace-${DSPACE_VERSION} as mvn_build
+FROM dspace/dspace-dependencies:dspace-${DSPACE_VERSION} AS mvn_build
 ARG TARGET_DIR=dspace-installer
 
 WORKDIR /app
@@ -27,19 +26,19 @@ RUN mvn --no-transfer-progress package -Pdspace-rest && \
   mvn clean
 
 # Step 2 - Run Ant Deploy
-FROM eclipse-temurin:${JDK_VERSION} as ant_build
+FROM eclipse-temurin:${JDK_VERSION} AS ant_build
 #FROM openjdk:${JDK_VERSION}-slim as ant_build
 ARG TARGET_DIR=dspace-installer
 # COPY the /install directory from 'build' container to /dspace-src in this container
 COPY --from=mvn_build /install /dspace-src
 WORKDIR /dspace-src
 # Create the initial install deployment using ANT
-ENV ANT_VERSION 1.10.12
-ENV ANT_HOME /tmp/ant-$ANT_VERSION
-ENV PATH $ANT_HOME/bin:$PATH
+ENV ANT_VERSION=1.10.12
+ENV ANT_HOME=/tmp/ant-$ANT_VERSION
+ENV PATH=$ANT_HOME/bin:$PATH
 # Need wget to install ant
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget \
+RUN apt-get -o Acquire::Retries=3 update \
+    && apt-get -o Acquire::Retries=3 install -y --no-install-recommends wget \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 # Download and install 'ant'
@@ -57,9 +56,9 @@ ENV TOMCAT_INSTALL=/usr/local/tomcat
 COPY --from=ant_build /dspace $DSPACE_INSTALL
 
 # Install additional libraries needed for backend scripts
-RUN apt update; \
-    apt install -y --no-install-recommends \
-        ccrypt \
+RUN apt-get -o Acquire::Retries=3 update \
+    && apt-get -o Acquire::Retries=3 upgrade -y \
+    && apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
         libcgi-pm-perl \
         libdbi-perl \
         libio-all-lwp-perl \
@@ -73,7 +72,7 @@ RUN apt update; \
         libmime-lite-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
-        libio-pty-perl \ 
+        libio-pty-perl \
         unzip \
         zip \
         xsltproc \
@@ -94,8 +93,16 @@ RUN mkdir /root/.emacs.d
 # Install additional backend scripts
 COPY ./backend/init.el /root/.emacs.d/init.el
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
-COPY ./backend/config/ $DSPACE_INSTALL/config/
-COPY ./backend/logs/ $DSPACE_INSTALL/logs/
+
+# backend/config/ is intentionally NOT copied here. Those files are only needed
+# for local Docker Compose development and the ci.yml smoke-test workflow, both
+# of which use the root backend.dockerfile. Production/staging configuration is
+# supplied at runtime via environment variables or mounted Kubernetes Secrets.
+
+# The logs directory is already created by `ant init_installation` above,
+# so the explicit mkdir is redundant. Kept here (commented out) as a reminder
+# in case the ant install layout ever changes.
+# RUN mkdir -p $DSPACE_INSTALL/logs
 
 # Enable the AJP connector in Tomcat's server.xml
 # NOTE: secretRequired="false" should only be used when AJP is NOT accessible from an external network. But, secretRequired="true" isn't supported by mod_proxy_ajp until Apache 2.5
@@ -108,7 +115,7 @@ EXPOSE 8080 8009
 # Give java extra memory (2GB)
 ENV JAVA_OPTS=-Xmx10g
 # Set up debugging
-ENV CATALINA_OPTS=-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000
+ENV CATALINA_OPTS="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000"
 
 # Link the DSpace 'server' webapp into Tomcat's webapps directory.
 # This ensures that when we start Tomcat, it runs from /server path (e.g. http://localhost:8080/server/)

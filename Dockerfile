@@ -1,22 +1,14 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG GITHUB_BRANCH=umich
 
 RUN apt-get update && \
-    apt-get -y install --no-install-recommends \
+    apt-get -y -o Acquire::Retries=3 install --no-install-recommends \
       ca-certificates \
-      git \
-      wget \
-      unzip
+      git
 
 ENV GITHUB_BRANCH=${GITHUB_BRANCH}
 
-RUN wget -q https://github.com/mlibrary/dspace/archive/refs/heads/${GITHUB_BRANCH}.zip && \
-    unzip -q /${GITHUB_BRANCH}.zip -d / && \
-    rm -rf /${GITHUB_BRANCH}.zip && \
-    mv /DSpace-${GITHUB_BRANCH} /DSpace
+RUN git clone --depth 1 --branch ${GITHUB_BRANCH} https://github.com/mlibrary/dspace.git /DSpace
 
-RUN wget -q https://github.com/mlibrary/dspace-angular/archive/refs/heads/${GITHUB_BRANCH}.zip && \
-    unzip -q /${GITHUB_BRANCH}.zip -d / && \
-    rm -rf /${GITHUB_BRANCH}.zip && \
-    mv /dspace-angular-${GITHUB_BRANCH} /dspace-angular
+RUN git clone --depth 1 --branch ${GITHUB_BRANCH} https://github.com/mlibrary/dspace-angular.git /dspace-angular

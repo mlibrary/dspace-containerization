@@ -1,0 +1,97 @@
+---
+name: CI
+
+# Triggers:
+#   1. Every push to any branch (gate check on all active work).
+#   2. Pull-requests targeting the canonical branches.
+#   3. Manual trigger with optional version overrides (workflow_dispatch).
+#
+# NOTE: env vars that start with GITHUB_ are reserved by the GitHub Actions
+# runner and will cause the workflow to fail if set in an env: block.
+# The source-branch variable is therefore named SOURCE_BRANCH, and is passed
+# to `docker build` as --build-arg GITHUB_BRANCH=... so that the Dockerfile
+# and Makefile need no changes.
+#
+# NOTE: docker/setup-buildx-action is intentionally NOT used here.
+# That action switches to the `docker-container` Buildx driver, which runs
+# builds in an isolated container that cannot see images stored in the local
+# Docker daemon.  As a result `docker compose build` fails to resolve
+# `dspace-containerization-source` (a local-only base image) and tries to
+# pull it from Docker Hub, which does not exist.  The default `docker` driver
+# (used when no setup-buildx-action step is present) shares the daemon image
+# store, so the source image built in step 1 is immediately available to
+# `docker compose build` in step 2.
+on:
+  push:
+  pull_request:
+    branches: ["umich", "main"]
+  workflow_dispatch:
+    inputs:
+      dspace_version:
+        description: "DSpace Version (e.g. 7.6)"
+        required: false
+        default: "7.6"
+      jdk_version:
+        description: "JDK Version (17 recommended)"
+        required: false
+        default: "17"
+      source_branch:
+        description: "Source branch in mlibrary forks"
+        required: false
+        default: "umich"
+
+jobs:
+  smoke-test:
+    name: Smoke tests – DSpace ${{ github.event.inputs.dspace_version || '7.6' }}
+    runs-on: ubuntu-latest
+    # Only run for the canonical repository; avoids wasting runner minutes on forks.
+    if: github.repository == 'mlibrary/dspace-containerization'
+
+    env:
+      # SOURCE_BRANCH replaces the former GITHUB_BRANCH (reserved prefix).
+      SOURCE_BRANCH:  ${{ github.event.inputs.source_branch  || 'umich' }}
+      DSPACE_VERSION: ${{ github.event.inputs.dspace_version || '7.6'   }}
+      JDK_VERSION:    ${{ github.event.inputs.jdk_version    || '17'    }}
+      BACKEND_URL:    http://localhost:8080
+      SOLR_URL:       http://localhost:8983
+      FRONTEND_URL:   http://localhost:4000
+      MAX_WAIT:       "900"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+
+      # ── Build ──────────────────────────────────────────────────────────────
+      # The source image MUST be built before `docker compose build` because
+      # backend/solr/frontend dockerfiles reference `dspace-containerization-source`
+      # with a FROM instruction.  Docker cannot pull this local-only image from
+      # Docker Hub and will otherwise fail with "pull access denied".
+      - name: Build shared source image
+        run: |
+          docker build -t dspace-containerization-source \
+            --build-arg GITHUB_BRANCH=${SOURCE_BRANCH} \
+            .
+
+      - name: Build compose service images
+        run: |
+          docker compose build \
+            --build-arg DSPACE_VERSION=${DSPACE_VERSION} \
+            --build-arg JDK_VERSION=${JDK_VERSION}
+
+      # ── Start ──────────────────────────────────────────────────────────────
+      - name: Start core services
+        run: docker compose up -d
+
+      # ── Wait ───────────────────────────────────────────────────────────────
+      - name: Wait for stack to be ready
+        run: bash tests/wait-for-stack.sh
+
+      # ── Test ───────────────────────────────────────────────────────────────
+      - name: Run smoke tests
+        run: bash tests/smoke.sh
+
+      # ── Debug (always runs, even on failure) ───────────────────────────────
+      - name: Dump service logs on failure
+        if: failure()
+        run: docker compose logs --no-color

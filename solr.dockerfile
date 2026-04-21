@@ -1,4 +1,4 @@
-FROM dspace-containerization-source as source
+FROM dspace-containerization-source AS source
 
 FROM solr:8.11-slim
 
