@@ -125,11 +125,31 @@ assert_status        "Collections endpoint returns 200"      \
 assert_status        "Authn status endpoint returns 200"     \
   "$BACKEND_URL/server/api/authn/status"                     200
 
-assert_body_contains "Authn status — not authenticated"      \
-  "$BACKEND_URL/server/api/authn/status"                     '"authenticated"'
+# Fetch body once for both authn field-presence and authenticated=false checks.
+_AUTHN_BODY=$(curl -s --max-time "$CURL_TIMEOUT" "$BACKEND_URL/server/api/authn/status" 2>/dev/null || echo "")
 
-assert_body_not_contains "Authn status — authenticated is false not true" \
-  "$BACKEND_URL/server/api/authn/status"                     '"authenticated" : true'
+if echo "$_AUTHN_BODY" | grep -Fq -- '"authenticated"'; then
+  pass "Authn status — contains authenticated field"
+else
+  fail "Authn status — contains authenticated field — field not found in response"
+fi
+
+# Use jq for a format-agnostic false-check when available; otherwise check both
+# compact and spaced JSON representations with fixed-string grep.
+if command -v jq >/dev/null 2>&1; then
+  if echo "$_AUTHN_BODY" | jq -e '.authenticated == false' >/dev/null 2>&1; then
+    pass "Authn status — authenticated is false (jq)"
+  else
+    fail "Authn status — authenticated is false — jq: authenticated is not false"
+  fi
+else
+  if echo "$_AUTHN_BODY" | grep -Fq -- '"authenticated":true' ||
+     echo "$_AUTHN_BODY" | grep -Fq -- '"authenticated" : true'; then
+    fail "Authn status — authenticated is false — authenticated=true in response (grep fallback)"
+  else
+    pass "Authn status — authenticated is false (grep fallback)"
+  fi
+fi
 
 # ── Backend Actuator (Spring Boot health) ────────────────────────────────────
 section "Backend Actuator"

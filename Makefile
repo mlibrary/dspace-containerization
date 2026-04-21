@@ -22,8 +22,8 @@ build:
 ## Called automatically by 'up' so you can never accidentally start with a missing source image.
 ensure-source:
 	@docker image inspect dspace-containerization-source:latest > /dev/null 2>&1 \
-	  && echo "Source image already exists – skipping build." \
-	  || (echo "Source image not found – building now..." && \
+	  && echo "Source image already exists; skipping build." \
+	  || (echo "Source image not found; building now..." && \
 	      docker build -t dspace-containerization-source \
 	        --build-arg GITHUB_BRANCH=$${GITHUB_BRANCH:-umich} .)
 
@@ -40,7 +40,7 @@ up-all: ensure-source
 down:
 	docker compose down
 
-## Stop and remove containers AND all named volumes (full clean – destroys data).
+## Stop and remove containers AND all named volumes (full clean: destroys data).
 clean:
 	docker compose down -v --rmi local
 	docker rmi -f dspace-containerization-source 2>/dev/null || true
@@ -65,7 +65,7 @@ test: up wait
 ## Show this help message.
 help:
 	@echo ""
-	@echo "dspace-containerization – local dev Makefile"
+	@echo "dspace-containerization: local dev Makefile"
 	@echo ""
 	@echo "Usage: make <target>"
 	@echo ""

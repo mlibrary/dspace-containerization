@@ -5,9 +5,8 @@ ARG UID=1000950000
 
 USER root
 
-RUN deluser solr
-RUN groupadd -g $UID solr
-RUN useradd -g $UID -m -l -o -u $UID solr
-
-RUN chown -R $UID:$UID /var/solr
-RUN chown -R $UID:$UID /opt/solr
+RUN deluser solr \
+    && groupadd -g $UID solr \
+    && useradd -g $UID -m -l -o -u $UID solr \
+    && chown -R $UID:$UID /var/solr \
+    && chown -R $UID:$UID /opt/solr

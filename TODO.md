@@ -1,17 +1,21 @@
 # TODO
 
-## Address Minor Issues from PR Review (DEEPBLUE-466/Refactor)
-Clean up the small follow-up items flagged during the PR review of the
-`DEEPBLUE-466/Refactor` branch. None are blockers, but resolving them will
-keep the codebase consistent and avoid future confusion.
 
-- [ ] `dspace/backend.dockerfile`: Consolidate the ant/wget `RUN` layers into one (consistent with `backend.dockerfile`)
-- [ ] `dspace-uid/solr.dockerfile`: Merge the five `RUN` commands (deluser, groupadd, useradd, two chowns) into a single layer; manually verify `deluser` works against the actual published `dspace-solr` base image
-- [ ] `Makefile`: Replace the non-ASCII en-dash (`–`) in the `ensure-source` echo strings with an ASCII hyphen (`-`) or plain wording
-- [ ] `tests/smoke.sh`: Make the authn assertion format-agnostic (use `jq` to check `"authenticated": false` instead of the spacing-sensitive string `"authenticated" : true`)
-- [ ] `.github/workflows/ci.yml`: Remove the redundant `--build-arg DSPACE_VERSION` / `--build-arg JDK_VERSION` flags from the `docker compose build` step (compose already reads them from the `env:` block)
-- [ ] `.github/workflows/ci.yml`: Remove the double blank line after the Checkout step (cosmetic)
-- [ ] git history: Determine whether any deleted `.cpt` files contained real credentials; if so, run `git filter-repo` to scrub them before merging
+## Scrub Deleted `.cpt` Files from Git History
+The five encrypted config files (`backend/config/*.cpt`) and the production log
+(`backend/logs/dspace.log.2023-11-01`) were deleted from the working tree in
+`DEEPBLUE-466/Refactor`, but they remain in prior commits on `main` after the
+PR merges. If any `.cpt` file ever held real credentials (even rotated ones),
+they should be scrubbed from history entirely. This is a separate post-merge
+cleanup PR/operation — it must not block the `DEEPBLUE-466/Refactor` merge.
+
+- [ ] After `DEEPBLUE-466/Refactor` merges, verify with the team that the `.cpt` passphrase has been rotated and is no longer in active use
+- [ ] Create a dedicated cleanup branch (e.g. `chore/scrub-cpt-history`)
+- [ ] Install `git-filter-repo` if not already present: `pip install git-filter-repo` or `brew install git-filter-repo`
+- [ ] Rewrite history to remove all `.cpt` files and the production log: `git filter-repo --path backend/config/ --path backend/logs/ --invert-paths`
+- [ ] Force-push the rewritten `main`: `git push --force origin main`
+- [ ] Notify all team members to re-clone or reset their local copies: `git fetch --all && git reset --hard origin/main`
+- [ ] Update any open PRs that were based on the old history (rebase onto the rewritten `main`)
 - [ ] Verify the current state of the project achieves the task goal
 - [ ] Verify with the developer that the task is complete
 
