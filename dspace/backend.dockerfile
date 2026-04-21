@@ -98,6 +98,16 @@ COPY ./backend/bin/ $DSPACE_INSTALL/bin/
 COPY ./backend/config/ $DSPACE_INSTALL/config/
 COPY ./backend/logs/ $DSPACE_INSTALL/logs/
 
+# Create symlinks for configs mounted from Kubernetes Secrets.
+# SYMLINK_SECRETS=true is passed by the GitHub Actions workflow (build-dspace-images.yml)
+# for production builds; it defaults to false so local dev (docker compose) is unaffected.
+# ln -sf is used to force-overwrite the dspace.cfg that the Ant build places in config/.
+ARG SYMLINK_SECRETS=false
+RUN if [ "$SYMLINK_SECRETS" = "true" ]; then \
+      ln -sf $DSPACE_INSTALL/secret/dspace.cfg $DSPACE_INSTALL/config/dspace.cfg && \
+      ln -sf $DSPACE_INSTALL/secret2/authentication-oidc.cfg $DSPACE_INSTALL/config/modules/authentication-oidc.cfg; \
+    fi
+
 # Enable the AJP connector in Tomcat's server.xml
 # NOTE: secretRequired="false" should only be used when AJP is NOT accessible from an external network. But, secretRequired="true" isn't supported by mod_proxy_ajp until Apache 2.5
 RUN sed -i '/Service name="Catalina".*/a \\n    <Connector protocol="AJP/1.3" port="8009" address="0.0.0.0" redirectPort="8443" URIEncoding="UTF-8" secretRequired="false" maxHttpRequestHeaderSize="262144" maxHttpHeaderSize="16384" />' $TOMCAT_INSTALL/conf/server.xml
