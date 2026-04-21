@@ -71,20 +71,16 @@ Build arguments are read from `.env` (copy from `.env.example`):
 GITHUB_BRANCH=umich
 DSPACE_VERSION=7.6
 JDK_VERSION=17
-DSPACE_UI_HOST=0.0.0.0
-DSPACE_REST_HOST=backend
 ```
 - `GITHUB_BRANCH` — branch in the mlibrary forks used to build the source image.
 - `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Use `7.6` here; the current upstream DSpace patch release targeted by this configuration is **7.6.0**.
 - `JDK_VERSION` — Java version for the backend Tomcat image (`17` recommended; `11` also supported). The build uses `eclipse-temurin` images — the official successor to the deprecated `openjdk` Docker Hub images.
-- `DSPACE_UI_HOST` — hostname the Angular SSR server binds to. Use `0.0.0.0` for local Docker development (Node.js 18+ resolves `localhost` to `::1`, breaking Docker port-mapping). Set to the public hostname for staging/production.
-- `DSPACE_REST_HOST` — hostname the Angular SSR server (inside the frontend container) uses to reach the backend REST API over Docker's internal DNS. Use `backend` (the Docker service name) for local development. The browser-side Angular client re-uses the `dspaceServer` URL from the HAL root at runtime.
 
 `docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
 
 ### Notes
 - Debugging ports (e.g., 8009, 9876) are not exposed by default. Add them to `docker-compose.yml` if needed.
-- The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, and the `frontend` service waits for `backend` to be healthy, ensuring correct startup ordering without manual delays.
+- The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, ensuring correct startup ordering without manual delays.
 - Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
 
 ## Integration Testing
@@ -123,21 +119,7 @@ bash tests/smoke.sh           # run all assertions
 | Frontend | `GET /` | HTTP 200, `ds-root` element present (DSpace Angular root), no error boundary |
 
 ### CI (GitHub Actions)
-The workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) is the primary CI workflow. It runs automatically on every push to **any branch**, on pull-requests targeting `umich` or `main`, and can also be triggered manually (`workflow_dispatch`) with optional `dspace_version`, `jdk_version`, and `source_branch` inputs. It is scoped to the canonical `mlibrary/dspace-containerization` repository so fork runs do not consume runner minutes.
-
-Additional image-building workflows live alongside `ci.yml` and can be used to publish individual service images to GitHub Packages independently of the full stack test:
-
-| Workflow | Purpose |
-|---|---|
-| `build-source-image.yml` | Builds and publishes the shared source image |
-| `build-dspace-images.yml` | Builds frontend, backend, and solr images |
-| `build-db-image.yml` | Builds the PostgreSQL db image |
-| `build-apache-image.yml` | Builds the optional Apache image |
-| `build-express-image.yml` | Builds the optional Express metrics image |
-| `build-dspace-uid-images.yml` | OpenShift UID-safe variants of the DSpace images |
-| `build-db-uid-image.yml` | OpenShift UID-safe db image |
-| `build-apache-uid-image.yml` | OpenShift UID-safe Apache image |
-| `delete-old-workflow-runs.yml` | Housekeeping – prunes stale workflow run history |
+The workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) is the single CI workflow.  It runs automatically on every push to **any branch**, on pull-requests targeting `umich` or `main`, and can also be triggered manually (`workflow_dispatch`) with optional `dspace_version`, `jdk_version`, and `source_branch` inputs.
 
 > **Note on `GITHUB_BRANCH` vs `SOURCE_BRANCH`:** locally (Makefile / `.env`) the build arg is called `GITHUB_BRANCH` and is passed directly to `docker build`.  In the CI workflow it is stored in an env var called `SOURCE_BRANCH` — because GitHub Actions reserves all variables prefixed with `GITHUB_` and will fail the job if one is set in an `env:` block — then forwarded to Docker as `--build-arg GITHUB_BRANCH=${SOURCE_BRANCH}`, so the `Dockerfile` and `Makefile` require no changes.
 
