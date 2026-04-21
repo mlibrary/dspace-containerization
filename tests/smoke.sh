@@ -12,7 +12,8 @@
 #   BACKEND_URL   http://localhost:8080
 #   SOLR_URL      http://localhost:8983
 #   FRONTEND_URL  http://localhost:4000
-#   CURL_TIMEOUT  15
+#   CURL_TIMEOUT      30
+#   CURL_TIMEOUT_SSR  90  (used for SSR paths that render server-side)
 
 set -uo pipefail
 
@@ -20,6 +21,7 @@ BACKEND_URL="${BACKEND_URL:-http://localhost:8080}"
 SOLR_URL="${SOLR_URL:-http://localhost:8983}"
 FRONTEND_URL="${FRONTEND_URL:-http://localhost:4000}"
 CURL_TIMEOUT="${CURL_TIMEOUT:-30}"
+CURL_TIMEOUT_SSR="${CURL_TIMEOUT_SSR:-90}"
 
 # ── Colours ──────────────────────────────────────────────────────────────────
 GREEN='\033[0;32m'
@@ -61,7 +63,7 @@ assert_body_contains() {
   local desc="$1" url="$2" needle="$3"
   local body
   body=$(curl -s --max-time "$CURL_TIMEOUT" "$url" 2>/dev/null || echo "")
-  if echo "$body" | grep -q "$needle"; then
+  if echo "$body" | grep -Fq -- "$needle"; then
     pass "$desc"
   else
     fail "$desc — '$needle' not found in response body"
@@ -74,7 +76,7 @@ assert_body_not_contains() {
   local desc="$1" url="$2" needle="$3"
   local body
   body=$(curl -s --max-time "$CURL_TIMEOUT" "$url" 2>/dev/null || echo "")
-  if echo "$body" | grep -q "$needle"; then
+  if echo "$body" | grep -Fq -- "$needle"; then
     fail "$desc — unexpected '$needle' found in response body"
     info "$url"
   else
@@ -136,7 +138,7 @@ section "Backend Actuator"
 # Both mean the application is operational.  We match the prefix without the closing
 # quote so that both values pass.
 HEALTH=$(curl -s --max-time "$CURL_TIMEOUT" "$BACKEND_URL/server/actuator/health" 2>/dev/null || echo "")
-if echo "$HEALTH" | grep -q '"status":"UP'; then
+if echo "$HEALTH" | grep -Fq -- '"status":"UP'; then
   pass "Actuator health is UP (or UP_WITH_ISSUES)"
 elif [ -n "$HEALTH" ]; then
   fail "Actuator health not UP"
@@ -176,7 +178,7 @@ assert_status        "Solr 'search' core status returns 200" \
 section "Frontend  $FRONTEND_URL"
 
 _FE_ROOT_BODY=$(mktemp)
-_FE_ROOT_HTTP=$(curl -s -w "%{http_code}" --max-time 30 -o "$_FE_ROOT_BODY" "$FRONTEND_URL/" 2>/dev/null || echo "000")
+_FE_ROOT_HTTP=$(curl -s -w "%{http_code}" --max-time "$CURL_TIMEOUT" -o "$_FE_ROOT_BODY" "$FRONTEND_URL/" 2>/dev/null || echo "000")
 
 if [ "$_FE_ROOT_HTTP" = "200" ]; then
   pass "Frontend / returns 200"
@@ -185,7 +187,7 @@ else
   info "$FRONTEND_URL/"
 fi
 
-if grep -q "ng-error" "$_FE_ROOT_BODY" 2>/dev/null; then
+if grep -Fq -- "ng-error" "$_FE_ROOT_BODY" 2>/dev/null; then
   fail "Frontend / — no Angular error boundary — 'ng-error' found in response body"
   info "$FRONTEND_URL/"
 else
@@ -196,7 +198,7 @@ rm -f "$_FE_ROOT_BODY"
 
 # SSR check on /communities/ — this path is rendered server-side
 _FE_SSR_BODY=$(mktemp)
-_FE_SSR_HTTP=$(curl -s -w "%{http_code}" --max-time 90 -o "$_FE_SSR_BODY" "$FRONTEND_URL/communities/" 2>/dev/null || echo "000")
+_FE_SSR_HTTP=$(curl -s -w "%{http_code}" --max-time "$CURL_TIMEOUT_SSR" -o "$_FE_SSR_BODY" "$FRONTEND_URL/communities/" 2>/dev/null || echo "000")
 
 if [ "$_FE_SSR_HTTP" = "200" ]; then
   pass "Frontend /communities/ returns 200 (SSR path)"
@@ -205,14 +207,14 @@ else
   info "$FRONTEND_URL/communities/"
 fi
 
-if grep -q "ds-root" "$_FE_SSR_BODY" 2>/dev/null; then
+if grep -Fq -- "ds-root" "$_FE_SSR_BODY" 2>/dev/null; then
   pass "Frontend /communities/ — contains ds-root (Angular SSR rendered)"
 else
   fail "Frontend /communities/ — contains ds-root — 'ds-root' not found in SSR response"
   info "$FRONTEND_URL/communities/"
 fi
 
-if grep -q "DSpace" "$_FE_SSR_BODY" 2>/dev/null; then
+if grep -Fq -- "DSpace" "$_FE_SSR_BODY" 2>/dev/null; then
   pass "Frontend /communities/ — contains DSpace title"
 else
   fail "Frontend /communities/ — contains DSpace title — 'DSpace' not found in SSR response"
