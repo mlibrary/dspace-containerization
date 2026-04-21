@@ -1,5 +1,5 @@
 ARG SOURCE_IMAGE_TAG=umich
-FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} AS source
+FROM ghcr.io/mlibrary/dspace-containerization/dspace-source:${SOURCE_IMAGE_TAG} as source
 
 FROM node:18-alpine
 WORKDIR /app
@@ -22,4 +22,4 @@ RUN yarn build:ssr
 # NOTE: At this time it is only possible to run Docker container in Production mode
 # if you have a public IP. See https://github.com/DSpace/dspace-angular/issues/1485
 #CMD yarn serve:ssr --disable-host-check --host 0.0.0.0
-CMD ["node", "dist/server/main.js"]
+CMD node dist/server/main.js

@@ -1,9 +1,9 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ARG GITHUB_BRANCH=umich
 
 RUN apt-get update && \
-    apt-get -y -o Acquire::Retries=3 install --no-install-recommends \
+    apt-get -y install --no-install-recommends \
       ca-certificates \
       git \
       wget \

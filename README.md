@@ -1,27 +1,12 @@
 # dspace-containerization
-Containerization and deployment infrastructure for [Deep Blue Documents](https://deepblue.lib.umich.edu/), the University of Michigan Library's institutional repository, built on [DSpace 7+](https://dspace.lyrasis.org/).
-
+University of Michigan Library containerization of [DSpace](https://dspace.lyrasis.org/)
 ## Overview
 
-This repository is the source of truth for building and deploying **Deep Blue Documents** — U-M Library's DSpace-based institutional repository. It produces Docker images from the library's own forks of DSpace ([`mlibrary/DSpace`](https://github.com/mlibrary/DSpace)) and the Angular frontend ([`mlibrary/dspace-angular`](https://github.com/mlibrary/dspace-angular)), layering U-M-specific configuration and tooling on top of upstream DSpace.
+A source image is created by pulling source code from the library's forks of DSpace: https://github.com/mlibrary/dspace-angular and  https://github.com/mlibrary/DSpace. The source image is then used to create the frontend, backend, and solr images. These images, along with a database image, are then configured and deployed to create an instance of the DSpace application.  
 
-A shared **source image** is built first by cloning those forks. It is then consumed by the `frontend`, `backend`, and `solr` service images. Together with a `db` image, these form a complete DSpace stack that can be run locally via Docker Compose or deployed remotely to Kubernetes / OpenShift.
+Essentially there are two, for lack of a better word, contexts: local and remote. Local will be used to refer to your local development environment, or more specifically, Docker Desktop. Remote will be used to refer a Kubernetes cluster. The primary differences between these two contexts being how images are built, where they are stored, and how they are deployed. Local images are built via the `docker compose build` command, stored locally in Docker Desktop, and deployed via `docker compose up -d` command. Remote images are built via GitHub Actions, stored remotely in GitHub Packages, and deployed to [Kubernetes](https://github.com/mlibrary/dspace-containerization/blob/main/dspace) ([OpenShift](https://github.com/mlibrary/dspace-containerization/blob/main/dspace-uid)) typically using `kubectl` (`oc`) to apply the appropriate deployment yaml files.
 
-There are two deployment contexts:
-- **Local** — Docker Desktop; images built with `docker compose build`, deployed with `docker compose up -d`.
-- **Remote** — Kubernetes/OpenShift cluster; images built by GitHub Actions, stored in GitHub Packages, and deployed by applying the YAML manifests in [`dspace/`](dspace) (Kubernetes) or [`dspace-uid/`](dspace-uid) (OpenShift).
-
-It is recommended to get the stack running locally via Docker Compose before attempting a remote deployment.
-
-## For other institutions
-
-> While this repository is configured for the University of Michigan's **Deep Blue Documents** service, it is designed to serve as a **reference architecture** for how to containerize and orchestrate a heavily customized DSpace 7+ environment using Docker Compose, Kubernetes, and OpenShift.
->
-> **What is reusable:** the multi-stage Dockerfile patterns, `docker-compose.yml` service structure, Makefile workflow, smoke-test suite (`tests/`), and GitHub Actions CI pipeline (`.github/workflows/ci.yml`) are general-purpose and straightforward to adapt.
->
-> **What is U-M-specific:** the source forks (`mlibrary/DSpace`, `mlibrary/dspace-angular`), the `GITHUB_BRANCH=umich` default, backend scripts in `backend/bin/`, and any U-M-specific configuration in `backend/config/`.
->
-> To adapt this for your own institution, point `GITHUB_BRANCH` (or a fork of your own) at your customized DSpace source and replace the `backend/config/` files with your own `dspace.cfg`.
+It is recommend that you first get an instance of DSpace running locally via `docker compose` prior to attempting to get an instance of DSpace running remotely in Kubernetes.
 
 
 ## Building and running locally
@@ -73,7 +58,7 @@ DSPACE_VERSION=7.6
 JDK_VERSION=17
 ```
 - `GITHUB_BRANCH` — branch in the mlibrary forks used to build the source image.
-- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Use `7.6` here; the current upstream DSpace patch release targeted by this configuration is **7.6.0**.
+- `DSPACE_VERSION` — version suffix for DSpace Docker Hub images (e.g. `7.6` → image tag `dspace-7.6`). Use `7.6` here; the current upstream DSpace patch release targeted by this configuration is **7.6.6** (Dec 2025).
 - `JDK_VERSION` — Java version for the backend Tomcat image (`17` recommended; `11` also supported). The build uses `eclipse-temurin` images — the official successor to the deprecated `openjdk` Docker Hub images.
 
 `docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
@@ -119,9 +104,7 @@ bash tests/smoke.sh           # run all assertions
 | Frontend | `GET /` | HTTP 200, `ds-root` element present (DSpace Angular root), no error boundary |
 
 ### CI (GitHub Actions)
-The workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) is the single CI workflow.  It runs automatically on every push to **any branch**, on pull-requests targeting `umich` or `main`, and can also be triggered manually (`workflow_dispatch`) with optional `dspace_version`, `jdk_version`, and `source_branch` inputs.
-
-> **Note on `GITHUB_BRANCH` vs `SOURCE_BRANCH`:** locally (Makefile / `.env`) the build arg is called `GITHUB_BRANCH` and is passed directly to `docker build`.  In the CI workflow it is stored in an env var called `SOURCE_BRANCH` — because GitHub Actions reserves all variables prefixed with `GITHUB_` and will fail the job if one is set in an `env:` block — then forwarded to Docker as `--build-arg GITHUB_BRANCH=${SOURCE_BRANCH}`, so the `Dockerfile` and `Makefile` require no changes.
+The workflow [`.github/workflows/integration-test.yml`](.github/workflows/integration-test.yml) runs the full suite automatically on pushes that affect dockerfiles or test files, and can also be triggered manually with custom `dspace_version`/`jdk_version` inputs.
 
 ## References
 * https://dspace.lyrasis.org/

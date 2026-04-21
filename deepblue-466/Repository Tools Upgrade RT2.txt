@@ -1,0 +1,187 @@
+Solution home > Symplectic Elements > Repository Tools and OA Monitor
+
+Repository Tools 2: Upgrade RT2 DSpace integration to DSpace 7.x or 8.x
+Modified on: Thu, 24 Apr, 2025 at 2:43 PM
+
+This article offers a brief guide to upgrading an RT2 integration with a 5.x or 6.x
+version of the DSpace repository to DSpace version 7.x or 8.x.
+
+N.B. If upgrading DSpace from 7.x to 8.x, the steps below are not required. Simply
+disable the DSpace data source before commencing the upgrade, change the version
+configuration in the data source settings to "DSpace 8.0+", then re-enable the data
+source once the DSpace upgrade is complete.
+
+We do, of course, recommend that you test the upgrade process thoroughly in a
+non-production environment first.
+
+Before you start
+
+Please ensure you consult the appropriate DSpace documentation before upgrading the
+repository itself:
+
+- Upgrading DSpace to v7.x:
+  https://wiki.lyrasis.org/display/DSDOC7x/Upgrading+DSpace
+- Upgrading DSpace to v8.x:
+  https://wiki.lyrasis.org/display/DSDOC8x/Upgrading+DSpace
+
+Important steps
+
+Step 1: Preparation
+
+Please ensure you have read and completed the steps outlined in Repository Tools 2:
+DSpace as a data source:
+https://support.symplectic.co.uk/en/support/solutions/articles/6000129592-repository-tools-2-dspace-as-a-data-source
+
+Please ensure you do not enable DSpace 7/8 as a data source without following the
+preparation, crosswalking and configuration processes.
+
+We strongly recommend that all of these steps are first performed and tested in a
+test environment before they are applied to your production instance of Elements.
+
+If you are upgrading from DSpace 5.x, please submit a support ticket and work with
+us to run a custom script to replace all the older style integer record IDs with
+new-style UUIDs. (Please note that this service is payable.)
+
+Note: DSpace 8.x is supported in Elements v6.23 and above.
+
+Note: In Elements v6.8, only harvest functionality with DSpace 7.x is supported.
+Deposit support was added in Elements v6.9.
+
+Step 2: Adjust crosswalks
+
+We do not expect much adjustment needed for the crosswalks if you are upgrading
+from DSpace 6.x. Please make sure that you check the following important changes:
+
+- All collections specified in the deposit crosswalk with a
+  `<collection-selection />` element must have a value for the `'id'` attribute as
+  well as `'name'`.
+- This ID can be found in the URL in the DSpace UI when you have navigated to the
+  desired collection. The ID will be a UUID, for example,
+  `637194b9-54df-46ac-9bc7-72f4cdf7437a`.
+- Note that production and non-production instances of DSpace may well use
+  different IDs for the same collection, in which case these IDs will need to be
+  maintained separately in the production and non-production deposit crosswalk.
+- Harvest crosswalk only: because the DSpace 7/8 API outputs JSON, the
+  `select-using="xpath"` attribute will no longer work. Any harvest mappings using
+  this attribute must be rewritten using either standard field source selection, or
+  the `select-using="jsonpath"` attribute.
+- N.B. `select-using="xpath"` will still work in the deposit crosswalk.
+
+Step 3: Configuration
+
+N.B. Disable the DSpace data source before commencing the DSpace upgrade.
+Re-enable it only once the upgrade and all necessary Elements reconfiguration is
+complete.
+
+On the DSpace data source management page, select the 'DSpace 7.0 +' or
+'DSpace 8.0 +' option as appropriate.
+
+Ensure that you:
+
+- Commit the new setting by clicking the 'Update' button at the bottom of the
+  "Settings" section.
+- Stop and restart the Synchroniser background process on the "Scheduled Jobs"
+  system admin page. This is to ensure that the new setting takes effect.
+
+Please read and check that you complete the steps outlined in Repository Tools 2:
+Configuring DSpace:
+https://support.symplectic.co.uk/en/support/solutions/articles/6000166645-repository-tools-2-configuring-dspace
+
+Please also make sure that you check the following important changes:
+
+- REST and OAI-PMH endpoints remain necessary for full and differential harvests
+  from DSpace to Elements. These API endpoints will need to be updated.
+- Use the same credentials as your administrator account in DSpace 7.
+- Note that the integration uses the new, JSON-based REST API, not the legacy
+  XML-based "v6" API.
+- Note the API Base URL setting should be based on the URL for the machine-readable
+  JSON output, not the human-friendly HAL browser, e.g.
+  `https://demo.dspace.org/server/api`, not
+  `https://demo.dspace.org/server/#/server/api`.
+
+Correct configuration of API Base URL depends on your Elements version:
+
+- Elements 6.23 and above: enter the URL up to but not including `/api`. E.g. if
+  the root of your DSpace instance's API is at
+  `https://dspace.example.org/server/api`, enter
+  `https://dspace.example.org/server` as the base URL.
+- Elements 6.8 to Elements 6.22 inclusive: enter the URL up to but not including
+  `/server/api`. E.g. if the root of your DSpace instance's API is at
+  `https://dspace.example.org/server/api`, enter
+  `https://dspace.example.org` as the base URL.
+- If the API root URL does not include `/server`, you will need to upgrade to
+  Elements 6.23 before integrating, or reconfigure the root URL.
+
+The DSpace 7/8 integration does not require a SWORDv2 API endpoint. You will not
+see this setting on the configuration page.
+
+Elements RT2 does not interact directly with the DSpace 7 item submission forms.
+However, when a request is made to submit an item to review (or to the live archive
+for collections with no review step), DSpace 7 still applies any validations
+defined in those forms (e.g. required fields) and will not allow the submission if
+any validation fails. This will result in an error in the Elements deposit process.
+To avoid this:
+
+- validations should be kept to a minimum.
+- If they are absolutely necessary, the deposit crosswalk should provide a suitable
+  default value for any DSpace field which has a validation defined.
+
+DSpace 7.3 and above requires that a deposit licence is granted for every item
+before it can be submitted. Therefore you must set up at least one deposit licence
+for the RT2 DSpace data source.
+
+The licence file(s) you upload MUST have the filename matching the value of
+`LICENSE_BITSTREAM_NAME` in the `Constants.java` file of your DSpace instance. By
+default, this filename is `license.txt`.
+
+If you use multiple licence files, they must ALL have this filename; you can use
+the deposit licence identifier and display name to differentiate between them.
+
+Expected changes in behaviour
+
+The following outlines some expected changes in the integration's behaviour when
+upgrading from DSpace 5/6 to DSpace 7/8:
+
+- If a repository item is in any workflow step (i.e. in review), the default
+  harvest mappings will give the `repository-status` field a value of
+  "Private (in review)". Previously, this was the less-specific value of
+  "Private".
+- The option to add additional item metadata during redeposit (i.e. during upload
+  of additional files) is not available.
+- The default file mapping for a file's `dc.description` field comes from
+  `file.version`, i.e. the version selected from the "File version" dropdown at
+  the time of deposit.
+
+Repository Tools 2: Upgrade RT2 DSpace integration to DSpace 7.x or 8.x ModiÞed on: Thu, 24 Apr, 2025 at 2:43 PM This article o.ers a brief guide for to upgrading an RT2 integration with a 5.x or 6.x version of the DSpace repository to DSpace version 7.x or 8.x. N.B. If upgrading DSpace from 7.x to 8.x, the steps below are not required. Simply disable the DSpace data source before commencing the upgrade, change the version conÞguration in the data source settings to "DSpace 8.0+", then re-enable the data source once the DSpace upgrade is complete. We do, of course, recommend that you test the upgrade process thoroughly in a non-production environment Þrst. Before you start Please ensure you consult the appropriate DSpace documentation before upgrading the repository itself: Upgrading DSpace to v7.x (https://wiki.lyrasis.org/display/DSDOC7x/Upgrading+DSpace) Upgrading DSpace to v8.x (https://wiki.lyrasis.org/display/DSDOC8x/Upgrading+DSpace) Important steps 
+Step 1: Preparation 
+Please ensure you have read and completed the steps outlined in Repository Tools 2: DSpace as a data source (https://support.symplectic.co.uk/en/support/solutions/articles/6000129592-repository-tools-2-dspace-as-a-data.
+source). Please ensure you do not enable DSpace 7/8 as a data source without following the preparation, crosswalking and conÞguration processes. We strongly recommend that all of these steps are Þrst performed and tested in a test environment before they are applied to your production instance of Elements. If you are upgrading from DSpace 5.x, please submit a support ticket and work with us to run a custom script to replace all the older style integer record IDs with new-style UUIDs. (Please note that this service is payable.) Note: DSpace 8.x is supported in Elements v6.23 and above. 
+Note: In Elements v6.8, only harvest functionality with DSpace 7.x is supported. Deposit support was added in Elements v6.9. 
+Step 2: Adjust crosswalks 
+We do not expect much adjustment needed for the crosswalks if you are upgrading from DSpace 6.x. Please make sure that you check the following important changes: 
+
+All collections speciÞed in the deposit crosswalk with a <collection-selection /> element must have value for the ÔidÕ attribute as well as ÔnameÕ. 
+This ID can be found in the URL in the DSpace UI when you have navigated to the desired collection. The ID will be a UUID, for example, '637194b9-54df-46ac-9bc7-72f4cdf7437a'. Note that production and non-production instances of DSpace may well use di.erent IDs for the same collection, in which case these IDs will need to be maintained separately in the production and non-production deposit crosswalk. 
+Harvest crosswalk only: because the DSpace 7/8 API outputs JSON, the select-using="xpath" attribute will no longer work. Any harvest mappings using this attribute must be rewritten using either standard Þeld source selection, or the select-using="jsonpath" attribute. N.B. select-using="xpath" will still work in the deposit crosswalk. Step 3: ConÞguration N.B. Disable the DSpace data source before commencing the DSpace upgrade. Re-enable it only once the upgrade and all necessary Elements reconÞguration is complete. On the DSpace data source management page, select the 'DSpace 7.0 +' or 'DSpace 8.0 +' option as appropriate. Ensure that you: Commit the new setting by clicking the 'Update' button at the bottom of the "Settings" section. Stop and restart the Synchroniser background process on the "Scheduled Jobs" system admin page. This is to ensure that the new setting takes e.ect. Please read and check that you complete the steps outlined in Repository Tools 2: ConÞguring DSpace ().https://support.symplectic.co.uk/en/support/solutions/articles/6000166645-repository-tools-2-conÞguring-dspacePlease also make sure that you check the following important changes: REST and OAI-PMH endpoints remain necessary for full and di.erential harvests from DSpace to Elements. These API endpoints will need to be updated. Use the same credentials as your administrator account in DSpace 7. Note that the integration uses the new, JSON-based REST API, not the legacy XML-based "v6" API. Note the API Base URL setting should be based on the URL for the machine-readable JSON output, not the human-friendly HAL browser e.g. https://demo.dspace.org/server/api, (https://demo.dspace.org/server/api,) NOT https://demo.dspace.org/server/#/server/api (https://demo.dspace.org/server/#/server/api) Correct conÞguration of API Base URL depends on your Elements version: Elements 6.23 and above: enter the URL up to but not including /api. E.g. if the root of your DSpace instance's API is at https://dspace.example.org/server/api, enter https://dspace.example.org/server as the base URL. Elements 6.8 to Elements 6.22 inclusive: enter the URL up to but not including /server/api. E.g. if the root of your DSpace instance's API is at https://dspace.example.org/server/api, enter https://dspace.example.org as the base URL. If the API root URL does not include /server, you will need to upgrade to Elements 6.23 before integrating, or reconÞgure the root URL. 
+The DSpace 7/8 integration does not require a a SWORDv2 API endpoint. You will not see this setting on the conÞguration page. Elements RT2 does not interact directly with the DSpace 7 item submission forms. However, when a request is made to submit an item to review (or to the live archive for collections with no review step), DSpace 7 still applies any validations deÞned in those forms (e.g. required Þelds) and will not allow the submission if any validation fails. This will result in an error in the Elements deposit process. To avoid this, 
+
+validations should be kept to a minimum. If they are absolutely necessary, the deposit crosswalk should provide a suitable default value for any DSpace Þeld which has a validation deÞned. 
+
+DSpace 7.3 and above requires that a deposit licence is granted for every item before it can be submitted. Therefore you must set up at least one deposit licence for the RT2 DSpace data source. The licence Þle(s) you upload MUST have the Þlename matching the value of LICENSE_BITSTREAM_NAME in the Constants.java Þle of your DSpace instance. By default, this Þlename is license.txt. If you use multiple licence Þles, they must ALL have this Þlename; you can use the deposit licence identiÞer and display name to di.erentiate between them. 
+Expected changes in behaviour 
+The following outlines some expected changes in the integration's behaviour when upgrading from DSpace 5/6 to DSpace 7/8: 
+
+If
+ a repository item is in any workßow step (i.e. in review), the default harvest mappings will give the 'repository-status' Þeld a value of "Private (in review)". Previously, this was the less-speciÞc value of "Private". 
+
+
+The
+ option to add additional item metadata during redeposit (i.e. during upload of additional Þles) is not available. 
+
+
+The
+ default Þle mapping for a Þle's 'dc.description' Þeld comes from 'Þle.version', i.e. the version selected from the "File version" dropdown at the time of deposit. 
+
+
+
+

@@ -40,32 +40,10 @@ spec:
           volumeMounts:
             - name: dspace-assetstore
               mountPath: /dspace/assetstore
-            # Secret mounts for dspace.cfg and authentication-oidc.cfg.
-            # The backend image has symlinks pointing into these directories;
-            # replace <secret-name> and <secret2-name> with the actual
-            # OpenShift Secret object names from deepblue-documents-kube.
-            - name: dspace-config-secret
-              mountPath: /dspace/secret
-              readOnly: true
-            - name: dspace-oidc-secret
-              mountPath: /dspace/secret2
-              readOnly: true
       volumes:
         - name: dspace-assetstore
           persistentVolumeClaim:
             claimName: dspace-assetstore
-        - name: dspace-config-secret
-          secret:
-            secretName: <secret-name>    # confirm from deepblue-documents-kube
-            items:
-              - key: dspace.cfg
-                path: dspace.cfg
-        - name: dspace-oidc-secret
-          secret:
-            secretName: <secret2-name>   # confirm from deepblue-documents-kube
-            items:
-              - key: authentication-oidc.cfg
-                path: authentication-oidc.cfg
 ---
 apiVersion: v1
 kind: Service
