@@ -10,3 +10,6 @@ RUN deluser solr \
     && useradd -g $UID -m -l -o -u $UID solr \
     && chown -R $UID:$UID /var/solr \
     && chown -R $UID:$UID /opt/solr
+
+USER $UID
+

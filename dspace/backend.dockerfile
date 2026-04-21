@@ -56,7 +56,6 @@ COPY --from=ant_build /dspace $DSPACE_INSTALL
 
 # Install additional libraries needed for backend scripts
 RUN apt-get -o Acquire::Retries=3 update \
-    && apt-get -o Acquire::Retries=3 upgrade -y \
     && apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
         libcgi-pm-perl \
         libdbi-perl \
@@ -111,7 +110,7 @@ RUN sed -i '/<Valve className="org.apache.catalina.valves.AccessLogValve/,/\/>/d
 
 # Expose Tomcat port and AJP port
 EXPOSE 8080 8009
-# Give java extra memory (2GB)
+# Give java extra memory (minimum 2GB; currently set to 10GB for production workloads)
 ENV JAVA_OPTS=-Xmx10g
 # Set up debugging
 ENV CATALINA_OPTS="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000"
