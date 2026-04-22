@@ -192,30 +192,19 @@ environment. In particular:
   `identifier.doi.prefix` (`10.7302`) in `demo` or `workshop`.
 - Do **not** use production database credentials in `demo`.
 
-### 3. Re-encode to base64
+### 3. Re-apply the secret
 
-```shell
-base64 < backend/config/from-kube.<NAMESPACE>.dspace.cfg \
-  > backend/config/from-kube.<NAMESPACE>.dspace.cfg.base64
-```
-
-### 4. Patch the secret directly (recommended)
+Encode the edited file and patch the secret in one pipeline.
+`tr -d '\n'` strips any line-wrapping that `base64` may insert (behaviour
+differs between macOS and Linux), ensuring the value is a single-line string:
 
 ```shell
 kubectl -n <NAMESPACE> patch secret dspace-cfg \
   --type='json' \
-  -p="[{\"op\":\"replace\",\"path\":\"/data/dspace.cfg\",\"value\":\"$(cat backend/config/from-kube.<NAMESPACE>.dspace.cfg.base64)\"}]"
+  -p="[{\"op\":\"replace\",\"path\":\"/data/dspace.cfg\",\"value\":\"$(base64 < backend/config/from-kube.<NAMESPACE>.dspace.cfg | tr -d '\n')\"}]"
 ```
 
-Alternatively, copy the contents of
-`backend/config/from-kube.<NAMESPACE>.dspace.cfg.base64`
-into a local `config-secret.yaml` manifest and apply it:
-
-```shell
-kubectl apply -f config-secret.yaml
-```
-
-### 5. Restart the backend pod
+### 4. Restart the backend pod
 
 The backend pod must be restarted to reload the mounted secret:
 
@@ -229,7 +218,7 @@ Wait for the rollout to complete:
 kubectl -n <NAMESPACE> rollout status deployment backend
 ```
 
-### 6. Verify
+### 5. Verify
 
 Check the backend logs for startup errors:
 
