@@ -66,6 +66,61 @@ ERROR: README.md:67 col 3: width mismatch (header=32, this row=28)
 
 ---
 
+### `gen_delta.py` — Regenerate `backend/config/DELTA.md` from the live cfg files
+
+Parses the three gitignored `from-kube.*.dspace.cfg` files in `backend/config/`,
+compares every property across all three environments, and writes a fresh
+`DELTA.md` containing a summary table of differing properties, auto-generated
+key findings, and recommendations.  Sensitive values (`db.password`,
+`identifier.doi.password`, `api.user.key`, etc.) are redacted in the output
+so `DELTA.md` is safe to commit.
+
+**Usage**
+
+```shell
+# Auto-discovers backend/config/ and writes backend/config/DELTA.md:
+python3 dotpy/gen_delta.py
+
+# Explicit directory:
+python3 dotpy/gen_delta.py backend/config/
+
+# Explicit directory and output file:
+python3 dotpy/gen_delta.py backend/config/ backend/config/DELTA.md
+
+# Write to stdout instead of a file:
+python3 dotpy/gen_delta.py backend/config/ -
+```
+
+**Prerequisites**
+
+The three `from-kube.*.dspace.cfg` files must exist locally (they are
+gitignored).  Fetch them from the cluster first:
+
+```shell
+for NS in production workshop demo; do
+  kubectl -n $NS get secret dspace-cfg \
+    -o jsonpath="{.data.dspace\.cfg}" | base64 --decode \
+    > backend/config/from-kube.${NS}.dspace.cfg
+done
+```
+
+**Example output (stderr)**
+
+```
+Parsed backend/config/from-kube.demo.dspace.cfg (254 properties)
+Parsed backend/config/from-kube.production.dspace.cfg (262 properties)
+Parsed backend/config/from-kube.workshop.dspace.cfg (259 properties)
+Written to backend/config/DELTA.md
+```
+
+**When to use**
+
+- After fetching fresh cfg files from the cluster to update the diff.
+- After making a change to a `dspace-cfg` secret to document what changed.
+- To bootstrap `DELTA.md` from a blank slate.
+
+---
+
 ## Conventions for adding new scripts
 
 When a new Python utility is useful enough to save for future use, add it here:
