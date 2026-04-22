@@ -112,8 +112,6 @@ RUN sed -i '/<Valve className="org.apache.catalina.valves.AccessLogValve/,/\/>/d
 EXPOSE 8080 8009
 # Give java extra memory (minimum 2GB; currently set to 10GB for production workloads)
 ENV JAVA_OPTS=-Xmx10g
-# Set up debugging
-ENV CATALINA_OPTS="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:8000"
 
 # Link the DSpace 'server' webapp into Tomcat's webapps directory.
 # This ensures that when we start Tomcat, it runs from /server path (e.g. http://localhost:8080/server/)

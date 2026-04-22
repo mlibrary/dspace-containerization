@@ -35,12 +35,53 @@ To reach other services, use the `kubectl --namespace=workshop port-forward serv
 |-----------------------------------------|-----------|----------------------------------------------|
 | http://localhost:4000/home              | frontend  | Angular GUI                                  |
 | jdbc:postgresql://localhost:5432/dspace | db        | PostgreSQL  (user: dspace, password: dspace) |
-| http://localhost:8009/                  | backend   | debugging???                                 |
+| http://localhost:8009/                  | backend   | AJP connector                                |
 | http://localhost:8080/rest              | backend   | REST API (Deprecated)                        |
 | http://localhost:8080/server            | backend   | Server API                                   |
 | http://localhost:8888/                  | apache    | Apache Web Server                            |
 | http://localhost:8983/solr              | solr      | Solr GUI                                     |
 | http://localhost:9876/                  | frontend  | debugging???                                 |
+
+## Known Security Concerns
+
+The following issues exist in `backend.dockerfile` and should be addressed before any public-facing production deployment.
+
+### 1. Legacy REST API served over HTTP
+The last two lines of `backend.dockerfile` copy `rest_web.xml` from the DSpace test sources into the deployed REST webapp. This file disables the HTTPS-only constraint so the deprecated `/rest` endpoint can be reached over plain HTTP. The comment in the Dockerfile says it plainly: *"WARNING: THIS IS OBVIOUSLY INSECURE. NEVER DO THIS IN PRODUCTION."*
+
+**Mitigation**: Remove the `COPY` and `sed` lines that install `rest_web.xml`, or block the `/rest` path at the Apache layer so it is never reachable externally.
+
+### 2. AJP connector with `secretRequired="false"` (Ghostcat — CVE-2020-1938)
+The AJP connector is configured with `secretRequired="false"`, which disables the shared-secret mitigation added in Tomcat 9.0.31+ in response to [Ghostcat (CVE-2020-1938, CVSS 9.8)](https://nvd.nist.gov/vuln/detail/CVE-2020-1938). Any host that can reach port 8009 can read arbitrary files from any deployed webapp (including config files with credentials) and potentially execute code if file-upload is available anywhere in the app.
+
+The comment in the Dockerfile acknowledges the limitation: `secretRequired="true"` is not yet supported by `mod_proxy_ajp` in Apache 2.4.
+
+**Mitigation (short-term)**: Ensure Kubernetes `NetworkPolicy` rules prevent all external traffic from reaching port 8009 — only the Apache sidecar/service should be able to connect to it.  
+**Mitigation (long-term)**: Replace the AJP connector with an HTTP proxy (`mod_proxy_http` on port 8080), eliminating the AJP attack surface entirely.
+
+### 3. Container runs as root
+The final image stage has no `USER` directive, so Tomcat and all cron/admin scripts run as `root` inside the container. A successful RCE exploit or container-escape yields full root on the host node.
+
+**Mitigation**: Create a dedicated `dspace` system user in the final stage and switch to it with `USER dspace` before the `EXPOSE` / `CMD` instructions (adjusting file ownership on `/dspace` and `/usr/local/tomcat` as needed).
+
+### 4. Development and debug tools baked into the image
+The following packages are installed in the production image but are not required for Tomcat or DSpace to run:
+
+- `emacs`, `vim` — text editors
+- `build-essential`, `ruby-dev` — compilers/headers (needed only to `gem install`; not needed at runtime)
+- `pry` (Ruby gem) — interactive REPL/debugger
+- `pipx` — Python package installer (only used once to install the AWS CLI)
+
+These packages increase the attack surface and give an attacker a richer toolkit after gaining any foothold.
+
+**Mitigation**: Move `gem install` to a separate build stage; remove `build-essential`, `ruby-dev`, and `pry` from the runtime image. Replace `pipx install awscli` with the pre-built AWS CLI v2 binary installer so `pipx` and `build-essential` are not needed at runtime.
+
+### 5. AWS CLI baked into the image
+The AWS CLI is installed unconditionally via `pipx install awscli`. If AWS credentials are available inside the container (e.g., via an EC2/EKS instance role or a mounted Secret), a compromised container gains direct access to AWS resources.
+
+**Mitigation**: Verify whether the AWS CLI is actually needed at runtime. If it is only used by maintenance scripts run on demand, consider injecting it via an init container or a sidecar rather than baking it into the main image.
+
+---
 
 ### port-forward database (workshop example)
 Shell Terminal One
