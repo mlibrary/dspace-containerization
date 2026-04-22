@@ -10,7 +10,7 @@ Run the GitHub action workflows in the following order to build the images that 
 | [2. Build dspace images](https://github.com/mlibrary/dspace-containerization/actions/workflows/build-dspace-images.yml)         | dspace-frontend:`tag`, dspace-backend:`tag`, dspace-solr:`tag`, dspace-db:`tag`          |
 | [3. Build dspace uid images](https://github.com/mlibrary/dspace-containerization/actions/workflows/build-dspace-uid-images.yml) | dspace-frontend:**uid**, dspace-backend:**uid**, dspace-solr:**uid**, dspace-db:**uid**  |
 ## login
-The [OpenShift Client (oc)](https://docs.openshift.com/container-platform/4.13/cli_reference/openshift_cli/getting-started-cli.html) will be used to deploy the images to [MITS Red Hat OpenShift Service on AWS](https://containers.aws.web.umich.edu/). Log in to the [dspace7-testing](https://console-openshift-console.apps.containersprod.art2.p1.openshiftapps.com/topology/ns/dspace7-testing?view=list) project (namespace) and click on the "Copy login command" link in the drop down menu under your unique login name in the upper right hand corner of the webpage. ![copy login command](images/copy-login-command.png) to get your "Display Token" link (click on the link) ![your API token](images/your-api-token.png) and execute the "Log in with this token" oc login command.
+The [OpenShift Client (oc)](https://docs.openshift.com/container-platform/4.13/cli_reference/openshift_cli/getting-started-cli.html) will be used to deploy the images to [MITS Red Hat OpenShift Service on AWS](https://containers.aws.web.umich.edu/). Log in to the [dspace7-testing](https://console-openshift-console.apps.containersprod.art2.p1.openshiftapps.com/topology/ns/dspace7-testing?view=list) project (namespace) and click on the "Copy login command" link in the drop-down menu under your unique login name in the upper right-hand corner of the webpage. ![copy login command](images/copy-login-command.png) To get your "Display Token" link (click on the link) ![your API token](images/your-api-token.png) and execute the "Log in with this token" oc login command.
 ```
 $ oc login --token=sha256~xpONnGYkpozoP7kyXEneEMInUg3u8ny9_OoB8JS3pmc --server=https://api.containersprod.art2.p1.openshiftapps.com:6443
 
@@ -42,7 +42,7 @@ oc apply -f dspace-uid/db-deployment.yml
 ```shell
 oc apply -f dspace-uid/solr-deployment.yml
 ```
-### apache
+### Apache
 ```shell
 oc apply -f dspace-uid/apache-deployment.yml
 ```
@@ -58,8 +58,8 @@ oc apply -f dspace-uid/frontend-deployment.yml
 https://wiki.lyrasis.org/display/DSDOC7x/User+Interface+Configuration#UserInterfaceConfiguration-In7.2orabove
 
 NOTE:
-* The frontend takes its time coming up so be patient and view the logs.
-* The frontend using a lot of memory, if you need more bump up the "--max-old-space-size=8192".
+* The frontend takes its time coming up, so be patient and view the logs.
+* The frontend is using a lot of memory, if you need more, bump up the "--max-old-space-size=8192".
 ## routes
 From the Administrator OpenShift console ![networking-routes](images/networking-routes.png) under `Networking -> Routes` create the following routes by clicking the create route button.
 
@@ -72,7 +72,7 @@ From the Administrator OpenShift console ![networking-routes](images/networking-
 | solr     | /solr | solr     | 8983->8983 (TCP) | true:Edge:Redirect |
 
 
-## remotehost
+## remote host
 
 | URL                                                                                  | service  | comment               |
 |--------------------------------------------------------------------------------------|----------|-----------------------|
@@ -83,8 +83,8 @@ From the Administrator OpenShift console ![networking-routes](images/networking-
 | https://solr-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/solr      | solr     | Solr GUI              |
 | https://db-dspace7-testing.apps.containersprod.art2.p1.openshiftapps.com/            | db       | PostgreSQL            |
 
-NOTE: Connecting to the database require GSSAPI configuration of your `psql` client (which is a mystery to me and you are on your own), otherwise just use port-forwarding:
-### port-foward terminal
+NOTE: Connecting to the database requires GSSAPI configuration of your `psql` client (which is a mystery to me, and you are on your own), otherwise use port-forwarding:
+### port-forward terminal
 ```shell
 oc port-forward service/db 5432:5432
 ```

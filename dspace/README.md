@@ -9,8 +9,8 @@ Run the GitHub action workflows in the following order to build the images that 
 | [1. Build dspace source image](https://github.com/mlibrary/dspace-containerization/actions/workflows/build-source-image.yml) | dspace-source:`tag`                                                             |
 | [2. Build dspace images](https://github.com/mlibrary/dspace-containerization/actions/workflows/build-dspace-images.yml)      | dspace-frontend:`tag`, dspace-backend:`tag`, dspace-solr:`tag`, dspace-db:`tag` |
 
-NOTE: 
-* The backend image contains `*.dspace.cfg.cpt` files in the `/dspace/config` directory that were copied from the `./backend/config` directory. These files were created by copying the `default.dspace.cfg` file and then making appropriate changes for the target environment. These files contain sensitive information and were encrypted using the `ccrypt` command. The keys to decrypt this files are held in Kubernetes secrets. 
+NOTE:
+* Production configuration is **not** baked into the backend image. It is delivered at runtime via Kubernetes Secrets mounted directly as single files into the container (e.g. `dspace.cfg`, `authentication-oidc.cfg`). The actual Secret names and mount paths are managed in [deepblue-documents-kube](https://github.com/mlibrary/deepblue-documents-kube).
 ## configuration and deployment
 Argo CD is used for configuration and deployment via [deepblue-documents-kube](https://github.com/mlibrary/deepblue-documents-kube) repository. 
 
@@ -29,7 +29,7 @@ Argo CD is used for configuration and deployment via [deepblue-documents-kube](h
 | https://backend.workshop.deepblue-documents.lib.umich.edu/rest                     | backend  | REST API (deprecated) |
 
 ## port-forward services (workshop example)
-To reach other services use the `kubectl --namespace=workshop port-forward service/<target> <port>:<port>` command.
+To reach other services, use the `kubectl --namespace=workshop port-forward service/<target> <port>:<port>` command.
 
 | URL                                     | Container | Comments                                     |
 |-----------------------------------------|-----------|----------------------------------------------|
@@ -42,7 +42,7 @@ To reach other services use the `kubectl --namespace=workshop port-forward servi
 | http://localhost:8983/solr              | solr      | Solr GUI                                     |
 | http://localhost:9876/                  | frontend  | debugging???                                 |
 
-### port-foward database (workshop example)
+### port-forward database (workshop example)
 Shell Terminal One
 ```shell
 kubectl --namespace=workshop port-forward service/db 5432:5432
