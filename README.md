@@ -14,7 +14,7 @@ A shared **source image** is built first by cloning those forks. It is then cons
 
 There are two deployment contexts:
 - **Local** — Docker Desktop; images built with `docker compose build`, deployed with `docker compose up -d`.
-- **Remote** — Kubernetes/OpenShift cluster; images built by GitHub Actions, stored in GitHub Packages, and deployed by applying the YAML manifests in [`dspace/`](dspace) (Kubernetes) or [`dspace-uid/`](dspace-uid) (OpenShift).
+- **Remote** — Kubernetes/OpenShift cluster; images built by GitHub Actions, stored in GitHub Packages, and deployed by applying the YAML manifests in [`dspace/`](dspace) (Kubernetes) or [`dspace-uid/`](dspace-uid) (OpenShift). See [`dspace/README.md`](dspace/README.md) for build, deployment, and **[known security concerns](dspace/README.md#known-security-concerns) that should be reviewed before production use**.
 
 It is recommended to get the stack running locally via Docker Compose before attempting a remote deployment.
 
@@ -102,7 +102,7 @@ DSPACE_REST_HOST=backend
 `docker-compose.yml` passes `DSPACE_VERSION` and `JDK_VERSION` automatically to the relevant service builds via `build.args`.
 
 ### Notes
-- Debugging ports (e.g., 8009, 9876) are not exposed by default. Add them to `docker-compose.yml` if needed.
+- The backend container exposes port **8000** (JDWP remote debugger — root `backend.dockerfile` for local dev only) and port **8009** (AJP connector). Neither is mapped in `docker-compose.yml` by default. Add a port mapping to `docker-compose.yml` if you need to attach a remote debugger locally.
 - The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, and the `frontend` service waits for `backend` to be healthy, ensuring correct startup ordering without manual delays.
 - Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
 - **`backend/local.cfg`** disables OIDC authentication for local dev and supplies placeholder values for `ip.bioIPsRange1` / `ip.bioIPsRange2`. `OidcAuthenticationBean` is still instantiated by Spring even when removed from the authentication plugin sequence, and its initialisation path calls `String.split()` on those properties unconditionally — omitting them causes a `NullPointerException` that returns HTTP 500 on every `/server/api` endpoint and the actuator. This file is only copied into images built by the root `backend.dockerfile` (local dev and `ci.yml`). The `dspace/backend.dockerfile`, used to build the production/staging images published to `ghcr.io`, does **not** copy it at all.
