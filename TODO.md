@@ -1,6 +1,7 @@
 # TODO
 
 
+
 ## Scrub Deleted `.cpt` Files from Git History
 The five encrypted config files (`backend/config/*.cpt`) and the production log
 (`backend/logs/dspace.log.2023-11-01`) were deleted from the working tree in
