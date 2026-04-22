@@ -20,7 +20,6 @@ on:
         type: choice
         options:
           - umich
-          - issue-working
 
 jobs:
   build:

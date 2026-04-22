@@ -11,7 +11,6 @@ on:
         type: choice
         options:
           - umich
-          - issue-working
 
       uid:
         description: "OpenShift UID"
