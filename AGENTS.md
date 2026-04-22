@@ -52,6 +52,23 @@
   - Accept a file path as the first positional argument and fall back to stdin.
   - Add an entry to `dotpy/README.md` following the existing format.
 
+## Pull Request Summaries
+
+- **When the developer asks for a PR summary**, write it to `pr-summary.md` in
+  the project root and open the file so they can select-all and copy from the
+  editor. `pr-summary.md` is listed in `.gitignore` and will never be
+  accidentally committed.
+- Use standard GitHub-flavoured Markdown: `##` / `###` headings, `**bold**`,
+  inline backticks, and bullet lists. Do not use HTML tags.
+- Structure the summary as:
+  1. **`## <Title>`** — one-line description matching the branch purpose.
+  2. **`### Summary`** — 2–4 sentences on what the PR does and why.
+  3. **`### Changes`** — one bold entry per changed file or directory with
+     bullet sub-points explaining what changed.
+  4. **`### Notes`** *(optional)* — follow-up items, known limitations, or
+     things the reviewer should verify manually.
+- Delete `pr-summary.md` after the PR is created; do not commit it.
+
 ## Markdown Formatting
 
 - **Format tables correctly**: Every column in a Markdown table must be padded so that all cells in that column (header, separator, and every data row) are the same width. The separator row must use dashes (`-`) at least as wide as the widest cell in each column. Mismatched widths cause IDE warnings ("Table is not correctly formatted").
@@ -59,7 +76,8 @@
   - Pad every shorter cell with trailing spaces to match that width.
   - Use the same number of dashes in the separator row as the column width.
   - **The data rows — not just the header — define the required column width.** The header and separator must be padded/extended to match the widest data cell, not the other way around.
-  - To compute the exact separator, run: `python3 dotpy/calc_widths.py <file.md>` — it prints the maximum between-pipe width per column and the ready-to-paste separator row for every table in the file.
+  - To auto-format a table (strip whitespace, recalculate all widths, pad in place), run: `python3 dotpy/format_table.py <file.md>` — rewrites the file with every table correctly padded. **Use this first.**
+  - To compute the exact separator without editing, run: `python3 dotpy/calc_widths.py <file.md>` — it prints the maximum between-pipe width per column and the ready-to-paste separator row for every table in the file.
   - To validate alignment after editing, run: `python3 dotpy/check_tables.py <file.md>` — exits `0` if all tables are consistent, `1` with error details if not.
   - If a table requires very long lines (e.g., > 120 characters per row), prefer using a shorter link display text or a bullet-list format instead of a wide table.
 

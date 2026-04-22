@@ -66,6 +66,29 @@ ERROR: README.md:67 col 3: width mismatch (header=32, this row=28)
 
 ---
 
+### `format_table.py` — Auto-format Markdown tables in place
+
+Reads a Markdown file (or stdin), strips unnecessary whitespace from every
+table cell, recalculates column widths, and rewrites the file with all tables
+correctly padded.  Alignment markers (`:`) in separator rows are preserved.
+
+**Usage**
+
+```shell
+python3 dotpy/format_table.py <file.md>   # formats in place
+python3 dotpy/format_table.py             # reads from stdin, writes to stdout
+```
+
+**When to use**
+
+- After writing or editing a Markdown table without worrying about alignment —
+  run this script and the table is padded automatically.
+- Faster than running `calc_widths.py` and padding cells by hand.
+- Follow up with `check_tables.py` to confirm the result is valid.
+
+---
+
+
 ## Conventions for adding new scripts
 
 When a new Python utility is useful enough to save for future use, add it here:
