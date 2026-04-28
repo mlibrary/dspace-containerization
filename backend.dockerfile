@@ -94,7 +94,6 @@ RUN mkdir /root/.emacs.d
 # Install additional backend scripts
 COPY ./backend/init.el /root/.emacs.d/init.el
 COPY ./backend/bin/ $DSPACE_INSTALL/bin/
-COPY ./backend/local.cfg $DSPACE_INSTALL/config/local.cfg
 
 # The logs directory is already created by `ant init_installation` above,
 # so the explicit mkdir is redundant. Kept here (commented out) as a reminder

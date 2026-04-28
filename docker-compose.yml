@@ -63,6 +63,15 @@ services:
       - dspace__P__server__P__url=http://backend:8080/server
       # dspace.ui.url is used by the backend to generate frontend links (e.g. e-mail alerts).
       - dspace__P__ui__P__url=http://localhost:4000
+      # Disable OIDC authentication for local dev; use password auth only.
+      # In production/staging this is set via the external Kubernetes ConfigMap.
+      - plugin__P__sequence__P__org__P__dspace__P__authenticate__P__AuthenticationMethod=org.dspace.authenticate.PasswordAuthentication
+      # OidcAuthenticationBean is instantiated by Spring even when removed from the plugin
+      # sequence above.  It calls String.split() on ip.bioIPsRange1/2 unconditionally, so
+      # provide harmless non-routable CIDR placeholders to prevent NullPointerException.
+      # In production/staging real IP ranges are supplied via the Kubernetes ConfigMap.
+      - ip__P__bioIPsRange1=192.0.2.0/24
+      - ip__P__bioIPsRange2=192.0.2.0/24
     ports:
       - "8080:8080"
     volumes:

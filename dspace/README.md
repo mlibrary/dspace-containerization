@@ -10,7 +10,7 @@ Run the GitHub action workflows in the following order to build the images that 
 | [2. Build dspace images](https://github.com/mlibrary/dspace-containerization/actions/workflows/build-dspace-images.yml)      | dspace-frontend:`tag`, dspace-backend:`tag`, dspace-solr:`tag`, dspace-db:`tag` |
 
 NOTE:
-* Production configuration is **not** baked into the backend image. It is delivered at runtime via Kubernetes Secrets mounted directly as single files into the container (e.g. `dspace.cfg`, `authentication-oidc.cfg`). The actual Secret names and mount paths are managed in [deepblue-documents-kube](https://github.com/mlibrary/deepblue-documents-kube).
+* Production configuration is **not** baked into the backend image. It is supplied at runtime entirely via environment variables — non-sensitive settings (DSpace property overrides, IP ranges, mail settings, etc.) from a Kubernetes **ConfigMap**, and sensitive values (credentials, API keys) from Kubernetes **Secrets**. Both are managed in [deepblue-documents-kube](https://github.com/mlibrary/deepblue-documents-kube). This mirrors the pattern used locally: the `backend` service in `docker-compose.yml` sets the same `__P__`-encoded env vars for local development.
 ## configuration and deployment
 Argo CD is used for configuration and deployment via [deepblue-documents-kube](https://github.com/mlibrary/deepblue-documents-kube) repository. 
 

@@ -38,9 +38,9 @@ The `GITHUB_BRANCH` build argument (default: `umich`) controls which branch of t
 >
 > **What is reusable:** the multi-stage Dockerfile patterns, `docker-compose.yml` service structure, Makefile workflow, smoke-test suite (`tests/`), and GitHub Actions CI pipeline (`.github/workflows/ci.yml`) are general-purpose and straightforward to adapt.
 >
-> **What is U-M-specific:** the source forks (`mlibrary/DSpace`, `mlibrary/dspace-angular`), the `GITHUB_BRANCH=umich` default, backend scripts in `backend/bin/`, and `backend/local.cfg`.
+> **What is U-M-specific:** the source forks (`mlibrary/DSpace`, `mlibrary/dspace-angular`), the `GITHUB_BRANCH=umich` default, and backend scripts in `backend/bin/`.
 >
-> To adapt this for your own institution, point `GITHUB_BRANCH` (or a fork of your own) at your customized DSpace source and replace `backend/local.cfg` with your own overrides. Note that `backend/local.cfg` is only copied into images built by the root `backend.dockerfile` (local dev and `ci.yml`); the `dspace/backend.dockerfile` used to build published production/staging images does **not** copy it — configuration for those environments is supplied at runtime via environment variables or mounted Kubernetes Secrets.
+> To adapt this for your own institution, point `GITHUB_BRANCH` (or a fork of your own) at your customized DSpace source and adjust the `environment:` block of the `backend` service in `docker-compose.yml` to suit your setup. All DSpace configuration is supplied via environment variables at runtime — for local dev through `docker-compose.yml`, and for production/staging through Kubernetes ConfigMaps or Secrets.
 
 
 ## Building and running locally
@@ -105,7 +105,7 @@ DSPACE_REST_HOST=backend
 - The backend container exposes port **8000** (JDWP remote debugger — root `backend.dockerfile` for local dev only) and port **8009** (AJP connector). Neither is mapped in `docker-compose.yml` by default. Add a port mapping to `docker-compose.yml` if you need to attach a remote debugger locally.
 - The `backend` service uses `depends_on` with `condition: service_healthy` for `db` and `solr`, and the `frontend` service waits for `backend` to be healthy, ensuring correct startup ordering without manual delays.
 - Use `make` targets (see [Makefile](Makefile)) for common workflows: `make build`, `make up`, `make down`, `make clean`.
-- **`backend/local.cfg`** disables OIDC authentication for local dev and supplies placeholder values for `ip.bioIPsRange1` / `ip.bioIPsRange2`. `OidcAuthenticationBean` is still instantiated by Spring even when removed from the authentication plugin sequence, and its initialisation path calls `String.split()` on those properties unconditionally — omitting them causes a `NullPointerException` that returns HTTP 500 on every `/server/api` endpoint and the actuator. This file is only copied into images built by the root `backend.dockerfile` (local dev and `ci.yml`). The `dspace/backend.dockerfile`, used to build the production/staging images published to `ghcr.io`, does **not** copy it at all.
+- **Backend configuration** is supplied entirely via `environment:` variables in `docker-compose.yml` (mirroring the Kubernetes ConfigMap pattern used in production). Key local-dev overrides: `plugin__P__sequence__P__org__P__dspace__P__authenticate__P__AuthenticationMethod` disables OIDC and enables password auth; `ip__P__bioIPsRange1` / `ip__P__bioIPsRange2` are set to non-routable CIDR placeholders (`192.0.2.0/24`) so that `OidcAuthenticationBean` — which calls `String.split()` on those properties unconditionally at startup — does not throw a `NullPointerException` on every `/server/api` request. In production/staging, real IP ranges and all other settings come from the Kubernetes ConfigMap.
 
 ## Integration Testing
 
