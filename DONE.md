@@ -1,5 +1,32 @@
 # DONE
 
+## 2026-04-27T00:00:00 — Update Markdown Files for local.cfg Removal
+Updated all markdown files to reflect the env-var-based configuration approach.
+`dspace/README.md` NOTE corrected from "Kubernetes Secrets mounted as files" to
+the accurate ConfigMap/env-var description. Confirmed no other markdown files
+had stale `local.cfg` or `backend/config/` references. All tables validated
+with `check_tables.py`.
+
+- [x] Update `dspace/README.md` NOTE: replace "Kubernetes Secrets mounted as files" with the correct ConfigMap/env-var description
+- [x] Verify no other markdown files have stale references
+- [x] Run `python3 dotpy/check_tables.py` on edited files
+- [x] Verify with the developer that the task is complete
+
+## 2026-04-27T00:00:00 — Replace local.cfg with Docker Compose Environment Variables
+Deleted `backend/local.cfg` and removed its `COPY` instruction from
+`backend.dockerfile`. The three settings it contained — password-auth plugin
+sequence, `ip.bioIPsRange1`, and `ip.bioIPsRange2` — are now expressed as
+`__P__`-encoded `environment:` variables in the `backend` service of
+`docker-compose.yml`, mirroring the Kubernetes ConfigMap pattern used in
+production (`backend-cm.jsonnet`). `README.md` updated to remove all
+`local.cfg` references and document the env-var approach.
+
+- [x] Add `plugin__P__sequence__P__org__P__dspace__P__authenticate__P__AuthenticationMethod` and IP-range placeholder env vars to the `backend` service in `docker-compose.yml`
+- [x] Remove `COPY ./backend/local.cfg $DSPACE_INSTALL/config/local.cfg` from `backend.dockerfile`
+- [x] Delete `backend/local.cfg`
+- [x] Verify the current state of the project achieves the task goal
+- [x] Verify with the developer that the task is complete
+
 ## 2026-04-22T00:00:00 — Backend Bin Scripts README
 Documented all 58 scripts and data files in `backend/bin/` (excluding
 `README.md` itself and the CSV inventory sheets under `sheets/`). Initial
