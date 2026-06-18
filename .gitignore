@@ -1,3 +1,8 @@
+# Ignore Greg's Agent Framework local settings and agents.
+#   This is a symbolic link to the actual directory,
+#   which is located outside of the repository.
+.agents
+
 .DS_Store
 .env
 pr-summary.md
