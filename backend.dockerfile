@@ -73,6 +73,7 @@ RUN apt-get -o Acquire::Retries=3 update \
         libmime-lite-perl \
         libnet-sftp-foreign-perl \
         libmailtools-perl \
+        libtext-csv-perl \
         unzip \
         xsltproc \
         dnsutils \
